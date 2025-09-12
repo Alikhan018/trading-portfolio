@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 
 // Function to load GLTF models (converted from USDZ)
-export const loadGLTFModel = async (url: string): Promise<THREE.Group> => {
+export const loadGLTFModel = async (url: string): Promise<THREE.Object3D> => {
   return new Promise((resolve, reject) => {
     const loader = new THREE.ObjectLoader();
     loader.load(

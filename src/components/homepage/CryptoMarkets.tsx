@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { TrendingUp, Activity, BarChart3, DollarSign, Target, Globe, Star, Sparkles } from 'lucide-react';
-import CryptoChart from '../CryptoChart';
+import { TrendingUp, Activity, BarChart3, DollarSign, Target, Globe, Star } from 'lucide-react';
 
 const CryptoMarkets: React.FC = () => {
   const marketsRef = useRef<HTMLElement>(null);

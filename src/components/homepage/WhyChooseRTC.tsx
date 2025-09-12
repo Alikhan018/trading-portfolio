@@ -6,13 +6,7 @@ import {
   Sparkles, 
   Star, 
   Brain,
-  Zap,
-  CheckCircle,
-  XCircle,
-  Award,
-  MessageCircle,
-  TrendingUp,
-  Users
+  Zap
 } from 'lucide-react';
 
 const WhyChooseRTC: React.FC = () => {

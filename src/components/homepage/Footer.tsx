@@ -25,7 +25,6 @@ const Footer: React.FC = () => {
 
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const cardRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 5, 10]);
   const floatingY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const quickLinks = [
