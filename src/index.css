@@ -1,0 +1,119 @@
+/* Import Optimized Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap');
+
+/* Import Component Styles */
+@import './styles/Header.css';
+@import './styles/Hero.css';
+@import './styles/VideoBackground.css';
+@import './styles/About.css';
+@import './styles/CommunityStats.css';
+@import './styles/Services.css';
+@import './styles/WhyChooseRTC.css';
+@import './styles/CallToAction.css';
+@import './styles/CryptoMarkets.css';
+@import './styles/Footer.css';
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000000;
+  color: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Utility Classes */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 3D Effects */
+.perspective-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: white;
+}
+
+/* Focus */
+*:focus {
+  outline: 2px solid rgba(99, 102, 241, 0.5);
+  outline-offset: 2px;
+}
+
+/* Reset Elements */
+button, a, img, ul, ol, h1, h2, h3, h4, h5, h6, p {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  text-decoration: none;
+  max-width: 100%;
+  height: auto;
+  list-style: none;
+  font-weight: inherit;
+  font-size: inherit;
+  margin: 0;
+}
+
+/* Loading styles removed */
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 12px; }
+}
