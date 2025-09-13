@@ -64,21 +64,102 @@ const Header: React.FC = () => {
         {/* Desktop Header */}
         <div className="hidden lg:flex items-center justify-between">
           {/* Logo */}
-          <div style={{ flexShrink: 0, width: '33.333333%' }}>
+          <div style={{ flexShrink: 0, width: '33.333333%', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <motion.h1
-              className="text-2xl font-bold"
+              className="text-2xl font-bold flex items-center gap-2"
               style={{
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                letterSpacing: '0.02em',
-                lineHeight: '1.2',
+                background: theme === 'dark' 
+                  ? 'linear-gradient(135deg, #8b5cf6, #a855f7, #c084fc)'
+                  : 'linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                color: 'transparent',
+                fontSize: '2.5rem',
+                fontWeight: '800',
+                letterSpacing: '0.05em',
+                lineHeight: '1.1',
+                textShadow: theme === 'dark' 
+                  ? '0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(168, 85, 247, 0.3)'
+                  : '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(99, 102, 241, 0.3)',
                 textDecoration: 'none',
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+              }}
+              whileHover={{ 
+                scale: 1.08,
+                textShadow: theme === 'dark' 
+                  ? '0 0 25px #8b5cf6, 0 0 50px #a855f7'
+                  : '0 0 25px #3b82f6, 0 0 50px #6366f1'
+              }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            >
+              RTC
+            </motion.h1>
+            
+            {/* Live Indicator */}
+            <motion.div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.25rem 0.75rem',
+                borderRadius: '20px',
+                background: theme === 'dark' 
+                  ? 'rgba(16, 185, 129, 0.1)'
+                  : 'rgba(5, 150, 105, 0.1)',
+                border: theme === 'dark'
+                  ? '1px solid rgba(16, 185, 129, 0.3)'
+                  : '1px solid rgba(5, 150, 105, 0.3)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: theme === 'dark'
+                  ? '0 4px 12px rgba(16, 185, 129, 0.2)'
+                  : '0 4px 12px rgba(5, 150, 105, 0.2)',
+                  marginTop: '0.1rem'
               }}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              RTC
-            </motion.h1>
+              {/* Live Circle */}
+              <motion.div
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: theme === 'dark' 
+                    ? 'linear-gradient(135deg, #10b981, #34d399)'
+                    : 'linear-gradient(135deg, #059669, #10b981)',
+                  boxShadow: theme === 'dark'
+                    ? '0 0 8px rgba(16, 185, 129, 0.6)'
+                    : '0 0 8px rgba(5, 150, 105, 0.6)'
+                }}
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.8, 1, 0.8]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
+              
+              {/* LIVE Text */}
+              <span
+                style={{
+                  fontSize: '0.75rem',
+                  fontWeight: '600',
+                  color: theme === 'dark' 
+                    ? '#10b981'
+                    : '#059669',
+                  letterSpacing: '0.05em',
+                  textShadow: theme === 'dark'
+                    ? '0 0 8px rgba(16, 185, 129, 0.4)'
+                    : '0 0 8px rgba(5, 150, 105, 0.4)'
+                }}
+              >
+                LIVE
+              </span>
+            </motion.div>
           </div>
           
           {/* Desktop Navigation - Centered */}
@@ -135,30 +216,88 @@ const Header: React.FC = () => {
         {/* Mobile Header */}
         <div className="lg:hidden flex items-center justify-between">
           {/* Logo */}
-          <motion.h1
-            className="text-xl font-bold"
-            style={{
-              background: theme === 'dark' 
-                ? 'linear-gradient(135deg, #6366f1, #8b5cf6)'
-                : 'linear-gradient(135deg, #1e40af, #7c3aed)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              color: 'transparent',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              letterSpacing: '0.02em',
-              lineHeight: '1.2',
-              textShadow: theme === 'dark' 
-                ? '0 0 10px rgba(99, 102, 241, 0.3)'
-                : '0 0 10px rgba(30, 64, 175, 0.3)',
-              textDecoration: 'none',
-            }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            RTC
-          </motion.h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <motion.h1
+              className="text-xl font-bold flex items-center gap-2"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '800',
+                letterSpacing: '0.05em',
+                lineHeight: '1.1',
+              }}
+              whileHover={{ 
+                scale: 1.08,
+              }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            >
+              RTC
+            </motion.h1>
+            
+            {/* Live Indicator */}
+            <motion.div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.375rem',
+                padding: '0.2rem 0.6rem',
+                borderRadius: '16px',
+                background: theme === 'dark' 
+                  ? 'rgba(16, 185, 129, 0.1)'
+                  : 'rgba(5, 150, 105, 0.1)',
+                border: theme === 'dark'
+                  ? '1px solid rgba(16, 185, 129, 0.3)'
+                  : '1px solid rgba(5, 150, 105, 0.3)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: theme === 'dark'
+                  ? '0 3px 8px rgba(16, 185, 129, 0.2)'
+                  : '0 3px 8px rgba(5, 150, 105, 0.2)',
+                  marginTop: '0.1rem'
+              }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* Live Indicator */}
+              <motion.div
+                style={{
+                  width: '5px',
+                  height: '5px',
+                  borderRadius: '50%',
+                  background: theme === 'dark' 
+                    ? 'linear-gradient(135deg, #10b981, #34d399)'
+                    : 'linear-gradient(135deg, #059669, #10b981)',
+                  boxShadow: theme === 'dark'
+                    ? '0 0 6px rgba(16, 185, 129, 0.6)'
+                    : '0 0 6px rgba(5, 150, 105, 0.6)'
+                }}
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.8, 1, 0.8]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
+              
+              {/* LIVE Text */}
+              <span
+                style={{
+                  fontSize: '0.65rem',
+                  fontWeight: '600',
+                  color: theme === 'dark' 
+                    ? '#10b981'
+                    : '#059669',
+                  letterSpacing: '0.05em',
+                  textShadow: theme === 'dark'
+                    ? '0 0 6px rgba(16, 185, 129, 0.4)'
+                    : '0 0 6px rgba(5, 150, 105, 0.4)'
+                }}
+              >
+                LIVE
+              </span>
+            </motion.div>
+          </div>
 
           {/* Mobile Actions */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
