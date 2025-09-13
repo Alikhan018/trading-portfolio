@@ -178,7 +178,7 @@ const CryptoMarkets: React.FC = () => {
             {tradingPairs.map((pair, index) => (
               <motion.div
                 key={index}
-                className="pair-card-3d"
+                className="pair-card-3d cursor-pointer"
                 initial={{ opacity: 0, y: 50, rotateX: -20 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ 

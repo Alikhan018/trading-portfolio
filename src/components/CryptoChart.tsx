@@ -114,15 +114,15 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-full bg-gradient-fire flex items-center justify-center">
-            <Activity className="w-5 h-5 text-white" />
+            <Activity className="w-5 h-5" style={{ color: 'var(--text-primary)' }} />
           </div>
           <div>
-            <h3 className="font-orbitron font-bold text-lg text-white">{cryptoData.name}</h3>
+            <h3 className="font-orbitron font-bold text-lg" style={{ color: 'var(--text-primary)' }}>{cryptoData.name}</h3>
             <p className="text-orange-300 text-sm font-rajdhani">{cryptoData.symbol}</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-2xl font-bold text-white">${cryptoData.price.toLocaleString()}</p>
+          <p className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>${cryptoData.price.toLocaleString()}</p>
           <div className={`flex items-center space-x-1 ${isPositive ? 'text-yellow-400' : 'text-red-400'}`}>
             {isPositive ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
             <span className="font-semibold">{isPositive ? '+' : ''}{cryptoData.change.toFixed(2)}%</span>
@@ -152,7 +152,7 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
                 backgroundColor: 'rgba(0, 0, 0, 0.8)',
                 border: '1px solid #ff6b35',
                 borderRadius: '8px',
-                color: 'white'
+                color: 'var(--text-primary)'
               }}
               formatter={(value: number) => [`$${value.toLocaleString()}`, 'Price']}
             />
@@ -183,7 +183,7 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
           <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
           <span className="text-sm text-orange-300 font-rajdhani">Live Data</span>
         </div>
-        <span className="text-xs text-gray-400">Updated 1min ago</span>
+        <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Updated 1min ago</span>
       </div>
     </div>
   );

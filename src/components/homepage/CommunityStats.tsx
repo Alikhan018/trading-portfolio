@@ -50,7 +50,7 @@ const CommunityStats: React.FC = () => {
   ];
 
   return (
-    <section id="community" ref={communityRef} className="relative min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-black overflow-hidden">
+    <section id="community" ref={communityRef} className="relative min-h-screen overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
       {/* 3D Background Elements */}
       <motion.div 
         className="absolute inset-0 z-0"
@@ -173,7 +173,7 @@ const CommunityStats: React.FC = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="stat-card-3d"
+                className="stat-card-3d cursor-pointer"
                 initial={{ opacity: 0, y: 50, rotateX: -20 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ 

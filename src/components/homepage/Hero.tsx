@@ -76,9 +76,9 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
   }, []);
 
   return (
-    <section id="home" ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden flex items-center justify-center py-4 md:py-8">
+    <section id="home" ref={heroRef} className="relative min-h-screen overflow-hidden flex items-center justify-center py-4 md:py-8" style={{ background: 'var(--gradient-bg)' }}>
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-black to-gray-700" />
+      <div className="absolute inset-0" style={{ background: 'var(--gradient-bg)' }} />
 
       {/* Main Content */}
       <motion.div 
@@ -91,11 +91,19 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
           <div className="flex flex-col gap-6 text-center xl:text-left items-center xl:items-start">
             {/* Badge */}
             <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-full backdrop-blur-[10px] w-fit text-[0.9rem] font-medium text-zinc-400"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-[10px] w-fit text-[0.9rem] font-medium"
               initial={{ opacity: 0, y: 20 }}
               animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              style={{ paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
+              style={{ 
+                paddingLeft: '1rem', 
+                paddingRight: '1rem', 
+                paddingTop: '0.5rem', 
+                paddingBottom: '0.5rem',
+                background: 'var(--bg-glass)',
+                border: '1px solid var(--border-primary)',
+                color: 'var(--text-secondary)'
+              }}
             >
               <Star className="w-4 h-4 text-amber-400" />
               <span>Trusted by 1M+ users worldwide</span>
@@ -103,11 +111,15 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
 
             {/* Main Title */}
             <motion.div
-              className="text-[2rem] md:text-[3rem] xl:text-[3.5rem] font-extrabold leading-[1.1] text-white m-0"
+              className="text-[2rem] md:text-[3rem] xl:text-[3.5rem] font-extrabold leading-[1.1] m-0"
               initial={{ opacity: 0, y: 30 }}
               animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              style={{ width: '100%', maxWidth: '600px' }}
+              style={{ 
+                width: '100%', 
+                maxWidth: '600px',
+                color: 'var(--text-primary)'
+              }}
             >
               Master the Markets
               <span className="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block"> with Rao Trading Concept</span>
@@ -116,12 +128,13 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
 
             {/* Subtitle */}
             <motion.div
-              className="text-base md:text-[1.1rem] xl:text-xl text-zinc-400 leading-[1.6] m-0 max-w-[300px]"
+              className="text-base md:text-[1.1rem] xl:text-xl leading-[1.6] m-0 max-w-[300px]"
               initial={{ opacity: 0, y: 20 }}
               animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.6 }}
+              style={{ color: 'var(--text-secondary)' }}
             >
-              Pakistan’s Leading Forex Trading Community – Join our Discord to get access to exclusive content
+              Pakistan's Leading Forex Trading Community – Join our Discord to get access to exclusive content
             </motion.div>
 
             {/* Stats */}
@@ -132,16 +145,16 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <div className="text-center xl:text-left">
-                <div className="text-2xl font-extrabold text-white mb-1">1M+</div>
-                <div className="text-[0.9rem] text-zinc-400 font-medium">Active Users</div>
+                <div className="text-2xl font-extrabold mb-1" style={{ color: 'var(--text-primary)' }}>1M+</div>
+                <div className="text-[0.9rem] font-medium" style={{ color: 'var(--text-secondary)' }}>Active Users</div>
               </div>
               <div className="text-center xl:text-left">
-                <div className="text-2xl font-extrabold text-white mb-1">99.9%</div>
-                <div className="text-[0.9rem] text-zinc-400 font-medium">Uptime</div>
+                <div className="text-2xl font-extrabold mb-1" style={{ color: 'var(--text-primary)' }}>99.9%</div>
+                <div className="text-[0.9rem] font-medium" style={{ color: 'var(--text-secondary)' }}>Uptime</div>
               </div>
               <div className="text-center xl:text-left">
-                <div className="text-2xl font-extrabold text-white mb-1">24/7</div>
-                <div className="text-[0.9rem] text-zinc-400 font-medium">Support</div>
+                <div className="text-2xl font-extrabold mb-1" style={{ color: 'var(--text-primary)' }}>24/7</div>
+                <div className="text-[0.9rem] font-medium" style={{ color: 'var(--text-secondary)' }}>Support</div>
               </div>
             </motion.div>
           </div>

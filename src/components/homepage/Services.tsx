@@ -165,7 +165,7 @@ const Services: React.FC = () => {
             {services.map((service, index) => (
               <motion.div
                 key={service.id}
-                className="service-card-3d"
+                className="service-card-3d cursor-pointer"
                 initial={{ opacity: 0, y: 50, rotateX: -20 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ 

@@ -1,15 +1,18 @@
 import React from 'react';
 import { Homepage } from './pages';
 import { useSmoothScrolling } from './hooks/useSmoothScrolling';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 const App: React.FC = () => {
   // Initialize smooth scrolling
   useSmoothScrolling();
 
   return (
-    <div>
-      <Homepage />
-    </div>
+    <ThemeProvider>
+      <div>
+        <Homepage />
+      </div>
+    </ThemeProvider>
   );
 };
 

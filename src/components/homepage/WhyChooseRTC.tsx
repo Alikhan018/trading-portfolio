@@ -233,7 +233,7 @@ const WhyChooseRTC: React.FC = () => {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="why-choose-card-3d"
+                className="why-choose-card-3d cursor-pointer"
                 initial={{ opacity: 0, y: 50, rotateX: -20 }}
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 transition={{ 
@@ -307,29 +307,29 @@ const WhyChooseRTC: React.FC = () => {
             }}
           >
             <motion.h2
-              className="font-bold text-white"
+              className="font-bold"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
               viewport={{ once: true }}
-              style={{ 
+              style={{
+                color: 'var(--text-primary)', 
                 fontSize: '3.5rem',
                 fontWeight: '800',
                 marginBottom: '1.5rem',
                 transformStyle: 'preserve-3d'
               }}
             >
-              Why Choose <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">RTC</span>?
+              Why Choose <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">RTC</span>?
             </motion.h2>
             <motion.p
-              className="text-gray-400"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
               viewport={{ once: true }}
-              style={{ 
+              style={{
+                color: 'var(--text-secondary)', 
                 fontSize: '1.25rem',
-                color: '#a1a1aa',
                 maxWidth: '600px',
                 margin: '0 auto',
                 lineHeight: '1.6',
@@ -359,20 +359,39 @@ const WhyChooseRTC: React.FC = () => {
               transition={{ duration: 0.8, delay: 1.2 }}
               viewport={{ once: true }}
             >
-              <div 
-                className="relative rounded-2xl h-full"
+              <motion.div 
+                className="relative rounded-2xl h-full cursor-pointer group"
                 style={{
                   background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 214, 160, 0.05) 50%, rgba(0, 0, 0, 0.3) 100%)',
                   border: '2px solid rgba(16, 185, 129, 0.3)',
                   boxShadow: '0 20px 40px -12px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                   padding: '2rem'
                 }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -8,
+                  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
+                }}
               >
+                {/* Hover Overlay */}
+                <div 
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 214, 160, 0.08) 100%)'
+                  }}
+                />
+                {/* Glow Effect */}
+                <div 
+                  className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-60 transition-all duration-400 pointer-events-none blur-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(6, 214, 160, 0.2) 100%)'
+                  }}
+                />
                 {/* Header */}
                 <div style={{ marginBottom: '2rem' }}>
-                  <h3 className="text-2xl font-bold text-white" style={{ marginBottom: '1rem' }}>
+                  <h3 className="text-2xl font-bold" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
                     ✅ RTC Premium Features
-                  </h3>
+              </h3>
                   <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"></div>
                 </div>
 
@@ -388,13 +407,13 @@ const WhyChooseRTC: React.FC = () => {
                       {/* Features for this category */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
                         {comparison.rtc.features.map((feature, featureIndex) => (
-                          <motion.div
+                  <motion.div
                             key={`${comparisonIndex}-${featureIndex}`}
                             className="flex items-start"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 1.4 + (comparisonIndex * 0.2) + (featureIndex * 0.1) }}
-                            viewport={{ once: true }}
+                    viewport={{ once: true }}
                             style={{ gap: '1rem' }}
                           >
                             <div 
@@ -408,7 +427,7 @@ const WhyChooseRTC: React.FC = () => {
                                 marginTop: '0.25rem'
                               }}
                             >
-                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: 'var(--text-primary)' }}>
                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                               </svg>
                             </div>
@@ -417,9 +436,9 @@ const WhyChooseRTC: React.FC = () => {
                         ))}
                       </div>
                     </div>
-                  ))}
+                ))}
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Right Column - All Basic Service Limitations */}
@@ -430,20 +449,39 @@ const WhyChooseRTC: React.FC = () => {
               transition={{ duration: 0.8, delay: 1.4 }}
               viewport={{ once: true }}
             >
-              <div 
-                className="relative rounded-2xl h-full"
+              <motion.div 
+                className="relative rounded-2xl h-full cursor-pointer group"
                 style={{
                   background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 50%, rgba(0, 0, 0, 0.3) 100%)',
                   border: '2px solid rgba(239, 68, 68, 0.3)',
                   boxShadow: '0 20px 40px -12px rgba(239, 68, 68, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                   padding: '2rem'
                 }}
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -8,
+                  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
+                }}
               >
+                {/* Hover Overlay */}
+                <div 
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)'
+                  }}
+                />
+                {/* Glow Effect */}
+                <div 
+                  className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-60 transition-all duration-400 pointer-events-none blur-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(220, 38, 38, 0.2) 100%)'
+                  }}
+                />
                 {/* Header */}
                 <div style={{ marginBottom: '2rem' }}>
-                  <h3 className="text-2xl font-bold text-white" style={{ marginBottom: '1rem' }}>
+                  <h3 className="text-2xl font-bold" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
                     ❌ Basic Service Limitations
-                  </h3>
+              </h3>
                   <div className="w-16 h-1 bg-gradient-to-r from-red-400 to-red-600 rounded-full"></div>
                 </div>
 
@@ -459,13 +497,13 @@ const WhyChooseRTC: React.FC = () => {
                       {/* Limitations for this category */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
                         {comparison.others.features.map((feature, featureIndex) => (
-                          <motion.div
+                  <motion.div
                             key={`${comparisonIndex}-${featureIndex}`}
                             className="flex items-start"
-                            initial={{ opacity: 0, x: 20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.5, delay: 1.6 + (comparisonIndex * 0.2) + (featureIndex * 0.1) }}
-                            viewport={{ once: true }}
+                    viewport={{ once: true }}
                             style={{ gap: '1rem' }}
                           >
                             <div 
@@ -479,7 +517,7 @@ const WhyChooseRTC: React.FC = () => {
                                 marginTop: '0.25rem'
                               }}
                             >
-                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: 'var(--text-primary)' }}>
                                 <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                               </svg>
                             </div>
@@ -488,51 +526,11 @@ const WhyChooseRTC: React.FC = () => {
                         ))}
                       </div>
                     </div>
-                  ))}
+                ))}
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
-
-          {/* Call to Action */}
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.0 }}
-            viewport={{ once: true }}
-            style={{ 
-              marginTop: '4rem',
-              maxWidth: '1200px',
-              width: '100%'
-            }}
-          >
-            <div style={{ 
-              padding: '2rem', 
-              maxWidth: '800px', 
-              margin: '0 auto' 
-            }}>
-              <h3 className="text-3xl font-bold text-white" style={{ marginBottom: '1rem' }}>
-                Ready to Experience the RTC Difference?
-              </h3>
-              <p className="text-xl text-gray-300" style={{ marginBottom: '1.5rem' }}>
-                Join thousands of successful traders who chose quality over quantity
-              </p>
-              <motion.button
-                className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold text-lg transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{
-                  padding: '1rem 2rem',
-                  borderRadius: '0.75rem',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                Get Started Today
-              </motion.button>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

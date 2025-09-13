@@ -1,7 +1,7 @@
 /* Footer 3D Styles */
 .footer-section-3d {
   position: relative;
-  background: linear-gradient(135deg, #1f2937, #000000, #374151);
+  background: var(--gradient-bg);
   overflow: hidden;
   perspective: 1000px;
   padding: 6rem 2rem 2rem;
@@ -29,9 +29,10 @@
 
 .footer-shape {
   position: absolute;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 8px;
+  background: var(--gradient-primary);
+  opacity: 0.1;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-sm);
   transform-style: preserve-3d;
 }
 
@@ -149,7 +150,7 @@
 .footer-brand-name-3d {
   font-size: 2rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff, #a1a1aa);
+  background: var(--gradient-text);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -159,7 +160,7 @@
 
 .footer-brand-tagline-3d {
   font-size: 0.9rem;
-  color: #8b5cf6;
+  color: var(--text-accent);
   margin: 0;
   letter-spacing: 0.05em;
   transform: translateZ(5px);
@@ -167,7 +168,7 @@
 
 .footer-brand-description-3d {
   font-size: 1rem;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 2rem;
   transform: translateZ(5px);
@@ -186,12 +187,12 @@
   align-items: center;
   gap: 1rem;
   padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  backdrop-filter: var(--backdrop-blur);
   transform-style: preserve-3d;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   cursor: pointer;
 }
 
@@ -229,7 +230,7 @@
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
   transform: translateZ(5px);
 }
@@ -237,7 +238,7 @@
 .footer-feature-description-3d {
   display: block;
   font-size: 0.75rem;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   transform: translateZ(3px);
 }
 

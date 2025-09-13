@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
+import Logo from '../common/Logo';
 import { useTheme } from '../../contexts/ThemeContext';
 
 const NAV_ITEMS = [
@@ -46,13 +47,13 @@ const Header: React.FC = () => {
         background: isScrolled
           ? theme === 'dark' 
             ? 'rgba(15, 15, 23, 0.95)'
-            : 'rgba(248, 250, 252, 0.95)'
+            : 'rgba(255, 255, 255, 0.95)'
           : 'transparent',
         backdropFilter: isScrolled ? 'blur(20px)' : 'none',
         borderBottom: isScrolled 
           ? theme === 'dark'
             ? '1px solid rgba(99, 102, 241, 0.3)'
-            : '1px solid rgba(30, 64, 175, 0.3)'
+            : '1px solid rgba(0, 0, 0, 0.1)'
           : 'none',
         padding: isScrolled ? '1rem 0' : '1.5rem 0',
       }}
@@ -60,37 +61,23 @@ const Header: React.FC = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 2rem' }}>
+      <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         {/* Desktop Header */}
         <div className="hidden lg:flex items-center justify-between">
           {/* Logo */}
-          <div style={{ flexShrink: 0, width: '33.333333%' }}>
-            <motion.h1
-              className="text-2xl font-bold"
-              style={{
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                letterSpacing: '0.02em',
-                lineHeight: '1.2',
-                textDecoration: 'none',
-              }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              RTC
-            </motion.h1>
+          <div className="flex-shrink-0 w-1/3">
+            <Logo />
           </div>
           
           {/* Desktop Navigation - Centered */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem', flex: 1, justifyContent: 'center' }}>
+          <nav className="flex items-center gap-8 flex-1 justify-center">
             {NAV_ITEMS.map((item) => (
               <motion.a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium tracking-wide transition-all duration-300 cursor-pointer"
+                className="text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 cursor-pointer"
                 style={{
-                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)',
-                  textDecoration: 'none'
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)'
                 }}
                 whileHover={{ 
                   color: theme === 'dark' ? '#ffffff' : '#000000',
@@ -107,19 +94,15 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Theme Toggle */}
-          <div style={{ flexShrink: 0, width: '33.333333%', display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="flex-shrink-0 w-1/3 flex justify-end">
             <motion.button
               onClick={toggleTheme}
+              className="p-2 rounded-lg border transition-all duration-300 hover:scale-105"
               style={{
-                padding: '0.5rem',
-                borderRadius: '0.5rem',
-                border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(0, 0, 0, 0.2)',
-                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'
               }}
               whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
               type="button"
             >
@@ -135,46 +118,19 @@ const Header: React.FC = () => {
         {/* Mobile Header */}
         <div className="lg:hidden flex items-center justify-between">
           {/* Logo */}
-          <motion.h1
-            className="text-xl font-bold"
-            style={{
-              background: theme === 'dark' 
-                ? 'linear-gradient(135deg, #6366f1, #8b5cf6)'
-                : 'linear-gradient(135deg, #1e40af, #7c3aed)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              color: 'transparent',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-              letterSpacing: '0.02em',
-              lineHeight: '1.2',
-              textShadow: theme === 'dark' 
-                ? '0 0 10px rgba(99, 102, 241, 0.3)'
-                : '0 0 10px rgba(30, 64, 175, 0.3)',
-              textDecoration: 'none',
-            }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-          >
-            RTC
-          </motion.h1>
+          <Logo className="flex-shrink-0" />
 
           {/* Mobile Actions */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div className="flex items-center gap-3">
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
+              className="p-2 rounded-lg border transition-all duration-300"
               style={{
-                padding: '0.5rem',
-                borderRadius: '0.5rem',
-                border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(0, 0, 0, 0.2)',
-                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'
               }}
               whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
               type="button"
             >
@@ -188,16 +144,12 @@ const Header: React.FC = () => {
             {/* Mobile Menu Toggle */}
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg border transition-all duration-300"
               style={{
-                padding: '0.5rem',
-                borderRadius: '0.5rem',
-                border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(0, 0, 0, 0.2)',
-                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'
               }}
               whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
               type="button"

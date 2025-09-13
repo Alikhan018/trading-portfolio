@@ -2,7 +2,7 @@
 .why-choose-section-3d {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1f2937, #000000, #374151);
+  background: var(--gradient-bg);
   overflow: hidden;
   perspective: 1000px;
   padding: 6rem 2rem;
@@ -210,13 +210,13 @@
 
 .why-choose-card-3d {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-xl);
   padding: 2rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--backdrop-blur);
   transform-style: preserve-3d;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   cursor: pointer;
   overflow: hidden;
 }
@@ -266,14 +266,14 @@
 .why-choose-feature-title-3d {
   font-size: 1.25rem;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   transform: translateZ(8px);
 }
 
 .why-choose-feature-description-3d {
   font-size: 0.9rem;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   line-height: 1.5;
   margin-bottom: 1rem;
   transform: translateZ(5px);

@@ -16,7 +16,7 @@ const Homepage: React.FC = () => {
   // };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#000" }}>
+    <div style={{ minHeight: "100vh", background: "var(--bg-primary)" }}>
       {/* Video Background with Intro */}
       {/* <VideoBackground onIntroComplete={handleIntroComplete} /> */}
 

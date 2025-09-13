@@ -45,7 +45,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" ref={aboutRef} className="relative flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden py-24 px-4 md:px-8">
+    <section id="about" ref={aboutRef} className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden py-24 px-4 md:px-8" style={{ background: 'var(--gradient-bg)' }}>
       {/* 3D Background Elements */}
       <motion.div 
         className="absolute inset-0 z-[1]"
@@ -138,7 +138,7 @@ const About: React.FC = () => {
           >
             <div className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full opacity-30 blur-2xl -z-10" />
             <Sparkles className="w-5 h-5 text-indigo-500" style={{ transform: 'translateZ(5px)' }} />
-            <span className="text-sm font-semibold text-zinc-400 tracking-[0.05em]" style={{ transform: 'translateZ(3px)', padding: '0.5rem 1rem'}}>ABOUT US</span>
+            <span className="text-sm font-semibold tracking-[0.05em]" style={{ transform: 'translateZ(3px)', padding: '0.5rem 1rem', color: 'var(--text-secondary)'}}>ABOUT US</span>
             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" style={{ transform: 'translateZ(3px)' }} />
           </motion.div>
 
@@ -176,8 +176,8 @@ const About: React.FC = () => {
           </motion.div>
 
           <motion.div
-            className="text-lg md:text-xl text-zinc-400 max-w-[600px] mx-auto leading-relaxed"
-            style={{ transform: 'translateZ(5px)' }}
+            className="text-lg md:text-xl max-w-[600px] mx-auto leading-relaxed"
+            style={{ color: 'var(--text-secondary)', transform: 'translateZ(5px)' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -218,15 +218,28 @@ const About: React.FC = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 10,
-                  y: -10
+                  scale: 1.03, 
+                  rotateY: 5,
+                  y: -8,
+                  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
                 }}
               >
                 <div 
-                  className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 rounded-[22px] opacity-0 group-hover:opacity-30 blur-2xl -z-10 transition-opacity duration-300"
+                  className="absolute -top-1 -left-1 -right-1 -bottom-1 rounded-[22px] opacity-0 group-hover:opacity-60 blur-xl -z-10 transition-all duration-400"
                   style={{
-                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)'
+                  }}
+                />
+                <div 
+                  className="absolute inset-0 rounded-[22px] opacity-0 group-hover:opacity-30 transition-all duration-400 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.04))'
+                  }}
+                />
+                <div 
+                  className="absolute inset-0 rounded-[22px] opacity-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.03))'
                   }}
                 />
                 <div 
@@ -237,11 +250,11 @@ const About: React.FC = () => {
                     boxShadow: '0 15px 40px rgba(99, 102, 241, 0.3)'
                   }}
                 >
-                  <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-white" style={{ transform: 'translateZ(10px)' }} />
+                  <feature.icon className="w-6 h-6 md:w-7 md:h-7" style={{ transform: 'translateZ(10px)', color: 'white' }} />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2" style={{ transform: 'translateZ(8px)' }}>{feature.title}</h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed" style={{ transform: 'translateZ(5px)' }}>{feature.description}</p>
+                  <h3 className="text-lg md:text-xl font-bold mb-2" style={{ transform: 'translateZ(8px)', color: 'var(--text-primary)' }}>{feature.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{ transform: 'translateZ(5px)', color: 'var(--text-secondary)' }}>{feature.description}</p>
                 </div>
                 <div className="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none" style={{ transform: 'translateZ(1px)' }} />
               </motion.div>

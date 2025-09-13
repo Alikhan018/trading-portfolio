@@ -2,7 +2,7 @@
 .markets-section-3d {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1f2937, #000000, #374151);
+  background: var(--gradient-bg);
   overflow: hidden;
   perspective: 1000px;
   padding: 6rem 2rem;
@@ -30,9 +30,10 @@
 
 .markets-shape {
   position: absolute;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 8px;
+  background: var(--gradient-primary);
+  opacity: 0.1;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-sm);
   transform-style: preserve-3d;
 }
 
@@ -207,15 +208,69 @@
 
 .pair-card-3d {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-xl);
   padding: 2rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: var(--backdrop-blur);
   transform-style: preserve-3d;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   overflow: hidden;
+}
+
+.pair-card-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.08) 0%, 
+    rgba(139, 92, 246, 0.04) 50%, 
+    rgba(236, 72, 153, 0.02) 100%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+  border-radius: var(--radius-xl);
+  pointer-events: none;
+}
+
+.pair-card-3d::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.3) 0%, 
+    rgba(139, 92, 246, 0.2) 50%, 
+    rgba(236, 72, 153, 0.1) 100%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+  border-radius: var(--radius-xl);
+  pointer-events: none;
+  filter: blur(8px);
+}
+
+.pair-card-3d:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(99, 102, 241, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.pair-card-3d:hover::before {
+  opacity: 1;
+}
+
+.pair-card-3d:hover::after {
+  opacity: 1;
 }
 
 .pair-card-3d-glow {
@@ -271,14 +326,14 @@
 .pair-name-3d {
   font-size: 1.25rem;
   font-weight: 700;
-  color: white;
+  color: var(--text-primary);
   margin: 0 0 0.25rem 0;
   transform: translateZ(5px);
 }
 
 .pair-volume-3d {
   font-size: 0.875rem;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   margin: 0;
   transform: translateZ(3px);
 }
@@ -291,7 +346,7 @@
 .pair-price-main-3d {
   font-size: 2rem;
   font-weight: 800;
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   transform: translateZ(8px);
 }
