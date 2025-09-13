@@ -153,13 +153,14 @@ const ThreeDModel: React.FC<ThreeDModelProps> = () => {
       }}
       style={{ 
         position: 'absolute',
-        top: '0',
-        left: '0',
+        top: '50%', // Center vertically
+        left: '50%', // Center horizontally
+        transform: 'translate(-50%, -50%)', // Adjust for perfect centering
         width: '100%',
         height: '100%',
         background: 'transparent',
         zIndex: 1,
-        pointerEvents: 'auto'
+        pointerEvents: 'auto',
       }}
       dpr={[1, 2]}
     >

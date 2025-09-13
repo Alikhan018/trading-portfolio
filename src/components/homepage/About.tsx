@@ -45,7 +45,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section ref={aboutRef} className="relative flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden py-24 px-4 md:px-8">
+    <section id="about" ref={aboutRef} className="relative flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden py-24 px-4 md:px-8">
       {/* 3D Background Elements */}
       <motion.div 
         className="absolute inset-0 z-[1]"
@@ -247,43 +247,7 @@ const About: React.FC = () => {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-
-        {/* 3D Call to Action */}
-        <motion.div
-          className="text-center flex gap-4 mt-16"
-          style={{ transformStyle: 'preserve-3d' }}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          viewport={{ once: true }}
-        >
-          <div className="max-w-[600px] mx-auto" style={{ transformStyle: 'preserve-3d', marginLeft: '2rem', marginRight: '2rem' }}>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ transform: 'translateZ(10px)' }}>Ready to Start?</h3>
-            <p className="text-base md:text-lg mb-8 leading-relaxed" style={{ transform: 'translateZ(8px)' }}>
-              Join thousands of users building the future of finance
-            </p>
-            <motion.div
-              className="relative inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-br from-indigo-500 to-purple-500 border-none rounded-xl text-white font-semibold text-sm md:text-base cursor-pointer transition-all duration-300 shadow-[0_15px_40px_rgba(99,102,241,0.3)] overflow-hidden"
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                boxShadow: '0 20px 40px rgba(99, 102, 241, 0.4)'
-              }}
-              whileTap={{ scale: 0.95 }}
-              style={{ paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '1rem', paddingBottom: '1rem', transformStyle: 'preserve-3d' }}
-            >
-              <span>Get Started</span>
-              <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                →
-              </motion.div>
-              <div className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl opacity-30 blur-2xl -z-10" />
-            </motion.div>
-          </div>
-        </motion.div>
+        </div>          
       </div>
     </section>
   );

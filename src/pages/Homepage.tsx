@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Header from "../components/homepage/Header";
+import Header from "../components/layouts/Header";
 import Hero from "../components/homepage/Hero";
 import About from "../components/homepage/About";
 import CommunityStats from "../components/homepage/CommunityStats";
 import Services from "../components/homepage/Services";
 import WhyChooseRTC from "../components/homepage/WhyChooseRTC";
 import CryptoMarkets from "../components/homepage/CryptoMarkets";
-import Footer from "../components/homepage/Footer";
+import Footer from "../components/layouts/Footer";
 
 const Homepage: React.FC = () => {
   const [introComplete] = useState(true);
@@ -26,37 +26,22 @@ const Homepage: React.FC = () => {
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <section id="home">
-          <Hero showContent={introComplete} />
-        </section>
-
-        {/* Crypto Markets Section */}
-        <section id="markets">
-          <CryptoMarkets />
-        </section>
+        <Hero showContent={introComplete} />
 
         {/* About Section */}
-        <section id="about">
-          <About />
-        </section>
+        <About />
 
         {/* Community Stats */}
-        <section id="community">
-          <CommunityStats />
-        </section>
+        <CommunityStats />
 
         {/* Services */}
-        <section id="services">
-          <Services />
-        </section>
+        <Services />
 
         {/* Why Choose RTC */}
         <WhyChooseRTC />
 
-        {/* Call to Action */}
-        {/* <section id="contact">
-          <CallToAction />
-        </section> */}
+        {/* Crypto Markets Section */}
+        <CryptoMarkets />
       </main>
 
       {/* Footer */}

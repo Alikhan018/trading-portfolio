@@ -44,7 +44,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section ref={servicesRef} className="services-section-3d">
+    <section id="services" ref={servicesRef} className="services-section-3d">
       {/* 3D Background Elements */}
       <motion.div 
         className="services-3d-background"
@@ -223,72 +223,12 @@ const Services: React.FC = () => {
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* CTA Button */}
-                  <motion.button
-                    className="service-cta-3d"
-                    whileHover={{ 
-                      scale: 1.05, 
-                      rotateY: 5,
-                      boxShadow: '0 15px 30px rgba(99, 102, 241, 0.3)'
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.9 }}
-                    viewport={{ once: true }}
-                  >
-                    <span className="cta-text-3d">Learn More</span>
-                    <motion.div
-                      className="cta-arrow-3d"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      →
-                    </motion.div>
-                    <div className="cta-glow-3d" />
-                  </motion.button>
                 </div>
 
                 {/* Card Border */}
                 <div className="service-card-3d-border" />
               </motion.div>
             ))}
-          </div>
-        </motion.div>
-
-        {/* 3D Bottom CTA */}
-        <motion.div
-          className="services-cta-3d"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          viewport={{ once: true }}
-        >
-          <div className="services-cta-content-3d">
-            <h3 className="services-cta-title-3d">Ready to Get Started?</h3>
-            <p className="services-cta-text-3d">
-              Let's discuss your project and bring your vision to life
-            </p>
-            <motion.button
-              className="services-cta-button-3d"
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                boxShadow: '0 20px 40px rgba(99, 102, 241, 0.4)'
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="cta-btn-text">Start Project</span>
-              <motion.div
-                className="cta-btn-icon"
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                →
-              </motion.div>
-              <div className="cta-btn-3d-glow" />
-            </motion.button>
           </div>
         </motion.div>
       </div>

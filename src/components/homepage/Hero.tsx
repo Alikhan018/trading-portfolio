@@ -1,29 +1,32 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment } from '@react-three/drei';
 import { Group } from 'three';
 import ThreeDModel from '../ThreeDModel';
 
-// Mobile Bitcoin Model Component
+// Mobile Bitcoin Model Component - Optimized for mobile centering
 const MobileBitcoinModel: React.FC = () => {
   const groupRef = useRef<Group>(null);
   const { scene } = useGLTF('/base_basic_shaded.glb');
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Center the model and add gentle floating animation
+      // Positioned slightly down from center for mobile
       groupRef.current.position.x = 0;
-      groupRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.15;
+      groupRef.current.position.y = -1.3; // Move down from center
       groupRef.current.position.z = 0;
       
-      // Continuous rotation
-      groupRef.current.rotation.y += 0.02;
-      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
+      // Gentle floating animation
+      groupRef.current.position.y += Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
       
-      // Mobile appropriate scale
-      groupRef.current.scale.setScalar(2);
+      // Continuous rotation
+      groupRef.current.rotation.y += 0.015;
+      groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.05;
+      
+      // Mobile optimized scale
+      groupRef.current.scale.setScalar(2.2);
     }
   });
 
@@ -42,6 +45,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
   const [contentVisible, setContentVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -59,8 +63,20 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
     }
   }, [showContent]);
 
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1280);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
-    <section ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden flex items-center justify-center py-4 md:py-8">
+    <section id="home" ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden flex items-center justify-center py-4 md:py-8">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-800 via-black to-gray-700" />
 
@@ -108,34 +124,6 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
               Pakistan’s Leading Forex Trading Community – Join our Discord to get access to exclusive content
             </motion.div>
 
-            {/* Action Buttons */}
-            <motion.div
-              className="flex gap-4 flex-wrap justify-center xl:justify-start md:flex-col md:items-center xl:flex-row xl:items-start max-w-auto max-w-[300px] md:max-w-none"
-              initial={{ opacity: 0, y: 20 }}
-              animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <motion.div
-                className="flex items-center gap-2 border-none rounded-full font-semibold text-base cursor-pointer transition-all duration-300 bg-gradient-to-br from-indigo-500 to-purple-500 text-white shadow-[0_4px_15px_rgba(99,102,241,0.4)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.6)] hover:-translate-y-0.5 w-full md:max-w-[300px] xl:w-auto justify-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '1rem', paddingBottom: '1rem' }}
-              >
-                Get Started
-                <ArrowRight className="w-5 h-5" />
-              </motion.div>
-
-              <motion.div
-                className="flex items-center gap-2 px-8 py-4 border border-white/20 rounded-full font-semibold text-base cursor-pointer transition-all duration-300 bg-white/10 text-white backdrop-blur-[10px] hover:bg-white/20 hover:-translate-y-0.5 w-full md:max-w-[300px] xl:w-auto justify-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{ paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '1rem', paddingBottom: '1rem' }}
-              >
-                <Play className="w-5 h-5" />
-                Watch Demo
-              </motion.div>
-            </motion.div>
-
             {/* Stats */}
             <motion.div
               className="flex gap-6 md:gap-8 flex-wrap justify-center xl:justify-start md:items-center xl:flex-row xl:items-start"
@@ -172,65 +160,63 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
           </motion.div>
         </div>
 
-        {/* Mobile 3D Model Background */}
-        <motion.div
-          className="xl:hidden absolute inset-0 z-[1] flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={contentVisible ? { opacity: 0.4, scale: 1.2 } : { opacity: 0, scale: 0.8 }}
-          transition={{ duration: 1.0, delay: 0.4 }}
-          style={{ pointerEvents: 'none' }}
-        >
-          {/* 3D Model - Larger size for mobile background with proper canvas sizing */}
-          <div className="w-full h-full flex items-center justify-center relative">
-            <div 
-              className="relative"
-              style={{
-                width: '100vw',
-                height: '100vh',
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-              }}
-            >
-              <Canvas
-                camera={{ 
-                  position: [0, 0, 8], 
-                  fov: 75,
-                  near: 0.1,
-                  far: 1000
-                }}
-                shadows
-                gl={{ 
-                  antialias: true, 
-                  alpha: true,
-                  powerPreference: "high-performance"
-                }}
-                style={{ 
-                  width: '100%',
-                  height: '100%',
-                  background: 'transparent',
-                  zIndex: 1,
-                  pointerEvents: 'none'
-                }}
-                dpr={[1, 2]}
-              >
-                <Environment preset="studio" />
-                <ambientLight intensity={0.4} />
-                <directionalLight 
-                  position={[5, 5, 5]} 
-                  intensity={1.0} 
-                  castShadow
-                />
-                <pointLight position={[-3, 3, 3]} intensity={0.6} color="#fbbf24" />
-                <pointLight position={[3, -3, -3]} intensity={0.5} color="#8b5cf6" />
-                
-                {/* Mobile Bitcoin Model */}
-                <MobileBitcoinModel />
-              </Canvas>
-            </div>
-          </div>
+        {/* Mobile 3D Model Background - Positioned slightly from top - Hidden on Desktop */}
+        {isMobile && (
+          <motion.div
+            className="absolute inset-0 z-[1]"
+            initial={{ opacity: 0 }}
+            animate={contentVisible ? { opacity: 0.3 } : { opacity: 0 }}
+            transition={{ duration: 1.0, delay: 0.4 }}
+            style={{ 
+              pointerEvents: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingTop: '10vh' // Move the model down from the top
+            }}
+          >
+          <Canvas
+            camera={{ 
+              position: [0, 0, 6], 
+              fov: 60,
+              near: 0.1,
+              far: 1000
+            }}
+            shadows
+            gl={{ 
+              antialias: true, 
+              alpha: true,
+              powerPreference: "high-performance"
+            }}
+            style={{ 
+              width: '100%',
+              height: '100%',
+              background: 'transparent',
+              zIndex: 1,
+              pointerEvents: 'none',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+            dpr={[1, 1.5]}
+          >
+            <Environment preset="studio" />
+            <ambientLight intensity={0.3} />
+            <directionalLight 
+              position={[5, 5, 5]} 
+              intensity={0.8} 
+              castShadow
+            />
+            <pointLight position={[-3, 3, 3]} intensity={0.4} color="#fbbf24" />
+            <pointLight position={[3, -3, -3]} intensity={0.3} color="#8b5cf6" />
+            
+            {/* Mobile Bitcoin Model */}
+            <MobileBitcoinModel />
+          </Canvas>
         </motion.div>
+        )}
+
       </motion.div>
     </section>
   );

@@ -55,7 +55,7 @@ const CryptoMarkets: React.FC = () => {
   ];
 
   return (
-    <section ref={marketsRef} className="markets-section-3d">
+    <section id="markets" ref={marketsRef} className="markets-section-3d">
       {/* 3D Background Elements */}
       <motion.div 
         className="markets-3d-background"

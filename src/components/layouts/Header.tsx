@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Logo from '../common/Logo';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '#home' },
+  { label: 'Markets', href: '#markets' },
   { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
   { label: 'Community', href: '#community' },
-  { label: 'Contact', href: '#contact' }
+  { label: 'Services', href: '#services' }
 ];
 
 const Header: React.FC = () => {
@@ -23,63 +24,16 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      // Store current scroll position
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = '0';
-      document.body.style.right = '0';
-      document.body.style.overflow = 'hidden';
-      document.body.style.width = '100%';
-    } else {
-      // Restore scroll position
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.overflow = '';
-      document.body.style.width = '';
-      if (scrollY) {
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      }
-    }
-
-    return () => {
-      // Cleanup on unmount
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.overflow = '';
-      document.body.style.width = '';
-    };
-  }, [isMobileMenuOpen]);
-
-  // Handle escape key to close menu
-  useEffect(() => {
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isMobileMenuOpen) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    if (isMobileMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isMobileMenuOpen]);
-
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+    const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = 80; // Account for fixed header height
+      const elementPosition = element.offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
     }
     setIsMobileMenuOpen(false);
   };
@@ -100,43 +54,43 @@ const Header: React.FC = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-      <div className="flex justify-between items-center max-w-[1200px] mx-auto relative left-1/2 transform -translate-x-1/2"
-      style={{ padding: isScrolled ? '0 1rem' : '0 2rem' }}
-      >
-        {/* Logo - Centered */}
-        <div
-          className="flex items-center gap-4 cursor-pointer"
-        >
-          <div className="text-3xl font-extrabold bg-gradient-to-br from-white to-zinc-400 bg-clip-text text-transparent m-0">
-            RTC
-          </div>
+      <div className="flex items-center justify-between max-w-[1400px] mx-auto px-4 lg:px-8">
+        {/* Desktop Navigation */}
+        <div className="hidden left-[25%] w-full gap-160 relative lg:flex lg:items-center lg:justify-between ">
+          <Logo className="mr-8" />
+          <nav className="flex items-center gap-8 ml-4">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-white/80 hover:text-white text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.href);
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
         </div>
 
-        {/* Desktop Navigation - Hidden, we'll use menu for all devices */}
-        <nav className="hidden">
-          {/* Navigation items will be in the full-screen menu */}
-        </nav>
+        <div className='w-full flex items-center justify-between gap-4'
+        style={{paddingLeft: isScrolled ? '0' : '2rem', paddingRight: isScrolled ? '0' : '2rem'}}
+        >
+          {/* Logo */}
+          <Logo className="lg:hidden" />
 
-        {/* Right Side Controls */}
-        <div className="absolute right-8 flex items-center gap-8">
-          {/* Live Trading Status */}
-          <div className="flex items-center gap-2 px-6 py-4 bg-emerald-500/10 border border-emerald-500/30 rounded-full backdrop-blur-[10px]"
-          style={{ paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
-          >
-            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-semibold text-emerald-500 tracking-wider">LIVE</span>
-          </div>
-
-          {/* Menu Toggle - Show on all devices */}
+          {/* Mobile Menu Toggle */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="focus:outline-none"
+            className="lg:hidden focus:outline-none z-20 p-2 rounded-lg border border-white/20 bg-white/5"
             whileTap={{ scale: 0.9 }}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
             type="button"
           >
-            <Menu className="w-6 h-6 text-white cursor-pointer" />
+            <Menu className="w-6 h-6 text-white" />
           </motion.button>
         </div>
       </div>

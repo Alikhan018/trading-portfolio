@@ -5,8 +5,7 @@ import {
   Globe, 
   Sparkles, 
   Star, 
-  Brain,
-  Zap
+  Brain
 } from 'lucide-react';
 
 const WhyChooseRTC: React.FC = () => {
@@ -54,34 +53,61 @@ const WhyChooseRTC: React.FC = () => {
 
   const comparisonFeatures = [
     {
-      rtc: 'Custom solutions tailored to your needs',
-      others: 'Generic templates and one-size-fits-all',
-      icon: Brain
+      category: 'Trading Signals',
+      rtc: {
+        title: 'Professional Forex Signals',
+        description: 'Live signals with 80%+ win rate',
+        features: ['Real-time Discord alerts', 'Gold & Major pairs', 'Institutional analysis', 'Risk management'],
+        icon: Target,
+        gradient: 'linear-gradient(135deg, #10b981, #06d6a0)',
+        price: 'Premium Quality'
+      },
+      others: {
+        title: 'Basic Signal Services',
+        description: 'Generic signals with poor accuracy',
+        features: ['Delayed notifications', 'Limited pairs', 'No analysis provided', 'High risk'],
+        icon: Globe,
+        gradient: 'linear-gradient(135deg, #ef4444, #dc2626)',
+        price: 'Low Quality'
+      }
     },
     {
-      rtc: 'Modern tech stack and best practices',
-      others: 'Outdated technologies and poor practices',
-      icon: Zap
+      category: 'Education & Mentorship',
+      rtc: {
+        title: 'RTC Mentorship Program',
+        description: '40-day structured training program',
+        features: ['ICT + SMC + VSA', 'Personalized guidance', 'Live trading sessions', 'Lifetime access'],
+        icon: Brain,
+        gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+        price: 'Comprehensive'
+      },
+      others: {
+        title: 'Generic Trading Courses',
+        description: 'Basic courses with limited value',
+        features: ['Outdated content', 'No personal guidance', 'Pre-recorded videos only', 'Limited support'],
+        icon: Star,
+        gradient: 'linear-gradient(135deg, #6b7280, #4b5563)',
+        price: 'Basic'
+      }
     },
     {
-      rtc: '100% client satisfaction guaranteed',
-      others: 'Inconsistent quality and support',
-      icon: Target
-    },
-    {
-      rtc: 'Dedicated project management',
-      others: 'Limited communication and updates',
-      icon: Globe
-    },
-    {
-      rtc: 'Personal attention and collaboration',
-      others: 'Minimal interaction and feedback',
-      icon: Star
-    },
-    {
-      rtc: '24/7 support and maintenance',
-      others: 'Basic support with delayed responses',
-      icon: Sparkles
+      category: 'Community & Support',
+      rtc: {
+        title: 'Active Trading Community',
+        description: '10K+ members strong community',
+        features: ['24/7 Discord support', 'Live market discussions', 'Peer learning', 'Expert moderators'],
+        icon: Sparkles,
+        gradient: 'linear-gradient(135deg, #ec4899, #be185d)',
+        price: 'Premium Support'
+      },
+      others: {
+        title: 'Basic Support Groups',
+        description: 'Limited community interaction',
+        features: ['Minimal support', 'No live discussions', 'Self-service only', 'Poor moderation'],
+        icon: Globe,
+        gradient: 'linear-gradient(135deg, #6b7280, #4b5563)',
+        price: 'Limited'
+      }
     }
   ];
 
@@ -256,139 +282,257 @@ const WhyChooseRTC: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* 3D Comparison Section */}
+        {/* Simple Comparison Section */}
         <motion.div
-          className="comparison-section-3d"
+          className="relative w-full"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
+          style={{ 
+            padding: '4rem 1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
         >
-          <div className="comparison-content-3d">
-            {/* Our Services Side */}
+          {/* Section Header */}
+          <div 
+            className="text-center" 
+            style={{ 
+              marginBottom: '4rem',
+              maxWidth: '1200px',
+              width: '100%'
+            }}
+          >
+            <motion.h2
+              className="font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true }}
+              style={{ 
+                fontSize: '3.5rem',
+                fontWeight: '800',
+                marginBottom: '1.5rem',
+                transformStyle: 'preserve-3d'
+              }}
+            >
+              Why Choose <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">RTC</span>?
+            </motion.h2>
+            <motion.p
+              className="text-gray-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              viewport={{ once: true }}
+              style={{ 
+                fontSize: '1.25rem',
+                color: '#a1a1aa',
+                maxWidth: '600px',
+                margin: '0 auto',
+                lineHeight: '1.6',
+                transform: 'translateZ(5px)'
+              }}
+            >
+              See the difference between our premium services and basic alternatives
+            </motion.p>
+          </div>
+
+          {/* Two Column Comparison - Single Cards */}
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', 
+              gap: '2rem',
+              maxWidth: '1200px',
+              width: '100%',
+              justifyContent: 'center'
+            }}
+          >
+            {/* Left Column - All RTC Features */}
             <motion.div
-              className="comparison-side-3d comparison-our-services"
-              initial={{ opacity: 0, x: -30 }}
+              className="relative"
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="comparison-title-3d comparison-title-our-services">
-                With Our Services
-              </h3>
-              <div className="comparison-features-3d">
-                {comparisonFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    className="comparison-feature-3d comparison-feature-our-services"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="comparison-check-3d comparison-check-success-3d">
-                      <feature.icon className="comparison-check-icon-3d" />
+              <div 
+                className="relative rounded-2xl h-full"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 214, 160, 0.05) 50%, rgba(0, 0, 0, 0.3) 100%)',
+                  border: '2px solid rgba(16, 185, 129, 0.3)',
+                  boxShadow: '0 20px 40px -12px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                  padding: '2rem'
+                }}
+              >
+                {/* Header */}
+                <div style={{ marginBottom: '2rem' }}>
+                  <h3 className="text-2xl font-bold text-white" style={{ marginBottom: '1rem' }}>
+                    ✅ RTC Premium Features
+                  </h3>
+                  <div className="w-16 h-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full"></div>
+                </div>
+
+                {/* All Features List */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  {comparisonFeatures.map((comparison, comparisonIndex) => (
+                    <div key={comparisonIndex}>
+                      {/* Category Subheader */}
+                      <h4 className="text-lg font-semibold text-green-300" style={{ marginBottom: '1rem' }}>
+                        {comparison.category}
+                      </h4>
+                      
+                      {/* Features for this category */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                        {comparison.rtc.features.map((feature, featureIndex) => (
+                          <motion.div
+                            key={`${comparisonIndex}-${featureIndex}`}
+                            className="flex items-start"
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 1.4 + (comparisonIndex * 0.2) + (featureIndex * 0.1) }}
+                            viewport={{ once: true }}
+                            style={{ gap: '1rem' }}
+                          >
+                            <div 
+                              className="bg-green-500 rounded-full flex items-center justify-center flex-shrink-0"
+                              style={{
+                                background: 'linear-gradient(135deg, #10b981, #06d6a0)',
+                                boxShadow: '0 4px 12px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                width: '1.5rem',
+                                height: '1.5rem',
+                                marginTop: '0.25rem'
+                              }}
+                            >
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <p className="text-gray-300 text-lg leading-relaxed">{feature}</p>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                    <span className="comparison-text-3d">{feature.rtc}</span>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
             </motion.div>
 
-            {/* Others Side */}
+            {/* Right Column - All Basic Service Limitations */}
             <motion.div
-              className="comparison-side-3d comparison-others-3d"
-              initial={{ opacity: 0, x: 30 }}
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
               viewport={{ once: true }}
             >
-              <h3 className="comparison-title-3d comparison-title-others-3d">
-                Other Services
-              </h3>
-              <div className="comparison-features-3d">
-                {comparisonFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    className="comparison-feature-3d comparison-feature-others-3d"
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 1.1 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="comparison-check-3d comparison-check-fail-3d">
-                      <span className="comparison-x-3d">✗</span>
+              <div 
+                className="relative rounded-2xl h-full"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 50%, rgba(0, 0, 0, 0.3) 100%)',
+                  border: '2px solid rgba(239, 68, 68, 0.3)',
+                  boxShadow: '0 20px 40px -12px rgba(239, 68, 68, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                  padding: '2rem'
+                }}
+              >
+                {/* Header */}
+                <div style={{ marginBottom: '2rem' }}>
+                  <h3 className="text-2xl font-bold text-white" style={{ marginBottom: '1rem' }}>
+                    ❌ Basic Service Limitations
+                  </h3>
+                  <div className="w-16 h-1 bg-gradient-to-r from-red-400 to-red-600 rounded-full"></div>
+                </div>
+
+                {/* All Limitations List */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                  {comparisonFeatures.map((comparison, comparisonIndex) => (
+                    <div key={comparisonIndex}>
+                      {/* Category Subheader */}
+                      <h4 className="text-lg font-semibold text-red-300" style={{ marginBottom: '1rem' }}>
+                        {comparison.category}
+                      </h4>
+                      
+                      {/* Limitations for this category */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
+                        {comparison.others.features.map((feature, featureIndex) => (
+                          <motion.div
+                            key={`${comparisonIndex}-${featureIndex}`}
+                            className="flex items-start"
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 1.6 + (comparisonIndex * 0.2) + (featureIndex * 0.1) }}
+                            viewport={{ once: true }}
+                            style={{ gap: '1rem' }}
+                          >
+                            <div 
+                              className="bg-red-500 rounded-full flex items-center justify-center flex-shrink-0"
+                              style={{
+                                background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+                                boxShadow: '0 4px 12px rgba(239, 68, 68, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                width: '1.5rem',
+                                height: '1.5rem',
+                                marginTop: '0.25rem'
+                              }}
+                            >
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                              </svg>
+                            </div>
+                            <p className="text-gray-300 text-lg leading-relaxed line-through">{feature}</p>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                    <span className="comparison-text-3d comparison-text-muted-3d">{feature.others}</span>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
-        </motion.div>
 
-        {/* 3D Bottom CTA */}
-        <motion.div
-          className="why-choose-cta-3d"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          viewport={{ once: true }}
-        >
-          <div className="why-choose-cta-content-3d">
-            <h3 className="why-choose-cta-title-3d">Ready to Get Started?</h3>
-            <p className="why-choose-cta-text-3d">
-              Let's create something amazing together
-            </p>
-            
-            <div className="why-choose-buttons-3d">
+          {/* Call to Action */}
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2.0 }}
+            viewport={{ once: true }}
+            style={{ 
+              marginTop: '4rem',
+              maxWidth: '1200px',
+              width: '100%'
+            }}
+          >
+            <div style={{ 
+              padding: '2rem', 
+              maxWidth: '800px', 
+              margin: '0 auto' 
+            }}>
+              <h3 className="text-3xl font-bold text-white" style={{ marginBottom: '1rem' }}>
+                Ready to Experience the RTC Difference?
+              </h3>
+              <p className="text-xl text-gray-300" style={{ marginBottom: '1.5rem' }}>
+                Join thousands of successful traders who chose quality over quantity
+              </p>
               <motion.button
-                className="why-choose-btn-primary-3d"
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 5,
-                  boxShadow: '0 15px 30px rgba(99, 102, 241, 0.3)'
-                }}
+                className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold text-lg transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
+                style={{
+                  padding: '1rem 2rem',
+                  borderRadius: '0.75rem',
+                  border: 'none',
+                  cursor: 'pointer'
                 }}
               >
-                <span className="btn-text-3d">Explore Services</span>
-                <motion.div
-                  className="btn-icon-3d"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  →
-                </motion.div>
-                <div className="btn-glow-3d" />
-              </motion.button>
-              
-              <motion.button
-                className="why-choose-btn-secondary-3d"
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: -5,
-                  boxShadow: '0 15px 30px rgba(16, 185, 129, 0.3)'
-                }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                <span className="btn-text-3d">Get Started Now</span>
-                <motion.div
-                  className="btn-icon-3d"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                >
-                  →
-                </motion.div>
-                <div className="btn-glow-3d" />
+                Get Started Today
               </motion.button>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

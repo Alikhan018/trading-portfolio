@@ -50,7 +50,7 @@ const CommunityStats: React.FC = () => {
   ];
 
   return (
-    <section ref={communityRef} className="relative min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-black overflow-hidden">
+    <section id="community" ref={communityRef} className="relative min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-black overflow-hidden">
       {/* 3D Background Elements */}
       <motion.div 
         className="absolute inset-0 z-0"

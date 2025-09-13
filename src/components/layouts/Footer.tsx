@@ -1,0 +1,133 @@
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  MessageCircle, 
+  Youtube, 
+  Facebook, 
+  Instagram,
+  TrendingUp
+} from 'lucide-react';
+
+const Footer: React.FC = () => {
+  const footerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: footerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Parallax transforms
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
+
+  const socialLinks = [
+    { name: 'Discord', href: '#', icon: MessageCircle },
+    { name: 'YouTube', href: '#', icon: Youtube },
+    { name: 'Instagram', href: '#', icon: Instagram },
+    { name: 'Facebook', href: '#', icon: Facebook } 
+  ];
+
+  return (
+    <footer id="contact" ref={footerRef} className="relative overflow-hidden" style={{ padding: '2rem' }}>
+      {/* Footer Container with rounded design */}
+      <div className="relative bg-black/90 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden">
+        {/* Background */}
+        <motion.div 
+          className="absolute inset-0 z-[1]"
+          style={{ y: backgroundY }}
+        >
+          {/* Trading-themed background pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-gradient-to-br from-blue-900 to-purple-900"></div>
+          </div>
+          
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="w-full h-full" style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+        </motion.div>
+
+        <div className="relative z-[2] w-full" style={{ padding: '3rem 2.5rem 2rem 2.5rem' }}>
+        {/* Main Footer Content - Logo, Description, and Social Links in One Row */}
+        <motion.div
+          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 w-full"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          style={{ marginBottom: '2rem' }}
+        >
+          {/* Logo Section */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+              <TrendingUp className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-white">RTC</span>
+              <span className="text-xs text-gray-400">Rao Trading Concept</span>
+            </div>
+          </div>
+
+          {/* Vertical Divider */}
+          <div className="hidden lg:block w-px h-16 bg-white/70 flex-shrink-0"></div>
+
+          {/* Description Section */}
+          <div className="flex-1 max-w-md lg:max-w-lg">
+            <p className="text-gray-300 leading-relaxed text-sm lg:text-base">
+              Pakistan's premier forex trading community. Join thousands of successful traders mastering the markets with professional signals, expert mentorship, and proven ICT strategies.
+            </p>
+          </div>
+
+          {/* Vertical Divider */}
+          <div className="hidden lg:block w-px h-16 bg-white/70 flex-shrink-0"></div>
+
+          {/* Social Links Section */}
+          <div className="flex items-center gap-4 flex-shrink-0">
+            {socialLinks.map((social) => {
+              const IconComponent = social.icon;
+              return (
+                <motion.a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 transition-all duration-300"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <IconComponent className="w-4 h-4" />
+                </motion.a>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Footer Bottom */}
+        <motion.div
+          className="border-t border-white/20 flex justify-center items-center w-full"
+          style={{ marginTop: '3rem', paddingTop: '2rem', marginLeft: '0', marginRight: '0' }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          {/* Copyright - Centered */}
+          <div className="flex flex-col gap-1 text-center">
+            <div className="text-sm text-gray-400">
+              © 2025 Rao Trading Concept. All rights reserved.
+            </div>
+            <div className="text-xs text-gray-500">
+              Empowering Pakistani traders with professional forex education
+            </div>
+          </div>
+        </motion.div>
+
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
