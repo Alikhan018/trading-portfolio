@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { User, Target, Brain, Shield, Sparkles, Globe, Star, Award } from 'lucide-react';
+import { Brain, Sparkles, Globe, Star } from 'lucide-react';
 
 const About: React.FC = () => {
   const aboutRef = useRef<HTMLElement>(null);
@@ -12,7 +12,6 @@ const About: React.FC = () => {
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const cardRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 5, 10]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const features = [
     {
@@ -45,26 +44,33 @@ const About: React.FC = () => {
     }
   ];
 
-  const stats = [
-    { icon: Target, value: '80%+', label: 'Win Rate' },
-    { icon: User, value: '10K+', label: 'Members' },
-    { icon: Award, value: '6+', label: 'Years Exp.' },
-    { icon: Shield, value: '24/7', label: 'Support' }
-  ];
-
   return (
-    <section ref={aboutRef} className="about-section-3d">
+    <section ref={aboutRef} className="relative flex flex-col justify-center items-center min-h-screen bg-gradient-to-br from-gray-800 via-black to-gray-700 overflow-hidden py-24 px-4 md:px-8">
       {/* 3D Background Elements */}
       <motion.div 
-        className="about-3d-background"
-        style={{ y: backgroundY }}
+        className="absolute inset-0 z-[1]"
+        style={{ y: backgroundY, transformStyle: 'preserve-3d' }}
       >
         {/* Floating Geometric Shapes */}
-        <div className="about-floating-shapes">
+        <div className="absolute inset-0 pointer-events-none">
           {Array.from({ length: 12 }).map((_, i) => (
             <motion.div
               key={i}
-              className={`about-shape about-shape-${i}`}
+              className={`absolute bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-lg ${
+                i === 0 ? 'w-15 h-15 top-[10%] left-[10%]' :
+                i === 1 ? 'w-10 h-10 top-[20%] right-[15%]' :
+                i === 2 ? 'w-20 h-20 top-[30%] left-[20%]' :
+                i === 3 ? 'w-12.5 h-12.5 top-[40%] right-[25%]' :
+                i === 4 ? 'w-17.5 h-17.5 top-[50%] left-[15%]' :
+                i === 5 ? 'w-11.25 h-11.25 top-[60%] right-[20%]' :
+                i === 6 ? 'w-16.25 h-16.25 top-[70%] left-[25%]' :
+                i === 7 ? 'w-13.75 h-13.75 top-[80%] right-[10%]' :
+                i === 8 ? 'w-8.75 h-8.75 top-[15%] left-[50%]' :
+                i === 9 ? 'w-18.75 h-18.75 top-[25%] right-[40%]' :
+                i === 10 ? 'w-12 h-12 top-[35%] left-[60%]' :
+                i === 11 ? 'w-15.5 h-15.5 top-[45%] right-[50%]' : ''
+              }`}
+              style={{ transformStyle: 'preserve-3d' }}
               animate={{
                 y: [0, -30, 0],
                 rotateZ: [0, 360],
@@ -81,11 +87,22 @@ const About: React.FC = () => {
         </div>
 
         {/* Grid Pattern */}
-        <div className="about-grid-pattern">
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `
+            radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+            radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px, 50px 50px',
+          backgroundPosition: '0 0, 25px 25px'
+        }}>
           {Array.from({ length: 30 }).map((_, i) => (
             <motion.div
               key={i}
-              className="grid-dot"
+              className="absolute w-1 h-1 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [0.3, 0.8, 0.3],
@@ -100,58 +117,67 @@ const About: React.FC = () => {
         </div>
       </motion.div>
 
-      <div className="about-container-3d">
+      <div className="relative flex flex-col items-center justify-center gap-10 z-[2] max-w-[1400px] mx-auto" style={{ transformStyle: 'preserve-3d', paddingTop: '5rem', paddingBottom: '5rem' }}>
         {/* Section Header */}
         <motion.div
-          className="about-header-3d"
+          className="text-center mb-16 flex flex-col items-center gap-10"
+          style={{ transformStyle: 'preserve-3d', marginLeft: '2rem', marginRight: '2rem' }}
           initial={{ opacity: 0, y: 50, rotateX: -30 }}
           whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
           <motion.div
-            className="about-badge-3d"
+            className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-indigo-500/30 rounded-full backdrop-blur-[10px] mb-8 relative cursor-pointer transition-all duration-300"
+            style={{ transformStyle: 'preserve-3d', padding: '0.5rem 1rem' }}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.1, rotateY: 5 }}
           >
-            <div className="badge-3d-glow" />
-            <Sparkles className="badge-3d-icon" />
-            <span className="badge-3d-text">ABOUT US</span>
-            <div className="badge-3d-indicator" />
+            <div className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full opacity-30 blur-2xl -z-10" />
+            <Sparkles className="w-5 h-5 text-indigo-500" style={{ transform: 'translateZ(5px)' }} />
+            <span className="text-sm font-semibold text-zinc-400 tracking-[0.05em]" style={{ transform: 'translateZ(3px)', padding: '0.5rem 1rem'}}>ABOUT US</span>
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" style={{ transform: 'translateZ(3px)' }} />
           </motion.div>
 
-          <motion.h2
-            className="about-title-3d"
+          <motion.div
+            className="text-4xl md:text-5xl xl:text-6xl font-extrabold mb-6"
+            style={{ transformStyle: 'preserve-3d' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <motion.span
-              className="about-title-line-1"
+            <motion.div
+              className="block bg-gradient-to-br from-white to-zinc-400 bg-clip-text text-transparent"
+              style={{
+                backgroundSize: '200% 100%',
+                transform: 'translateZ(10px)'
+              }}
               animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
               transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
             >
               About
-            </motion.span>
-            <motion.span
-              className="about-title-line-2"
+            </motion.div>
+            <motion.div
+              className="block bg-gradient-to-br from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+              style={{ transform: 'translateZ(8px)' }}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6 }}
               viewport={{ once: true }}
             >
               Rao Umer
-            </motion.span>
-          </motion.h2>
+            </motion.div>
+          </motion.div>
 
-          <motion.p
-            className="about-description-3d"
+          <motion.div
+            className="text-lg md:text-xl text-zinc-400 max-w-[600px] mx-auto leading-relaxed"
+            style={{ transform: 'translateZ(5px)' }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -160,159 +186,102 @@ const About: React.FC = () => {
             Rao Umer, the founder of RTC (Rao Trading Concept), is a seasoned Forex trader with 6+ years of market experience. 
             He developed RTC by combining ICT, Smart Money Concepts (SMC), and Volume Spread Analysis (VSA) into one complete 
             trading methodology. RTC trains traders to think like institutions, not retail gamblers.
-          </motion.p>
+          </motion.div>
         </motion.div>
 
         {/* Main Content */}
-        <div className="about-main-content-3d">
+        <div className="w-full flex items-center" style={{ transformStyle: 'preserve-3d', marginTop: '2rem', marginBottom: '2rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
           {/* Features Grid */}
           <motion.div
-            className="about-features-3d"
+            className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-4 gap-6 w-full"
+            style={{ transformStyle: 'preserve-3d' }}
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <div className="features-3d-grid">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className="feature-card-3d"
-                  initial={{ opacity: 0, y: 50, rotateX: -20 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    rotateY: 10,
-                    y: -10
-                  }}
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                className="relative transition-all duration-300 cursor-pointer overflow-hidden flex flex-col items-center justify-between group gap-4"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  borderRadius: '20px',
+                  padding: '2rem',
+                  backdropFilter: 'blur(10px)',
+                  transformStyle: 'preserve-3d',
+                  transform: `perspective(1000px) rotateX(${cardRotateX}deg)`
+                }}
+                initial={{ opacity: 0, y: 50, rotateX: -20 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotateY: 10,
+                  y: -10
+                }}
+              >
+                <div 
+                  className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 rounded-[22px] opacity-0 group-hover:opacity-30 blur-2xl -z-10 transition-opacity duration-300"
                   style={{
-                    transform: `perspective(1000px) rotateX(${cardRotateX}deg)`,
+                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+                  }}
+                />
+                <div 
+                  className="w-12 h-12 md:w-15 md:h-15 rounded-2xl flex items-center justify-center mb-4 md:mb-6 relative"
+                  style={{
+                    background: feature.gradient,
+                    transformStyle: 'preserve-3d',
+                    boxShadow: '0 15px 40px rgba(99, 102, 241, 0.3)'
                   }}
                 >
-                  <div className="feature-card-3d-glow" />
-                  <div 
-                    className="feature-icon-3d"
-                    style={{ background: feature.gradient }}
-                  >
-                    <feature.icon className="feature-icon-3d-svg" />
-                  </div>
-                  <div className="feature-content-3d">
-                    <h3 className="feature-title-3d">{feature.title}</h3>
-                    <p className="feature-description-3d">{feature.description}</p>
-                  </div>
-                  <div className="feature-card-3d-border" />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* 3D Stats Section */}
-          <motion.div
-            className="about-stats-3d"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-            style={{ y: floatingY }}
-          >
-            <motion.div
-              className="stats-container-3d"
-              whileHover={{ rotateY: 5, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            >
-              <div className="stats-3d-background" />
-              
-              {/* Stats Grid */}
-              <div className="stats-grid-3d">
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    className="stat-item-3d"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 0.7 + index * 0.1,
-                      type: 'spring',
-                      stiffness: 200
-                    }}
-                    viewport={{ once: true }}
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotateY: 10,
-                      z: 30
-                    }}
-                  >
-                    <div className="stat-icon-3d-container">
-                      <stat.icon className="stat-icon-3d" />
-                    </div>
-                    <div className="stat-value-3d">{stat.value}</div>
-                    <div className="stat-label-3d">{stat.label}</div>
-                    <div className="stat-item-3d-glow" />
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* 3D Decorative Elements */}
-              <motion.div
-                className="stats-decoration-1"
-                animate={{ 
-                  rotateZ: [0, 360],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-              >
-                <div className="decoration-ring" />
+                  <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-white" style={{ transform: 'translateZ(10px)' }} />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2" style={{ transform: 'translateZ(8px)' }}>{feature.title}</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed" style={{ transform: 'translateZ(5px)' }}>{feature.description}</p>
+                </div>
+                <div className="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none" style={{ transform: 'translateZ(1px)' }} />
               </motion.div>
-              
-              <motion.div
-                className="stats-decoration-2"
-                animate={{ 
-                  rotateY: [0, 360],
-                  y: [0, -10, 0]
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <Globe className="decoration-globe" />
-              </motion.div>
-            </motion.div>
+            ))}
           </motion.div>
         </div>
 
         {/* 3D Call to Action */}
         <motion.div
-          className="about-cta-3d"
+          className="text-center flex gap-4 mt-16"
+          style={{ transformStyle: 'preserve-3d' }}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
           viewport={{ once: true }}
         >
-          <div className="about-cta-content-3d">
-            <h3 className="about-cta-title-3d">Ready to Start?</h3>
-            <p className="about-cta-text-3d">
+          <div className="max-w-[600px] mx-auto" style={{ transformStyle: 'preserve-3d', marginLeft: '2rem', marginRight: '2rem' }}>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4" style={{ transform: 'translateZ(10px)' }}>Ready to Start?</h3>
+            <p className="text-base md:text-lg mb-8 leading-relaxed" style={{ transform: 'translateZ(8px)' }}>
               Join thousands of users building the future of finance
             </p>
-            <motion.button
-              className="about-cta-button-3d"
+            <motion.div
+              className="relative inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-br from-indigo-500 to-purple-500 border-none rounded-xl text-white font-semibold text-sm md:text-base cursor-pointer transition-all duration-300 shadow-[0_15px_40px_rgba(99,102,241,0.3)] overflow-hidden"
               whileHover={{ 
                 scale: 1.05, 
                 rotateY: 5,
                 boxShadow: '0 20px 40px rgba(99, 102, 241, 0.4)'
               }}
               whileTap={{ scale: 0.95 }}
+              style={{ paddingLeft: '2rem', paddingRight: '2rem', paddingTop: '1rem', paddingBottom: '1rem', transformStyle: 'preserve-3d' }}
             >
-              <span className="cta-btn-text">Get Started</span>
+              <span>Get Started</span>
               <motion.div
-                className="cta-btn-icon"
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 →
               </motion.div>
-              <div className="cta-btn-3d-glow" />
-            </motion.button>
+              <div className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl opacity-30 blur-2xl -z-10" />
+            </motion.div>
           </div>
         </motion.div>
       </div>

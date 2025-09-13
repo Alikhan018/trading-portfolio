@@ -1,11 +1,6 @@
-/* Import Optimized Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
 
 /* Import Component Styles */
-@import './styles/Header.css';
-@import './styles/Hero.css';
-@import './styles/VideoBackground.css';
-@import './styles/About.css';
 @import './styles/CommunityStats.css';
 @import './styles/Services.css';
 @import './styles/WhyChooseRTC.css';
@@ -22,15 +17,17 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {
   font-family: 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  position: relative;
   background: #000000;
   color: #ffffff;
-  overflow-x: hidden;
   line-height: 1.6;
 }
 

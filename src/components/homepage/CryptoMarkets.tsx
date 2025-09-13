@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { TrendingUp, Activity, BarChart3, DollarSign, Target, Globe, Star } from 'lucide-react';
+import { Activity, DollarSign, Target, Globe, Star } from 'lucide-react';
+import ForexChart from '../ForexChart';
 
 const CryptoMarkets: React.FC = () => {
   const marketsRef = useRef<HTMLElement>(null);
@@ -101,7 +102,9 @@ const CryptoMarkets: React.FC = () => {
         </div>
       </motion.div>
 
-      <div className="markets-container-3d">
+      <div className="markets-container-3d flex flex-col"
+      // style={{paddingTop: '4rem', paddingBottom: '4rem'}}
+      >
         {/* Section Header */}
         <motion.div
           className="markets-header-3d"
@@ -118,7 +121,7 @@ const CryptoMarkets: React.FC = () => {
             viewport={{ once: true }}
             whileHover={{ scale: 1.1, rotateY: 5 }}
           >
-            <div className="badge-3d-glow" />
+            <div className="badge-3d-glow" /> 
             <Activity className="badge-3d-icon" />
             <span className="badge-3d-text">LIVE TRADING</span>
             <div className="badge-3d-indicator" />
@@ -199,22 +202,12 @@ const CryptoMarkets: React.FC = () => {
                 
                 {/* Pair Header */}
                 <div className="pair-header-3d">
-                  <motion.div
+                  <div
                     className="pair-icon-3d"
                     style={{ background: pair.gradient }}
-                    animate={{ 
-                      rotateY: [0, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.5
-                    }}
                   >
                     <pair.icon className="pair-icon-3d-svg" />
-                  </motion.div>
+                  </div>
                   
                   <div className="pair-info-3d">
                     <h3 className="pair-name-3d">{pair.pair}</h3>
@@ -231,93 +224,18 @@ const CryptoMarkets: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Mini Chart Placeholder */}
+                {/* Real-Time Chart */}
                 <div className="pair-chart-3d">
-                  <div className="chart-line-3d" />
-                  <div className="chart-dots-3d">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="chart-dot-3d"
-                        animate={{
-                          y: [0, -10, 0],
-                          opacity: [0.5, 1, 0.5]
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: i * 0.2
-                        }}
-                      />
-                    ))}
-                  </div>
+                  <ForexChart 
+                    pair={pair.pair}
+                    currentPrice={pair.price}
+                    changePercent={pair.changePercent}
+                    className="forex-chart-mini"
+                  />
                 </div>
 
                 {/* Card Border */}
                 <div className="pair-card-3d-border" />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* 3D Market Stats */}
-        <motion.div
-          className="markets-stats-3d"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="markets-stats-grid-3d">
-            {[
-              { icon: TrendingUp, label: 'Win Rate', value: '80%+', color: 'linear-gradient(135deg, #10b981, #06d6a0)' },
-              { icon: Activity, label: 'Live Signals', value: '24/7', color: 'linear-gradient(135deg, #f59e0b, #f97316)' },
-              { icon: BarChart3, label: 'Pairs Covered', value: '20+', color: 'linear-gradient(135deg, #6366f1, #8b5cf6)' },
-              { icon: Target, label: 'Success Rate', value: '95%', color: 'linear-gradient(135deg, #ec4899, #be185d)' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="stat-card-3d"
-                initial={{ opacity: 0, y: 30, rotateX: -20 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.8 + index * 0.1,
-                  type: 'spring',
-                  stiffness: 200
-                }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 5,
-                  y: -5
-                }}
-              >
-                <div className="stat-card-3d-glow" />
-                
-                <motion.div
-                  className="stat-icon-3d"
-                  style={{ background: stat.color }}
-                  animate={{ 
-                    rotateY: [0, 360],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: index * 0.5
-                  }}
-                >
-                  <stat.icon className="stat-icon-3d-svg" />
-                </motion.div>
-                
-                <div className="stat-content-3d">
-                  <div className="stat-value-3d">{stat.value}</div>
-                  <div className="stat-label-3d">{stat.label}</div>
-                </div>
-                
-                <div className="stat-card-3d-border" />
               </motion.div>
             ))}
           </div>

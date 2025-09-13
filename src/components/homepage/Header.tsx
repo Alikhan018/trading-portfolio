@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code, Palette, Globe, BookOpen, MessageCircle, Star } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { label: 'Home', href: '#home', icon: Code },
-  { label: 'About', href: '#about', icon: Palette },
-  { label: 'Services', href: '#services', icon: Globe },
-  { label: 'Community', href: '#community', icon: BookOpen },
-  { label: 'Contact', href: '#contact', icon: MessageCircle }
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Community', href: '#community' },
+  { label: 'Contact', href: '#contact' }
 ];
 
 const Header: React.FC = () => {
@@ -26,19 +26,36 @@ const Header: React.FC = () => {
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      // Store current scroll position
+      const scrollY = window.scrollY;
       document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.overflow = 'hidden';
       document.body.style.width = '100%';
     } else {
-      document.body.style.overflow = 'unset';
-      document.body.style.position = 'unset';
-      document.body.style.width = 'unset';
+      // Restore scroll position
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      document.body.style.width = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
-    
+
     return () => {
-      document.body.style.overflow = 'unset';
-      document.body.style.position = 'unset';
-      document.body.style.width = 'unset';
+      // Cleanup on unmount
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.overflow = '';
+      document.body.style.width = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -67,23 +84,12 @@ const Header: React.FC = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const getNavIcon = (label: string) => {
-    switch (label.toLowerCase()) {
-      case 'home': return <Code className="w-4 h-4" />;
-      case 'about': return <Globe className="w-4 h-4" />;
-      case 'services': return <Palette className="w-4 h-4" />;
-      case 'community': return <Star className="w-4 h-4" />;
-      case 'contact': return <MessageCircle className="w-4 h-4" />;
-      default: return <BookOpen className="w-4 h-4" />;
-    }
-  };
-
   return (
     <motion.header
-      className="header-3d"
+      className="fixed top-0 left-0 right-0 z-[1000] bg-black/95 backdrop-blur-[20px] border-b border-white/10 p-4 transition-all duration-300"
       style={{
-        background: isScrolled 
-          ? 'rgba(15, 15, 23, 0.95)' 
+        background: isScrolled
+          ? 'rgba(15, 15, 23, 0.95)'
           : 'transparent',
         backdropFilter: isScrolled ? 'blur(20px)' : 'none',
         borderBottom: isScrolled ? '1px solid rgba(99, 102, 241, 0.3)' : 'none',
@@ -94,39 +100,17 @@ const Header: React.FC = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-      <div className="header-container-3d">
-        {/* Logo */}
-        <motion.div
-          className="logo-section-3d"
-          whileHover={{ scale: 1.05, rotateY: 5 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+      <div className="flex justify-between items-center max-w-[1200px] mx-auto relative left-1/2 transform -translate-x-1/2"
+      style={{ padding: isScrolled ? '0 1rem' : '0 2rem' }}
+      >
+        {/* Logo - Centered */}
+        <div
+          className="flex items-center gap-4 cursor-pointer"
         >
-          <div className="logo-icon-container-3d">
-            <div className="logo-icon-3d">
-              <Code className="logo-icon-svg-3d" />
-            </div>
-            <motion.div
-              className="logo-glow-3d"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
+          <div className="text-3xl font-extrabold bg-gradient-to-br from-white to-zinc-400 bg-clip-text text-transparent m-0">
+            RTC
           </div>
-          <div className="logo-text-3d">
-            <h1 className="logo-title-3d">
-              RTC
-            </h1>
-            <p className="logo-subtitle-3d">
-              TRADING FIRE
-            </p>
-          </div>
-        </motion.div>
+        </div>
 
         {/* Desktop Navigation - Hidden, we'll use menu for all devices */}
         <nav className="hidden">
@@ -134,153 +118,80 @@ const Header: React.FC = () => {
         </nav>
 
         {/* Right Side Controls */}
-        <div className="header-right-3d">
+        <div className="absolute right-8 flex items-center gap-8">
           {/* Live Trading Status */}
-          <div className="live-status-3d">
-            <div className="live-dot-3d"></div>
-            <span className="live-text-3d">LIVE</span>
+          <div className="flex items-center gap-2 px-6 py-4 bg-emerald-500/10 border border-emerald-500/30 rounded-full backdrop-blur-[10px]"
+          style={{ paddingLeft: '1rem', paddingRight: '1rem', paddingTop: '0.5rem', paddingBottom: '0.5rem' }}
+          >
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            <span className="text-xs font-semibold text-emerald-500 tracking-wider">LIVE</span>
           </div>
 
           {/* Menu Toggle - Show on all devices */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="menu-toggle-3d"
+            className="focus:outline-none"
             whileTap={{ scale: 0.9 }}
-            whileHover={{ rotateY: 5 }}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
             type="button"
           >
-            <AnimatePresence mode="wait">
-              {isMobileMenuOpen ? (
-            <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-                >
-                  <X className="menu-icon" />
-                </motion.div>
-              ) : (
-            <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-                >
-                  <Menu className="menu-icon" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <Menu className="w-6 h-6 text-white cursor-pointer" />
           </motion.button>
         </div>
       </div>
 
-      {/* Full Screen Menu */}
+      {/* Menu Modal */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            className="fullscreen-menu-3d"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+          <div
+            className="fixed top-0 left-0 right-0 bottom-0 bg-black/50 z-[9999]"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            {/* Menu Header */}
-            <div className="menu-header-3d">
-              <div className="menu-logo-section-3d">
-                <div className="menu-logo-icon-3d">
-                  <Code className="logo-icon-svg-3d" />
-                </div>
-                <div className="menu-logo-text-3d">
-                  <h1 className="menu-logo-title-3d">RTC</h1>
-                  <p className="menu-logo-subtitle-3d">TRADING FIRE</p>
-                </div>
-              </div>
+            <motion.div
+              className="w-full h-screen flex items-center justify-center absolute right-0 top-0 bg-gradient-to-br from-gray-800 via-black to-gray-700"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              {/* Close button */}
               <motion.button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="menu-close-btn-3d"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-12 sm:h-12 bg-transparent border-none rounded-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/10"
                 whileTap={{ scale: 0.9 }}
-                whileHover={{ rotateY: 5 }}
                 aria-label="Close menu"
                 type="button"
               >
-                <X className="menu-icon-3d" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </motion.button>
-            </div>
 
-            {/* Menu Content */}
-            <div className="menu-content-3d">
-              {/* Navigation Items */}
-              <nav className="menu-nav-3d">
-                {NAV_ITEMS.map((item: { label: string; href: string; icon: any }, index: number) => {
-
-                  return (
-                    <motion.div
+              {/* Menu content responsive */}
+              <div className="absolute left-4 sm:left-8 md:left-16 lg:left-24 xl:left-48 top-1/2 transform -translate-y-1/2 px-4">
+                <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 text-7xl md:text-6xl">
+                  {NAV_ITEMS.map((item: { label: string; href: string }, index: number) => (
+                    <motion.a
                       key={item.label}
-                      className="menu-item-3d"
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      href={item.href}
+                      className="lowercase transition-all duration-300 opacity-30 block tracking-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white cursor-pointer no-underline font-normal hover:opacity-100 hover:ml-2 sm:hover:ml-3 md:hover:ml-5"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(item.href);
+                      }}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 0.3, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ opacity: 1, marginLeft: "0.75rem" }}
                     >
-                      <motion.button
-                        onClick={() => scrollToSection(item.href)}
-                        className="menu-link-3d"
-                        whileHover={{ x: 20, rotateY: 5 }}
-                        aria-label={`Navigate to ${item.label} section`}
-                        type="button"
-                      >
-                        <div className="menu-link-content-3d">
-                          <div className="menu-link-left-3d">
-                            <div className="menu-link-icon-3d">
-                              {getNavIcon(item.label)}
-                            </div>
-                            <div className="menu-link-text-3d">
-                              <h2 className="menu-link-title-3d">
-                                {item.label.toUpperCase()}
-                              </h2>
-                            </div>
-                          </div>
-                          <div className="menu-link-number-3d">
-                            <span className="menu-number-3d">0{index + 1}</span>
-                          </div>
-                        </div>
-                      </motion.button>
-                      
-                    </motion.div>
-                  );
-                })}
-              </nav>
-
-              {/* Bottom Section */}
-              <motion.div
-                className="menu-bottom-3d"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                <div className="menu-bottom-content-3d">
-                  <div className="menu-cta-section-3d">
-                    <p className="menu-cta-label-3d">READY TO IGNITE?</p>
-                    <a
-                      href="#contact"
-                      className="menu-cta-btn-3d"
-                    >
-                      <MessageCircle className="cta-icon-3d" />
-                      <span>Join Discord</span>
-                      <Code className="cta-icon-3d" />
-                    </a>
-                  </div>
-                  <div className="menu-info-3d">
-                    <p className="menu-location-3d">PAKISTAN</p>
-                    <p className="menu-status-3d">LIVE TRADING SIGNALS</p>
-                  </div>
+                      <small className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-normal text-purple-500 mr-1 sm:mr-2">0{index + 1}.</small>
+                      {item.label}
+                    </motion.a>
+                  ))}
                 </div>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </motion.header>

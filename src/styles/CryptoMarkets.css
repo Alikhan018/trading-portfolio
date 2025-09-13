@@ -2,7 +2,7 @@
 .markets-section-3d {
   position: relative;
   min-height: 100vh;
-  background: linear-gradient(135deg, #000000, #1a1a2e, #16213e);
+  background: linear-gradient(135deg, #1f2937, #000000, #374151);
   overflow: hidden;
   perspective: 1000px;
   padding: 6rem 2rem;
@@ -323,11 +323,61 @@
 
 .pair-chart-3d {
   position: relative;
-  height: 60px;
+  height: 80px;
   margin-bottom: 1rem;
   transform-style: preserve-3d;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Forex Chart Styles */
+.forex-chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.forex-chart-mini {
+  height: 100%;
+}
+
+.forex-chart-indicator {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+}
+
+.forex-chart-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+  }
+  
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* Legacy chart styles - can be removed */
+/*
 .chart-line-3d {
   position: absolute;
   top: 50%;
@@ -357,6 +407,7 @@
   border-radius: 50%;
   position: relative;
 }
+*/
 
 .pair-card-3d-border {
   position: absolute;

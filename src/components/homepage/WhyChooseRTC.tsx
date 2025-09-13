@@ -230,22 +230,12 @@ const WhyChooseRTC: React.FC = () => {
                 <div className="why-choose-card-3d-glow" />
                 
                 {/* Icon */}
-                <motion.div
+                <div
                   className="why-choose-icon-3d"
                   style={{ background: feature.gradient }}
-                  animate={{ 
-                    rotateY: [0, 360],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay: index * 0.5
-                  }}
                 >
                   <feature.icon className="why-choose-icon-3d-svg" />
-                </motion.div>
+                </div>
 
                 {/* Content */}
                 <div className="why-choose-content-3d">

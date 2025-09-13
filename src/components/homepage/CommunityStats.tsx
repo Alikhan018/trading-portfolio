@@ -50,10 +50,10 @@ const CommunityStats: React.FC = () => {
   ];
 
   return (
-    <section ref={communityRef} className="community-section-3d">
+    <section ref={communityRef} className="relative min-h-screen bg-gradient-to-br from-zinc-900 via-zinc-800 to-black overflow-hidden">
       {/* 3D Background Elements */}
       <motion.div 
-        className="community-3d-background"
+        className="absolute inset-0 z-0"
         style={{ y: backgroundY }}
       >
         {/* Floating Geometric Shapes */}
@@ -97,7 +97,9 @@ const CommunityStats: React.FC = () => {
         </div>
       </motion.div>
 
-      <div className="community-container-3d">
+      <div className="community-container-3d"
+      style={{paddingTop: '4rem', paddingBottom: '4rem'}}
+      >
         {/* Section Header */}
         <motion.div
           className="community-header-3d"
@@ -195,55 +197,25 @@ const CommunityStats: React.FC = () => {
                 
                 {/* Icon Container */}
                 <div className="stat-icon-3d-container">
-                  <motion.div
+                  <div
                     className="stat-icon-3d"
                     style={{ background: stat.gradient }}
-                    animate={{ 
-                      rotateY: [0, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.5
-                    }}
                   >
                     <stat.icon className="stat-icon-3d-svg" />
-                  </motion.div>
+                  </div>
                   
                   {/* Floating mini icons */}
-                  <motion.div
+                  <div
                     className="stat-mini-icon-3d stat-mini-1"
-                    animate={{
-                      y: [0, -15, 0],
-                      rotate: [0, 180, 360],
-                      scale: [0.8, 1.2, 0.8]
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      delay: index * 0.3
-                    }}
                   >
                     <Star className="mini-icon-3d" />
-                  </motion.div>
+                  </div>
                   
-                  <motion.div
+                  <div
                     className="stat-mini-icon-3d stat-mini-2"
-                    animate={{
-                      y: [0, 15, 0],
-                      rotate: [360, 180, 0],
-                      scale: [0.8, 1.2, 0.8]
-                    }}
-                    transition={{
-                      duration: 3.5,
-                      repeat: Infinity,
-                      delay: index * 0.4
-                    }}
                   >
                     <Sparkles className="mini-icon-3d" />
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Content */}

@@ -189,22 +189,12 @@ const Services: React.FC = () => {
                 
                 {/* Service Header */}
                 <div className="service-header-3d">
-                  <motion.div
+                  <div
                     className="service-icon-3d"
                     style={{ background: service.gradient }}
-                    animate={{ 
-                      rotateY: [0, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.5
-                    }}
                   >
                     <service.icon className="service-icon-3d-svg" />
-                  </motion.div>
+                  </div>
                   <div className="service-badge-3d">
                     <span className="service-number-3d">0{index + 1}</span>
                   </div>

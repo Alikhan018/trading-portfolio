@@ -1,19 +1,11 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { 
-  Code, 
+import {
   MessageCircle, 
   Youtube, 
   Facebook, 
-  Instagram, 
-  Music, 
-  Mail, 
-  MapPin,
-  TrendingUp,
-  Clock,
-  Shield,
-  Award,
-  Star,
+  Instagram,
+  TrendingUp
 } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -25,244 +17,89 @@ const Footer: React.FC = () => {
 
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Community', href: '#community' },
-    { name: 'Contact', href: '#contact' }
+  const tradingLinks = [
+    { name: 'Live Signals', href: '#signals' },
+    { name: 'Trading Plans', href: '#plans' },
+    { name: 'Market Analysis', href: '#analysis' },
+    { name: 'Performance', href: '#performance' }
+  ];
+
+  const educationLinks = [
+    { name: 'Trading Course', href: '#course' },
+    { name: 'Video Tutorials', href: '#tutorials' },
+    { name: 'Trading Blog', href: '#blog' },
+    { name: 'Support Center', href: '#support' }
+  ];
+
+  const companyLinks = [
+    { name: 'About RTC', href: '#about' },
+    { name: 'Our Team', href: '#team' },
+    { name: 'Contact Us', href: '#contact' },
+    { name: 'Testimonials', href: '#testimonials' }
   ];
 
   const socialLinks = [
-    { name: 'Discord', href: '#', icon: MessageCircle, color: 'linear-gradient(135deg, #5865f2, #7289da)' },
-    { name: 'YouTube', href: '#', icon: Youtube, color: 'linear-gradient(135deg, #ff0000, #cc0000)' },
-    { name: 'Facebook', href: '#', icon: Facebook, color: 'linear-gradient(135deg, #1877f2, #0d47a1)' },
-    { name: 'Instagram', href: '#', icon: Instagram, color: 'linear-gradient(135deg, #e4405f, #c13584)' },
-    { name: 'TikTok', href: '#', icon: Music, color: 'linear-gradient(135deg, #000000, #ff0050)' }
-  ];
-
-  const features = [
-    { icon: TrendingUp, text: 'Professional Signals', description: '80%+ Win Rate' },
-    { icon: Clock, text: '24/7 Support', description: 'Always Available' },
-    { icon: Shield, text: 'Verified Results', description: 'Transparent Trading' },
-    { icon: Award, text: 'Expert Mentorship', description: '6+ Years Experience' }
+    { name: 'Discord', href: '#', icon: MessageCircle },
+    { name: 'YouTube', href: '#', icon: Youtube },
+    { name: 'Instagram', href: '#', icon: Instagram },
+    { name: 'Facebook', href: '#', icon: Facebook } 
   ];
 
   return (
-    <footer ref={footerRef} className="footer-section-3d">
-      {/* 3D Background Elements */}
-      <motion.div 
-        className="footer-3d-background"
-        style={{ y: backgroundY }}
-      >
-        {/* Floating Geometric Shapes */}
-        <div className="footer-floating-shapes">
-          {Array.from({ length: 15 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className={`footer-shape footer-shape-${i}`}
-              animate={{
-                y: [0, -30, 0],
-                rotateZ: [0, 360],
-                rotateX: [0, 180, 0],
-              }}
-              transition={{
-                duration: 10 + i * 0.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.3,
-              }}
-            />
-          ))}
-        </div>
+    <footer ref={footerRef} className="relative overflow-hidden" style={{ padding: '2rem' }}>
+      {/* Footer Container with rounded design */}
+      <div className="relative bg-black/90 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden">
+        {/* Background */}
+        <motion.div 
+          className="absolute inset-0 z-[1]"
+          style={{ y: backgroundY }}
+        >
+          {/* Trading-themed background pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="w-full h-full bg-gradient-to-br from-blue-900 to-purple-900"></div>
+          </div>
+          
+          {/* Grid pattern overlay */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="w-full h-full" style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+        </motion.div>
 
-        {/* Grid Pattern */}
-        <div className="footer-grid-pattern">
-          {Array.from({ length: 25 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="footer-grid-dot"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.1, 0.4, 0.1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: i * 0.1,
-              }}
-            />
-          ))}
-        </div>
-      </motion.div>
-
-      <div className="footer-container-3d">
-        <div className="footer-content-3d">
+        <div className="relative z-[2] w-full" style={{ padding: '3rem 2.5rem 2rem 2.5rem' }}>
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 w-full">
           {/* Brand Section */}
           <motion.div
-            className="footer-brand-3d"
-            initial={{ opacity: 0, y: 30, rotateX: -20 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            className="lg:col-span-2 w-full"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            style={{ y: floatingY }}
+            style={{ marginBottom: '2rem' }}
           >
-            <div className="footer-logo-3d">
-              <div className="footer-logo-icon-3d">
-                <Code className="footer-logo-icon-svg-3d" />
-                <motion.div
-                  className="footer-logo-glow-3d"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                />
+            {/* Logo */}
+            <div className="flex items-center gap-2" style={{ marginBottom: '1rem' }}>
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                <TrendingUp className="w-6 h-6 text-white" />
               </div>
-              <div className="footer-logo-text-3d">
-                <h3 className="footer-brand-name-3d">RTC</h3>
-                <p className="footer-brand-tagline-3d">Rao Trading Concept</p>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-white">RTC</span>
+                <span className="text-xs text-gray-400">Rao Trading Concept</span>
               </div>
             </div>
             
-            <p className="footer-brand-description-3d">
-              Pakistan's leading forex trading community. Master the markets with professional signals, 
-              expert mentorship, and proven strategies.
+            {/* Description */}
+            <p className="text-gray-300 leading-relaxed max-w-md" style={{ marginBottom: '1.5rem' }}>
+              Pakistan's premier forex trading community. Join thousands of successful traders mastering the markets with professional signals, expert mentorship, and proven ICT strategies.
             </p>
 
-            {/* Features */}
-            <div className="footer-features-3d">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  className="footer-feature-3d"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, rotateY: 5 }}
-                >
-                  <motion.div
-                    className="footer-feature-icon-3d"
-                    style={{ background: feature.icon === TrendingUp ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 
-                                        feature.icon === Clock ? 'linear-gradient(135deg, #10b981, #06d6a0)' :
-                                        feature.icon === Shield ? 'linear-gradient(135deg, #f59e0b, #f97316)' :
-                                        'linear-gradient(135deg, #ec4899, #be185d)' }}
-                    animate={{ 
-                      rotateY: [0, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.5
-                    }}
-                  >
-                    <feature.icon className="footer-feature-icon-svg-3d" />
-                  </motion.div>
-                  <div className="footer-feature-content-3d">
-                    <span className="footer-feature-text-3d">{feature.text}</span>
-                    <span className="footer-feature-description-3d">{feature.description}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div
-            className="footer-links-3d"
-            initial={{ opacity: 0, y: 30, rotateX: -20 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            style={{ y: floatingY }}
-          >
-            <h4 className="footer-section-title-3d">Quick Links</h4>
-            <div className="footer-links-list-3d">
-              {quickLinks.map((link, index) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  className="footer-link-3d"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  whileHover={{ x: 10, scale: 1.05, rotateY: 5 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="footer-link-icon-3d">
-                    <Star className="footer-link-icon-svg-3d" />
-                  </div>
-                  <span className="footer-link-text-3d">{link.name}</span>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            className="footer-contact-3d"
-            initial={{ opacity: 0, y: 30, rotateX: -20 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            style={{ y: floatingY }}
-          >
-            <h4 className="footer-section-title-3d">Get In Touch</h4>
-            <div className="footer-contact-list-3d">
-              <motion.div 
-                className="footer-contact-item-3d"
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-              >
-                <div className="footer-contact-icon-3d">
-                  <MapPin className="footer-contact-icon-svg-3d" />
-                </div>
-                <span className="footer-contact-text-3d">Pakistan</span>
-              </motion.div>
-              <motion.div 
-                className="footer-contact-item-3d"
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-              >
-                <div className="footer-contact-icon-3d">
-                  <Mail className="footer-contact-icon-svg-3d" />
-                </div>
-                <span className="footer-contact-text-3d">support@rtctrading.com</span>
-              </motion.div>
-              <motion.div 
-                className="footer-contact-item-3d"
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-              >
-                <div className="footer-contact-icon-3d">
-                  <Clock className="footer-contact-icon-svg-3d" />
-                </div>
-                <span className="footer-contact-text-3d">24/7 Support</span>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Social Links */}
-          <motion.div
-            className="footer-social"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="footer-section-title-3d">Follow The Fire</h4>
-            <div className="footer-social-links-3d">
-              {socialLinks.map((social, index) => {
+            {/* Social Links */}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => {
                 const IconComponent = social.icon;
                 return (
                   <motion.a
@@ -270,112 +107,152 @@ const Footer: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="footer-social-link-3d"
-                    whileHover={{ scale: 1.1, y: -5, rotateY: 10 }}
+                    className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-gradient-to-br hover:from-blue-500 hover:to-purple-600 transition-all duration-300"
+                    whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
                   >
-                    <motion.div
-                      className="footer-social-icon-3d"
-                      style={{ background: social.color }}
-                      animate={{ 
-                        rotateY: [0, 360],
-                        scale: [1, 1.1, 1]
-                      }}
-                      transition={{ 
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                        delay: index * 0.5
-                      }}
-                    >
-                      <IconComponent className="footer-social-icon-svg-3d" />
-                    </motion.div>
-                    <span className="footer-social-text-3d">{social.name}</span>
+                    <IconComponent className="w-4 h-4" />
                   </motion.a>
                 );
               })}
             </div>
+          </motion.div>
 
-            {/* Main CTA */}
-            <motion.a
-              href="#"
-              className="footer-main-cta-3d"
-              whileHover={{ scale: 1.05, y: -3, rotateY: 5 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <MessageCircle className="footer-cta-icon-3d" />
-              <span>Join Discord</span>
-              <Code className="footer-cta-icon-3d" />
-            </motion.a>
+          {/* Trading Services */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: '2rem' }}
+          >
+            <h4 className="text-sm font-semibold text-white" style={{ marginBottom: '1rem' }}>
+              Trading Services
+            </h4>
+            <div className="space-y-3">
+              {tradingLinks.map((link) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="block text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  whileHover={{ x: 2 }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Education & Resources */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: '2rem' }}
+          >
+            <h4 className="text-sm font-semibold text-white" style={{ marginBottom: '1rem' }}>
+              Education & Resources
+            </h4>
+            <div className="space-y-3">
+              {educationLinks.map((link) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="block text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  whileHover={{ x: 2 }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Company Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            style={{ marginBottom: '2rem' }}
+          >
+            <h4 className="text-sm font-semibold text-white" style={{ marginBottom: '1rem' }}>
+              Company
+            </h4>
+            <div className="space-y-3">
+              {companyLinks.map((link) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="block text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  whileHover={{ x: 2 }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
         </div>
 
         {/* Footer Bottom */}
         <motion.div
-          className="footer-bottom-3d"
+          className="border-t border-white/20 flex flex-col md:flex-row justify-between items-start md:items-center w-full"
+          style={{ marginTop: '3rem', paddingTop: '2rem', marginLeft: '0', marginRight: '0' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="footer-bottom-content-3d">
-            <div className="footer-copyright-3d">
-              <p className="copyright-text-3d">
-                © 2024 Rao Trading Concept. All rights reserved.
-              </p>
-              <p className="copyright-subtext-3d">
-                Igniting trading success across Pakistan
-              </p>
+          {/* Copyright */}
+          <div className="flex flex-col gap-1 w-full md:w-auto" style={{ marginBottom: '1rem' }}>
+            <div className="text-sm text-gray-400">
+              © 2025 Rao Trading Concept. All rights reserved.
             </div>
-            
-            <div className="footer-legal-3d">
-              <a href="#" className="footer-legal-link-3d">Privacy Policy</a>
-              <a href="#" className="footer-legal-link-3d">Terms of Service</a>
-              <a href="#" className="footer-legal-link-3d">Risk Disclosure</a>
+            <div className="text-xs text-gray-500">
+              Empowering Pakistani traders with professional forex education
             </div>
           </div>
-
-          {/* Live Status */}
-          <div className="footer-status-3d">
-            <div className="footer-live-indicator-3d">
-              <div className="footer-live-dot-3d"></div>
-              <span className="footer-live-text-3d">LIVE TRADING SIGNALS</span>
-            </div>
+          
+          {/* Legal Links */}
+          <div className="flex items-center gap-6 w-full md:w-auto justify-start md:justify-end">
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors duration-200 underline">
+              Risk Disclosure
+            </a>
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors duration-200 underline">
+              Terms of Service
+            </a>
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors duration-200 underline">
+              Privacy Policy
+            </a>
           </div>
         </motion.div>
-      </div>
 
-      {/* Background 3D Particles */}
-      <div className="footer-particles-3d">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {/* Live Trading Status */}
+        <motion.div
+          className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-lg border border-green-500/20 w-full max-w-md mx-auto"
+          style={{ marginTop: '2rem', padding: '1rem' }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
           <motion.div
-            key={i}
-            className="footer-particle-3d"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
+            className="w-3 h-3 bg-green-500 rounded-full"
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [0.5, 1.5, 0.5],
-              rotateZ: [0, 360],
+              scale: [1, 1.2, 1],
+              opacity: [1, 0.7, 1],
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: 2,
               repeat: Infinity,
-              delay: Math.random() * 2,
             }}
           />
-        ))}
+          <span className="text-sm font-medium text-green-400">
+            LIVE TRADING SIGNALS ACTIVE
+          </span>
+          <TrendingUp className="w-4 h-4 text-green-400" />
+        </motion.div>
+        </div>
       </div>
     </footer>
   );

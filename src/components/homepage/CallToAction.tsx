@@ -213,26 +213,16 @@ const CallToAction: React.FC = () => {
                 }}
               >
                 <div className="step-icon-container-3d">
-                  <motion.div
+                  <div
                     className="step-icon-3d"
                     style={{ 
                       background: index === 0 ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' :
                                  index === 1 ? 'linear-gradient(135deg, #10b981, #06d6a0)' :
                                  'linear-gradient(135deg, #f59e0b, #f97316)'
                     }}
-                    animate={{ 
-                      rotateY: [0, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.5
-                    }}
                   >
                     <step.icon className="step-icon-3d-svg" />
-                  </motion.div>
+                  </div>
                   <div className="step-number-3d">{index + 1}</div>
                 </div>
                 

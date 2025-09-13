@@ -32,15 +32,23 @@ const Model3D: React.FC = () => {
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Gentle floating animation
-      groupRef.current.rotation.y += 0.005;
-      groupRef.current.position.y += Math.sin(state.clock.elapsedTime * 0.5) * 0.001;
+      // Center the coin in the canvas
+      const baseX = 0; // Centered horizontally
+      const baseY = 0; // Centered vertically
       
-      // Mouse interaction - subtle movement based on cursor position
-      groupRef.current.position.x = 3 + mousePosition.x * 0.5; // Stay in hero section with mouse influence
-      groupRef.current.position.y = -1.3 + mousePosition.y * 0.3; // Vertical mouse influence
-      groupRef.current.rotation.x = mousePosition.y * 0.2; // Tilt based on mouse Y
-      groupRef.current.rotation.z = mousePosition.x * 0.1; // Slight roll based on mouse X
+      // Enhanced mouse hover movement (more interactive)
+      const mouseInfluenceX = mousePosition.x * 0.8; // Increased X movement
+      const mouseInfluenceY = mousePosition.y * 0.6; // Increased Y movement
+      
+      // Apply position with enhanced mouse influence and gentle floating
+      groupRef.current.position.x = baseX + mouseInfluenceX;
+      groupRef.current.position.y = baseY + mouseInfluenceY + Math.sin(state.clock.elapsedTime * 0.8) * 0.15;
+      groupRef.current.position.z = 2 + Math.cos(state.clock.elapsedTime * 0.8) * 0.15;
+      
+      // Smooth 360-degree rotation around Y-axis
+      groupRef.current.rotation.x = -0.5 + mouseInfluenceY * 0.3; // Slight tilt based on Y
+      groupRef.current.rotation.y += 0.04; // Continuous Y-axis rotation
+      groupRef.current.rotation.z = 0;
     }
   });
 
@@ -60,8 +68,8 @@ const Model3D: React.FC = () => {
       {scene && (
         <primitive 
           object={scene.clone()} 
-          scale={[2, 2, 2]} 
-          position={[0, 0, 0]}
+          scale={[2.8, 2.8, 2.8]} 
+          position={[0, -2, 0]}
         />
       )}
     </group>
@@ -101,14 +109,13 @@ const Scene: React.FC = () => {
       {/* Model - Interactive with mouse */}
       <Model3D />
       
-      {/* Mouse Controls */}
+      {/* Mouse Controls - Disabled for fixed position */}
       <OrbitControls 
         enableZoom={false}
         enablePan={false}
-        enableRotate={true}
+        enableRotate={false}
         autoRotate={false}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={-Math.PI / 2}
+        enabled={false}
       />
       
       {/* Enhanced Shadows */}
@@ -116,7 +123,7 @@ const Scene: React.FC = () => {
         position={[0, -2, 0]} 
         opacity={0.3} 
         scale={10} 
-        blur={2} 
+        blur={0} 
         far={4} 
         resolution={256} 
         color="#000000" 
@@ -134,7 +141,7 @@ const ThreeDModel: React.FC<ThreeDModelProps> = () => {
     <Canvas
       camera={{ 
         position: [0, 0, 8], 
-        fov: 45,
+        fov: 60,
         near: 0.1,
         far: 1000
       }}
@@ -145,12 +152,11 @@ const ThreeDModel: React.FC<ThreeDModelProps> = () => {
         powerPreference: "high-performance"
       }}
       style={{ 
-        position: 'fixed',
-        top: '50%',
-        right: '10%',
-        width: '50vw',
-        height: '60vh',
-        transform: 'translateY(-50%)',
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
         background: 'transparent',
         zIndex: 1,
         pointerEvents: 'auto'
