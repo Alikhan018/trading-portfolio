@@ -18,7 +18,7 @@ export default defineConfig({
           // Lucide React icons
           icons: ['lucide-react'],
           // Other vendor libraries
-          vendor: ['@headlessui/react', '@heroicons/react']
+          vendor: ['axios', 'lenis', 'locomotive-scroll', 'recharts']
         }
       }
     },
