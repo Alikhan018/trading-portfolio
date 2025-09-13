@@ -224,11 +224,6 @@ const Header: React.FC = () => {
                 fontWeight: '800',
                 letterSpacing: '0.05em',
                 lineHeight: '1.1',
-                textShadow: theme === 'dark' 
-                  ? '0 0 15px rgba(139, 92, 246, 0.5), 0 0 30px rgba(168, 85, 247, 0.3)'
-                  : '0 0 15px rgba(59, 130, 246, 0.5), 0 0 30px rgba(99, 102, 241, 0.3)',
-                textDecoration: 'none',
-                filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))',
               }}
               whileHover={{ 
                 scale: 1.08,

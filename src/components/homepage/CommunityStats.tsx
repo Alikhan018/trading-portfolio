@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Users, Award, Sparkles, Globe, Star, Target } from 'lucide-react';
+import InteractiveCard from '../common/InteractiveCard';
 
 const CommunityStats: React.FC = () => {
   const communityRef = useRef<HTMLElement>(null);
@@ -9,10 +10,8 @@ const CommunityStats: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  // Parallax transforms
+  // Parallax transforms (simplified)
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const cardRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 5, 10]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const stats = [
     {
@@ -167,31 +166,13 @@ const CommunityStats: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          style={{ y: floatingY }}
         >
           <div className="stats-3d-grid">
             {stats.map((stat, index) => (
-              <motion.div
+              <InteractiveCard
                 key={index}
-                className="stat-card-3d cursor-pointer"
-                initial={{ opacity: 0, y: 50, rotateX: -20 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: stat.delay,
-                  type: 'spring',
-                  stiffness: 200
-                }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 10,
-                  y: -10,
-                  z: 30
-                }}
-                style={{
-                  transform: `perspective(1000px) rotateX(${cardRotateX}deg)`,
-                }}
+                className="stat-card-3d"
+                delay={stat.delay}
               >
                 <div className="stat-card-3d-glow" />
                 
@@ -261,7 +242,7 @@ const CommunityStats: React.FC = () => {
                 <div className="stat-corner-3d-decoration">
                   <Globe className="corner-icon-3d" />
                 </div>
-              </motion.div>
+              </InteractiveCard>
             ))}
           </div>
         </motion.div>

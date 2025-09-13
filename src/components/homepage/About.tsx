@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Brain, Sparkles, Globe, Star } from 'lucide-react';
+import InteractiveCard from '../common/InteractiveCard';
 
 const About: React.FC = () => {
   const aboutRef = useRef<HTMLElement>(null);
@@ -9,9 +10,8 @@ const About: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  // Parallax transforms
+  // Parallax transforms (simplified)
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const cardRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 5, 10]);
 
   const features = [
     {
@@ -201,7 +201,7 @@ const About: React.FC = () => {
             viewport={{ once: true }}
           >
             {features.map((feature, index) => (
-              <motion.div
+              <InteractiveCard
                 key={index}
                 className="relative transition-all duration-300 cursor-pointer overflow-hidden flex flex-col items-center justify-between group gap-4"
                 style={{
@@ -209,39 +209,11 @@ const About: React.FC = () => {
                   border: '1px solid rgba(255, 255, 255, 0.05)',
                   borderRadius: '20px',
                   padding: '2rem',
-                  backdropFilter: 'blur(10px)',
-                  transformStyle: 'preserve-3d',
-                  transform: `perspective(1000px) rotateX(${cardRotateX}deg)`
+                  backdropFilter: 'blur(10px)'
                 }}
-                initial={{ opacity: 0, y: 50, rotateX: -20 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.03, 
-                  rotateY: 5,
-                  y: -8,
-                  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
-                }}
+                delay={index * 0.1}
               >
-                <div 
-                  className="absolute -top-1 -left-1 -right-1 -bottom-1 rounded-[22px] opacity-0 group-hover:opacity-60 blur-xl -z-10 transition-all duration-400"
-                  style={{
-                    background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)'
-                  }}
-                />
-                <div 
-                  className="absolute inset-0 rounded-[22px] opacity-0 group-hover:opacity-30 transition-all duration-400 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.04))'
-                  }}
-                />
-                <div 
-                  className="absolute inset-0 rounded-[22px] opacity-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.03))'
-                  }}
-                />
+                {/* Hover effects removed - cards are now static */}
                 <div 
                   className="w-12 h-12 md:w-15 md:h-15 rounded-2xl flex items-center justify-center mb-4 md:mb-6 relative"
                   style={{
@@ -257,7 +229,7 @@ const About: React.FC = () => {
                   <p className="text-sm leading-relaxed" style={{ transform: 'translateZ(5px)', color: 'var(--text-secondary)' }}>{feature.description}</p>
                 </div>
                 <div className="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none" style={{ transform: 'translateZ(1px)' }} />
-              </motion.div>
+              </InteractiveCard>
             ))}
           </motion.div>
         </div>          

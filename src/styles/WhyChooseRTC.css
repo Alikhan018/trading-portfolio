@@ -221,23 +221,7 @@
   overflow: hidden;
 }
 
-.why-choose-card-3d-glow {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  border-radius: 22px;
-  opacity: 0;
-  filter: blur(10px);
-  z-index: -1;
-  transition: opacity 0.3s ease;
-}
-
-.why-choose-card-3d:hover .why-choose-card-3d-glow {
-  opacity: 0.3;
-}
+/* Hover effects removed - cards are now static */
 
 .why-choose-icon-3d {
   width: 60px;

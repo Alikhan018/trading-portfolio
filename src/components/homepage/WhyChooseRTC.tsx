@@ -7,6 +7,7 @@ import {
   Star, 
   Brain
 } from 'lucide-react';
+import InteractiveCard from '../common/InteractiveCard';
 
 const WhyChooseRTC: React.FC = () => {
   const whyChooseRef = useRef<HTMLElement>(null);
@@ -15,10 +16,8 @@ const WhyChooseRTC: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  // Parallax transforms
+  // Parallax transforms (simplified)
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const cardRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 5, 10]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const features = [
     {
@@ -227,31 +226,13 @@ const WhyChooseRTC: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          style={{ y: floatingY }}
         >
           <div className="why-choose-3d-grid">
             {features.map((feature, index) => (
-              <motion.div
+              <InteractiveCard
                 key={index}
-                className="why-choose-card-3d cursor-pointer"
-                initial={{ opacity: 0, y: 50, rotateX: -20 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1,
-                  type: 'spring',
-                  stiffness: 200
-                }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 10,
-                  y: -10,
-                  z: 30
-                }}
-                style={{
-                  transform: `perspective(1000px) rotateX(${cardRotateX}deg)`,
-                }}
+                className="why-choose-card-3d"
+                delay={index * 0.1}
               >
                 <div className="why-choose-card-3d-glow" />
                 
@@ -277,7 +258,7 @@ const WhyChooseRTC: React.FC = () => {
 
                 {/* Card Border */}
                 <div className="why-choose-card-3d-border" />
-              </motion.div>
+              </InteractiveCard>
             ))}
           </div>
         </motion.div>
@@ -373,20 +354,7 @@ const WhyChooseRTC: React.FC = () => {
                   transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
                 }}
               >
-                {/* Hover Overlay */}
-                <div 
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 214, 160, 0.08) 100%)'
-                  }}
-                />
-                {/* Glow Effect */}
-                <div 
-                  className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-60 transition-all duration-400 pointer-events-none blur-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(6, 214, 160, 0.2) 100%)'
-                  }}
-                />
+                {/* Hover effects removed - cards are now static */}
                 {/* Header */}
                 <div style={{ marginBottom: '2rem' }}>
                   <h3 className="text-2xl font-bold" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>
@@ -463,20 +431,7 @@ const WhyChooseRTC: React.FC = () => {
                   transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
                 }}
               >
-                {/* Hover Overlay */}
-                <div 
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-400 pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.08) 100%)'
-                  }}
-                />
-                {/* Glow Effect */}
-                <div 
-                  className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-60 transition-all duration-400 pointer-events-none blur-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(220, 38, 38, 0.2) 100%)'
-                  }}
-                />
+                {/* Hover effects removed - cards are now static */}
                 {/* Header */}
                 <div style={{ marginBottom: '2rem' }}>
                   <h3 className="text-2xl font-bold" style={{ marginBottom: '1rem', color: 'var(--text-primary)' }}>

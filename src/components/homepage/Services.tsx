@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Target, Sparkles, Star, Globe } from 'lucide-react';
+import InteractiveCard from '../common/InteractiveCard';
 
 const Services: React.FC = () => {
   const servicesRef = useRef<HTMLElement>(null);
@@ -9,10 +10,8 @@ const Services: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  // Parallax transforms
+  // Parallax transforms (simplified)
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const cardRotateX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 5, 10]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   const services = [
     {
@@ -159,31 +158,13 @@ const Services: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          style={{ y: floatingY }}
         >
           <div className="services-3d-grid">
             {services.map((service, index) => (
-              <motion.div
+              <InteractiveCard
                 key={service.id}
-                className="service-card-3d cursor-pointer"
-                initial={{ opacity: 0, y: 50, rotateX: -20 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: service.delay,
-                  type: 'spring',
-                  stiffness: 200
-                }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  rotateY: 10,
-                  y: -10,
-                  z: 30
-                }}
-                style={{
-                  transform: `perspective(1000px) rotateX(${cardRotateX}deg)`,
-                }}
+                className="service-card-3d"
+                delay={service.delay}
               >
                 <div className="service-card-3d-glow" />
                 
@@ -227,7 +208,7 @@ const Services: React.FC = () => {
 
                 {/* Card Border */}
                 <div className="service-card-3d-border" />
-              </motion.div>
+              </InteractiveCard>
             ))}
           </div>
         </motion.div>
