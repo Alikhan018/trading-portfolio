@@ -402,8 +402,8 @@ const Header: React.FC = () => {
                       href={item.href}
                       className="block transition-all duration-300 cursor-pointer no-underline font-normal hover:opacity-100"
                       style={{
-                        color: theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
-                        fontSize: '2.5rem',
+                        color: theme === 'dark' ? 'white' : 'black',
+                        fontSize: '4rem',
                         lineHeight: '1.2',
                         letterSpacing: '-0.02em'
                       }}
@@ -423,7 +423,8 @@ const Header: React.FC = () => {
                       <small 
                         className="mr-2"
                         style={{
-                          fontSize: '0.875rem',
+                          fontSize: '1rem',
+                          fontWeight: '600',
                           color: theme === 'dark' ? '#8b5cf6' : '#6366f1'
                         }}
                       >
