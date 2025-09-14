@@ -68,13 +68,6 @@ const Header: React.FC = () => {
             <motion.h1
               className="text-2xl font-bold flex items-center gap-2"
               style={{
-                background: theme === 'dark' 
-                  ? 'linear-gradient(135deg, #8b5cf6, #a855f7, #c084fc)'
-                  : 'linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                color: 'transparent',
                 fontSize: '2.5rem',
                 fontWeight: '800',
                 letterSpacing: '0.05em',
