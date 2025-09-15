@@ -24,7 +24,7 @@ const Services: React.FC = () => {
         { icon: Globe, text: 'Gold & Major Pairs' },
         { icon: Target, text: 'Professional Analysis' }
       ],
-      gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+      gradient: 'var(--gradient-blue)',
       delay: 0.2
     },
     {
@@ -37,7 +37,7 @@ const Services: React.FC = () => {
         { icon: Star, text: 'ICT + SMC + VSA' },
         { icon: Target, text: 'For Pakistani Traders' }
       ],
-      gradient: 'linear-gradient(135deg, #10b981, #06d6a0)',
+      gradient: 'var(--gradient-green)',
       delay: 0.4
     }
   ];
@@ -164,6 +164,7 @@ const Services: React.FC = () => {
               <InteractiveCard
                 key={service.id}
                 className="service-card-3d"
+                style={{ color: 'var(--icon-community)' }}
                 delay={service.delay}
               >
                 <div className="service-card-3d-glow" />
@@ -172,9 +173,9 @@ const Services: React.FC = () => {
                 <div className="service-header-3d">
                   <div
                     className="service-icon-3d"
-                    style={{ background: service.gradient }}
+                    style={{ background: service.gradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}
                   >
-                    <service.icon className="service-icon-3d-svg" />
+                    <service.icon className="service-icon-3d-svg" style={{ color: 'var(--icon-community)' }} />
                   </div>
                   <div className="service-badge-3d">
                     <span className="service-number-3d">0{index + 1}</span>

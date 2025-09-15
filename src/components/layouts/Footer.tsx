@@ -27,9 +27,9 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer id="contact" ref={footerRef} className="relative overflow-hidden" style={{ padding: '2rem' }}>
+    <footer id="contact" ref={footerRef} className="relative overflow-hidden">
       {/* Footer Container with rounded design */}
-      <div className="relative backdrop-blur-xl rounded-3xl overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
+      <div className="relative backdrop-blur-xl overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
         {/* Background */}
         <motion.div 
           className="absolute inset-0 z-[1]"
@@ -60,15 +60,7 @@ const Footer: React.FC = () => {
           style={{ marginBottom: '2rem' }}
         >
           {/* Logo Section */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-lg" style={{ background: 'var(--gradient-primary)' }}>
-              <TrendingUp className="w-6 h-6" style={{ color: 'white' }} />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>RTC</span>
-              <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Rao Trading Concept</span>
-            </div>
-          </div>
+          <img src="/header_logo.png" alt="RTC Logo" width={70} style={{ WebkitFilter: 'drop-shadow(0 2px 2px #d7c6f5)' }} />
 
           {/* Vertical Divider */}
           <div className="hidden lg:block w-px h-16 flex-shrink-0" style={{ background: 'var(--border-primary)' }}></div>
@@ -93,11 +85,12 @@ const Footer: React.FC = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300"
-                  style={{ 
+                  className="w-15 h-15 rounded-lg flex items-center justify-center transition-all duration-300"
+                  style={{
                     background: 'var(--bg-card)', 
                     color: 'var(--text-secondary)',
-                    border: '1px solid var(--border-secondary)'
+                    border: '1px solid var(--border-secondary)',
+                    padding: '1rem'
                   }}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}

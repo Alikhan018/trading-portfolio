@@ -16,7 +16,7 @@ const Model3D: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Load the shaded model (cleaner look)
-  const { scene } = useGLTFModel('/base_basic_shaded.glb');
+  const { scene } = useGLTFModel('/base_basic_pbr.glb');
   
   // Mouse movement handler
   useEffect(() => {

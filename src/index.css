@@ -11,6 +11,7 @@
 /* CSS Variables for Theme Management */
 :root {
   /* Dark Theme (Default) */
+  --icon-community: #fff;
   --bg-primary: #000000;
   --bg-secondary: #0f0f23;
   --bg-tertiary: #1f2937;
@@ -64,6 +65,7 @@
 
 /* Light Theme Variables */
 [data-theme="light"] {
+  --icon-community: #000; 
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #e2e8f0;
@@ -295,4 +297,16 @@ button, a, img, ul, ol, h1, h2, h3, h4, h5, h6, p {
 
 @media (max-width: 480px) {
   body { font-size: 12px; }
+}
+
+:root {
+  --gradient-indigo-purple-pink: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899, #be185d, #f59e0b, #f97316, #10b981, #06d6a0, #ffffff);
+  --gradient-indigo-pink: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899, #be185d);
+  --gradient-green: linear-gradient(135deg, #10b981, #06d6a0);
+  --gradient-yellow-orange: linear-gradient(135deg, #f59e0b, #f97316);
+  --gradient-pink: linear-gradient(135deg, #ec4899, #be185d);
+  --gradient-blue: linear-gradient(135deg, #6366f1, #8b5cf6);
+  --gradient-white-gray: linear-gradient(135deg, #ffffff, #a1a1aa);
+  --gradient-hero-title: linear-gradient(135deg, #cc3622, #e13300, #e13300, #e13300);
+  --gradient-discord: linear-gradient(135deg, #5865F2, #404EED);
 }

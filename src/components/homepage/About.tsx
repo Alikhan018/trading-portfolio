@@ -19,28 +19,28 @@ const About: React.FC = () => {
       title: 'ICT Methodology',
       description: 'Institutional Trading Concepts',
       color: 'primary',
-      gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+      gradient: 'var(--gradient-blue)'
     },
     {
       icon: Sparkles,
       title: 'Smart Money Concepts',
       description: 'Think Like Institutions',
       color: 'secondary',
-      gradient: 'linear-gradient(135deg, #10b981, #06d6a0)'
+      gradient: 'var(--gradient-green)'
     },
     {
       icon: Globe,
       title: 'Volume Spread Analysis',
       description: 'Professional Market Analysis',
       color: 'accent',
-      gradient: 'linear-gradient(135deg, #f59e0b, #f97316)'
+      gradient: 'var(--gradient-yellow-orange)'
     },
     {
       icon: Star,
       title: 'Proven Results',
       description: '80%+ Win Rate on Signals',
       color: 'highlight',
-      gradient: 'linear-gradient(135deg, #ec4899, #be185d)'
+      gradient: 'var(--gradient-pink)'
     }
   ];
 
@@ -151,8 +151,13 @@ const About: React.FC = () => {
             viewport={{ once: true }}
           >
             <motion.div
-              className="block bg-gradient-to-br from-white to-zinc-400 bg-clip-text text-transparent"
+              className="block"
               style={{
+                background: 'var(--gradient-white-gray)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
                 backgroundSize: '200% 100%',
                 transform: 'translateZ(10px)'
               }}
@@ -164,8 +169,15 @@ const About: React.FC = () => {
               About
             </motion.div>
             <motion.div
-              className="block bg-gradient-to-br from-indigo-500 to-purple-500 bg-clip-text text-transparent"
-              style={{ transform: 'translateZ(8px)' }}
+              className="block"
+              style={{
+                background: 'var(--gradient-blue)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+                transform: 'translateZ(8px)'
+              }}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.6 }}

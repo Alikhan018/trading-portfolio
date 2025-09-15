@@ -17,14 +17,14 @@ const MobileBitcoinModel: React.FC = () => {
       groupRef.current.position.x = 0;
       groupRef.current.position.y = -1.3; // Move down from center
       groupRef.current.position.z = 0;
-      
+
       // Gentle floating animation
       groupRef.current.position.y += Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
-      
+
       // Continuous rotation
       groupRef.current.rotation.y += 0.015;
       groupRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.05;
-      
+
       // Mobile optimized scale
       groupRef.current.scale.setScalar(2.2);
     }
@@ -68,10 +68,10 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 1280);
     };
-    
+
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
-    
+
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
@@ -81,12 +81,12 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
       <div className="absolute inset-0" style={{ background: 'var(--gradient-bg)' }} />
 
       {/* Main Content */}
-      <motion.div 
+      <motion.div
         className="relative z-[2] w-full max-w-[1200px] mx-auto px-4 md:px-8"
         style={{ y: textY, opacity }}
       >
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 xl:gap-16 items-center min-h-[80vh] overflow-visible">
-          
+
           {/* Left Side Content */}
           <div className="flex flex-col gap-6 text-center xl:text-left items-center xl:items-start">
             {/* Badge */}
@@ -95,47 +95,71 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              style={{ 
-                paddingLeft: '1rem', 
-                paddingRight: '1rem', 
-                paddingTop: '0.5rem', 
+              style={{
+                paddingLeft: '1rem',
+                paddingRight: '1rem',
+                paddingTop: '0.5rem',
                 paddingBottom: '0.5rem',
                 background: 'var(--bg-glass)',
                 border: '1px solid var(--border-primary)',
                 color: 'var(--text-secondary)'
               }}
             >
-              <Star className="w-4 h-4 text-amber-400" />
+              <Star className="w-4 h-4" style={{ color: 'var(--icon-star)' }} />
               <span>Trusted by 1M+ users worldwide</span>
             </motion.div>
 
             {/* Main Title */}
             <motion.div
-              className="text-[2rem] md:text-[3rem] xl:text-[3.5rem] font-extrabold leading-[1.1] m-0"
+              className="text-[4rem] md:text-[3rem] xl:text-[3.5rem] font-extrabold leading-[1.1] m-0"
               initial={{ opacity: 0, y: 30 }}
               animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              style={{ 
-                width: '100%', 
+              style={{
+                width: '90%',
                 maxWidth: '600px',
                 color: 'var(--text-primary)'
               }}
             >
-              Master the Markets
-              <span className="bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block"> with Rao Trading Concept</span>
-              (RTC)
+              Master the Markets 
+              <span style={{
+                background: 'var(--gradient-hero-title)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+                display: 'inline-block'
+              }}> with RTC</span>
             </motion.div>
 
             {/* Subtitle */}
             <motion.div
-              className="text-base md:text-[1.1rem] xl:text-xl leading-[1.6] m-0 max-w-[300px]"
+              className="text-base md:text-[1.1rem] xl:text-xl leading-[1.6] m-0 w-[90%] max-w-[500px]"
               initial={{ opacity: 0, y: 20 }}
               animate={contentVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               style={{ color: 'var(--text-secondary)' }}
             >
-              Pakistan's Leading Forex Trading Community – Join our Discord to get access to exclusive content
+              Rao Umer, the founder of RTC (Rao Trading Concept), is a seasoned Forex trader with 6+ years of market experience.
             </motion.div>
+
+            {/* Call to Action */}
+            <motion.a
+              href="#get-started"
+              className="rounded-full font-semibold text-lg active:scale-95 flex items-center justify-center gap-2 hover:scale-105 text-white shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300"
+              style={{
+                padding: '0.75rem 1.5rem',
+                background: 'var(--gradient-primary)',
+                border: '1px solid var(--border-primary)',
+                boxShadow: '0 4px 15px rgba(236, 72, 153, 0.3)',
+                fontSize: '1.1rem',
+                fontWeight: 600,
+                color: 'white',
+              }}
+            >
+              <img src="/discord-logo.png" alt="Discord Icon" width="24" height="24" className='hover:rotate-360 transition-transform' />
+              Join Discord
+            </motion.a>
 
             {/* Stats */}
             <motion.div
@@ -145,7 +169,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <div className="text-center xl:text-left">
-                <div className="text-2xl font-extrabold mb-1" style={{ color: 'var(--text-primary)' }}>1M+</div>
+                <div className="text-2xl font-extrabold mb-1" style={{ color: 'var(--text-primary)' }}>10K+</div>
                 <div className="text-[0.9rem] font-medium" style={{ color: 'var(--text-secondary)' }}>Active Users</div>
               </div>
               <div className="text-center xl:text-left">
@@ -180,7 +204,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
             initial={{ opacity: 0 }}
             animate={contentVisible ? { opacity: 0.3 } : { opacity: 0 }}
             transition={{ duration: 1.0, delay: 0.4 }}
-            style={{ 
+            style={{
               pointerEvents: 'none',
               display: 'flex',
               alignItems: 'center',
@@ -188,46 +212,46 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
               paddingTop: '10vh' // Move the model down from the top
             }}
           >
-          <Canvas
-            camera={{ 
-              position: [0, 0, 6], 
-              fov: 60,
-              near: 0.1,
-              far: 1000
-            }}
-            shadows
-            gl={{ 
-              antialias: true, 
-              alpha: true,
-              powerPreference: "high-performance"
-            }}
-            style={{ 
-              width: '100%',
-              height: '100%',
-              background: 'transparent',
-              zIndex: 1,
-              pointerEvents: 'none',
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }}
-            dpr={[1, 1.5]}
-          >
-            <Environment preset="studio" />
-            <ambientLight intensity={0.3} />
-            <directionalLight 
-              position={[5, 5, 5]} 
-              intensity={0.8} 
-              castShadow
-            />
-            <pointLight position={[-3, 3, 3]} intensity={0.4} color="#fbbf24" />
-            <pointLight position={[3, -3, -3]} intensity={0.3} color="#8b5cf6" />
-            
-            {/* Mobile Bitcoin Model */}
-            <MobileBitcoinModel />
-          </Canvas>
-        </motion.div>
+            <Canvas
+              camera={{
+                position: [0, 0, 6],
+                fov: 60,
+                near: 0.1,
+                far: 1000
+              }}
+              shadows
+              gl={{
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance"
+              }}
+              style={{
+                width: '100%',
+                height: '100%',
+                background: 'transparent',
+                zIndex: 1,
+                pointerEvents: 'none',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+              dpr={[1, 1.5]}
+            >
+              <Environment preset="studio" />
+              <ambientLight intensity={0.3} />
+              <directionalLight
+                position={[5, 5, 5]}
+                intensity={0.8}
+                castShadow
+              />
+              <pointLight position={[-3, 3, 3]} intensity={0.4} color="#fbbf24" />
+              <pointLight position={[3, -3, -3]} intensity={0.3} color="#8b5cf6" />
+
+              {/* Mobile Bitcoin Model */}
+              <MobileBitcoinModel />
+            </Canvas>
+          </motion.div>
         )}
 
       </motion.div>

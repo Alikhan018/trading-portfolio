@@ -65,29 +65,7 @@ const Header: React.FC = () => {
         <div className="hidden lg:flex items-center justify-between">
           {/* Logo */}
           <div style={{ flexShrink: 0, width: '33.333333%', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <motion.h1
-              className="text-2xl font-bold flex items-center gap-2"
-              style={{
-                fontSize: '2.5rem',
-                fontWeight: '800',
-                letterSpacing: '0.05em',
-                lineHeight: '1.1',
-                textShadow: theme === 'dark' 
-                  ? '0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(168, 85, 247, 0.3)'
-                  : '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(99, 102, 241, 0.3)',
-                textDecoration: 'none',
-                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
-              }}
-              whileHover={{ 
-                scale: 1.08,
-                textShadow: theme === 'dark' 
-                  ? '0 0 25px #8b5cf6, 0 0 50px #a855f7'
-                  : '0 0 25px #3b82f6, 0 0 50px #6366f1'
-              }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-            >
-              RTC
-            </motion.h1>
+            <img src="/header_logo.png" alt="Logo" width={70} style={{ WebkitFilter: 'drop-shadow(0 2px 2px #d7c6f5)' }} />
             
             {/* Live Indicator */}
             <motion.div

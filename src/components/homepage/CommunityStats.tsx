@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { color, motion, useScroll, useTransform } from 'framer-motion';
 import { Users, Award, Sparkles, Globe, Star, Target } from 'lucide-react';
 import InteractiveCard from '../common/InteractiveCard';
 
@@ -19,15 +19,17 @@ const CommunityStats: React.FC = () => {
       number: '10,000+',
       label: 'Active Members',
       description: 'Growing community of dedicated traders',
-      gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
-      delay: 0.2
+      gradient: 'var(--gradient-blue)',
+      delay: 0.2,
+      color: 'var(--icon-community)'
     },
     {
       icon: Target,
       number: '80%+',
       label: 'Verified Win Rate on Forex Signals',
       description: 'Proven track record of successful trades',
-      gradient: 'linear-gradient(135deg, #10b981, #06d6a0)',
+      gradient: 'var(--gradient-green)',
+      color: 'var(--icon-community)',
       delay: 0.4
     },
     {
@@ -35,7 +37,8 @@ const CommunityStats: React.FC = () => {
       number: 'News Trade',
       label: 'Experts',
       description: 'Mastering High-Impact Events',
-      gradient: 'linear-gradient(135deg, #f59e0b, #f97316)',
+      gradient: 'var(--gradient-yellow-orange)',
+      color: 'var(--icon-community)',
       delay: 0.6
     },
     {
@@ -43,7 +46,8 @@ const CommunityStats: React.FC = () => {
       number: 'Hundreds',
       label: 'Traders Mentored',
       description: 'Successful trading education and guidance',
-      gradient: 'linear-gradient(135deg, #ec4899, #be185d)',
+      gradient: 'var(--gradient-pink)',
+      color: 'var(--icon-community)',
       delay: 0.8
     }
   ];
@@ -180,22 +184,21 @@ const CommunityStats: React.FC = () => {
                 <div className="stat-icon-3d-container">
                   <div
                     className="stat-icon-3d"
-                    style={{ background: stat.gradient }}
                   >
-                    <stat.icon className="stat-icon-3d-svg" />
+                    <stat.icon className="stat-icon-3d-svg" style={{ color: 'var(--icon-community)' }} />
                   </div>
                   
                   {/* Floating mini icons */}
                   <div
                     className="stat-mini-icon-3d stat-mini-1"
                   >
-                    <Star className="mini-icon-3d" />
+                    <Star className="mini-icon-3d" style={{ color: 'var(--icon-community)' }} />
                   </div>
                   
                   <div
                     className="stat-mini-icon-3d stat-mini-2"
                   >
-                    <Sparkles className="mini-icon-3d" />
+                    <Sparkles className="mini-icon-3d" style={{ color: 'var(--icon-community)' }} />
                   </div>
                 </div>
 
