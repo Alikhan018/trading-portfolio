@@ -539,3 +539,230 @@
     font-size: 1.75rem;
   }
 }
+
+/* Trading Results Gallery Styles */
+.trading-results-gallery {
+  margin: 4rem 0;
+  padding: 0 1rem;
+}
+
+.trading-results-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.trading-results-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 1rem 0;
+  transform: translateZ(10px);
+}
+
+.trading-results-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin: 0;
+  opacity: 0.9;
+  transform: translateZ(8px);
+}
+
+.trading-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trading-result-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-secondary);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.trading-result-card:hover {
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.trading-result-image-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.trading-result-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.trading-result-card:hover .trading-result-image {
+  transform: scale(1.05);
+}
+
+.trading-result-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.trading-result-card:hover .trading-result-overlay {
+  opacity: 1;
+}
+
+.trading-result-badge {
+  background: linear-gradient(135deg, #10b981, #06d6a0);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  transform: translateZ(5px);
+}
+
+.trading-result-profit {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.trading-result-pair {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design for Trading Results */
+@media (max-width: 1024px) {
+  .trading-results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .trading-results-title {
+    font-size: 2.2rem;
+  }
+  
+  .trading-results-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .trading-results-gallery {
+    margin: 3rem 0;
+    padding: 0 0.5rem;
+  }
+  
+  .trading-results-header {
+    margin-bottom: 2rem;
+  }
+  
+  .trading-results-title {
+    font-size: 2rem;
+  }
+  
+  .trading-results-subtitle {
+    font-size: 1rem;
+  }
+  
+  .trading-results-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .trading-result-image-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trading-results-gallery {
+    margin: 2rem 0;
+  }
+  
+  .trading-results-title {
+    font-size: 1.8rem;
+  }
+  
+  .trading-results-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .trading-results-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .trading-result-image-container {
+    height: 180px;
+  }
+  
+  .trading-result-badge {
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .trading-result-profit {
+    font-size: 1rem;
+  }
+  
+  .trading-result-pair {
+    font-size: 0.75rem;
+  }
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .trading-result-card {
+  background: rgba(26, 26, 46, 0.8);
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .trading-result-card:hover {
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Light Theme Adjustments */
+[data-theme="light"] .trading-result-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .trading-result-card:hover {
+  box-shadow: 0 16px 48px rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.2);
+}

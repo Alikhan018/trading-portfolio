@@ -117,7 +117,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
             alpha: true,
             powerPreference: "high-performance",
           }}
-          style={{
+                style={{
             width: "100%",
             height: "100%",
             background: "transparent",

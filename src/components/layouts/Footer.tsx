@@ -1,15 +1,27 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   MessageCircle, 
   Youtube, 
-  Instagram
+  Instagram,
+  Mail,
+  Phone,
+  MapPin,
+  ArrowRight,
+  Shield,
+  Award,
+  Users,
+  TrendingUp
 } from 'lucide-react';
 
 import { socialLinks } from '../../utils/objects/constants';
+import { useTheme } from '../../contexts/ThemeContext';
+import '../../styles/Footer.css';
 
 const Footer: React.FC = () => {
   const footerRef = useRef<HTMLElement>(null);
+  const { theme } = useTheme();
   const { scrollYProgress } = useScroll({
     target: footerRef,
     offset: ["start end", "end start"]
@@ -26,56 +38,228 @@ const Footer: React.FC = () => {
   }));
 
   return (
-    <footer id="contact" ref={footerRef} className="relative overflow-hidden">
-      {/* Footer Container with rounded design */}
-      <div className="relative backdrop-blur-xl overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-primary)' }}>
-        {/* Background */}
+    <footer 
+      id="contact" 
+      ref={footerRef} 
+      className="footer-traditional"
+      style={{
+        background: theme === 'dark' 
+          ? 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)'
+          : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
+        borderTop: theme === 'dark' 
+          ? '1px solid rgba(99, 102, 241, 0.2)'
+          : '1px solid rgba(99, 102, 241, 0.1)'
+      }}
+    >
+      {/* Background Pattern */}
         <motion.div 
-          className="absolute inset-0 z-[1]"
+        className="footer-background-pattern"
           style={{ y: backgroundY }}
         >
-          {/* Trading-themed background pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="w-full h-full" style={{ background: 'var(--gradient-bg)' }}></div>
-          </div>
-          
-          {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="w-full h-full" style={{
-              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-              backgroundSize: '50px 50px'
-            }}></div>
-          </div>
+        <div 
+          className="footer-pattern-dots"
+          style={{
+            backgroundImage: theme === 'dark'
+              ? 'radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.3) 1px, transparent 0)'
+              : 'radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.1) 1px, transparent 0)'
+          }}
+        ></div>
         </motion.div>
 
-        <div className="relative z-[2] w-full" style={{ padding: '3rem 2.5rem 2rem 2.5rem' }}>
-        {/* Main Footer Content - Logo, Description, and Social Links in One Row */}
+      <div className="footer-container">
+        {/* Main Footer Content */}
+        <div className="footer-main-content">
+          <div className="footer-grid">
+            {/* Company Info Section */}
         <motion.div
-          className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-8 w-full"
+              className="footer-company-section footer-animate-in"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          style={{ marginBottom: '2rem' }}
-        >
-          {/* Logo Section */}
-          <img src="/header_logo.png" alt="RTC Logo" width={70} style={{ WebkitFilter: 'drop-shadow(0 2px 2px #d7c6f5)' }} />
+            >
+              <div className="footer-logo-container">
+                <img 
+                  src="/header_logo.png" 
+                  alt="RTC Logo" 
+                  className="footer-logo"
+                />
+              <div className="footer-brand-info">
+                <h3 style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}>RTC</h3>
+                <p style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}>Rao Trading Concept</p>
+              </div>
+              </div>
+              
+              <p 
+                className="footer-description"
+                style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+              >
+                Pakistan's premier forex trading community. Empowering traders with professional signals, expert mentorship, and proven ICT strategies.
+              </p>
 
-          {/* Vertical Divider */}
-          <div className="hidden lg:block w-px h-16 flex-shrink-0" style={{ background: 'var(--border-primary)' }}></div>
+              {/* Trust Indicators */}
+              <div className="footer-trust-indicators">
+                <div className="footer-trust-item">
+                  <Shield className="footer-trust-icon" style={{ color: '#10b981' }} />
+                  <span 
+                    className="footer-trust-text"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    Trusted by 10,000+ traders
+                  </span>
+                </div>
+                <div className="footer-trust-item">
+                  <Award className="footer-trust-icon" style={{ color: '#f59e0b' }} />
+                  <span 
+                    className="footer-trust-text"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    80%+ verified win rate
+                  </span>
+                </div>
+                <div className="footer-trust-item">
+                  <Users className="footer-trust-icon" style={{ color: '#8b5cf6' }} />
+                  <span 
+                    className="footer-trust-text"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    Active community support
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
-          {/* Description Section */}
-          <div className="flex-1 max-w-md lg:max-w-lg">
-            <p className="leading-relaxed text-sm lg:text-base" style={{ color: 'var(--text-secondary)' }}>
-              Pakistan's premier forex trading community. Join thousands of successful traders mastering the markets with professional signals, expert mentorship, and proven ICT strategies.
-            </p>
+            {/* Quick Links Section */}
+            <motion.div
+              className="footer-animate-in footer-animate-delay-1"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h4 
+                className="footer-section-title"
+                style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}
+              >
+                Quick Links
+              </h4>
+              <ul className="footer-links-list">
+                {[
+                  { name: 'Home', href: '#home' },
+                  { name: 'Markets', href: '#markets' },
+                  { name: 'About Us', href: '#about' },
+                  { name: 'Services', href: '#services' },
+                  { name: 'Community', href: '#community' },
+                  { name: 'Contact', href: '#contact' }
+                ].map((link) => (
+                  <li key={link.name} className="footer-link-item">
+                    <motion.a
+                      href={link.href}
+                      className="footer-link"
+                      style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                      whileHover={{ 
+                        color: theme === 'dark' ? '#ffffff' : '#1f2937', 
+                        x: 5 
+                      }}
+                    >
+                      <ArrowRight className="footer-link-icon" />
+                      {link.name}
+                    </motion.a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Services Section */}
+            <motion.div
+              className="footer-animate-in footer-animate-delay-2"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h4 
+                className="footer-section-title"
+                style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}
+              >
+                Our Services
+              </h4>
+              <ul className="footer-services-list">
+                {[
+                  'Forex Signals',
+                  'ICT Mentorship',
+                  'Smart Money Concepts',
+                  'Volume Spread Analysis',
+                  'Live Trading Sessions',
+                  'Market Analysis'
+                ].map((service) => (
+                  <li key={service} className="footer-service-item">
+                    <motion.div
+                      className="footer-service"
+                      style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                      whileHover={{ 
+                        color: theme === 'dark' ? '#ffffff' : '#1f2937', 
+                        x: 5 
+                      }}
+                    >
+                      <TrendingUp className="footer-service-icon" />
+                      {service}
+                    </motion.div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Contact & Social Section */}
+            <motion.div
+              className="footer-animate-in footer-animate-delay-3"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <h4 
+                className="footer-section-title"
+                style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}
+              >
+                Get In Touch
+              </h4>
+              
+              {/* Contact Info */}
+              <div className="footer-contact-info">
+                <div className="footer-contact-item">
+                  <Mail className="footer-contact-icon" />
+                  <span 
+                    className="footer-contact-text"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    info@raotradingconcept.com
+                  </span>
+                </div>
+                <div className="footer-contact-item">
+                  <Phone className="footer-contact-icon" />
+                  <span 
+                    className="footer-contact-text"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    +92 300 1234567
+                  </span>
+                </div>
+                <div className="footer-contact-item">
+                  <MapPin className="footer-contact-icon" />
+                  <span 
+                    className="footer-contact-text"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    Karachi, Pakistan
+                  </span>
+                </div>
           </div>
 
-          {/* Vertical Divider */}
-          <div className="hidden lg:block w-px h-16 flex-shrink-0" style={{ background: 'var(--border-primary)' }}></div>
-
-          {/* Social Links Section */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+              {/* Social Links */}
+              <div className="footer-social-section">
+                <h5 style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}>Follow Us</h5>
+                <div className="footer-social-links">
             {footerLinks.map((social) => {
               const IconComponent = social.icon;
               return (
@@ -84,50 +268,83 @@ const Footer: React.FC = () => {
                   href={social.href}
                   target={social.target || undefined}
                   rel={social.rel || undefined}
-                  className="w-15 h-15 rounded-lg flex items-center justify-center transition-all duration-300"
+                          className="footer-social-link footer-hover-lift"
                   style={{
-                    background: 'var(--bg-card)', 
-                    color: 'var(--text-secondary)',
-                    border: '1px solid var(--border-secondary)',
-                    padding: '1rem'
-                  }}
-                  whileHover={{ scale: 1.1, y: -2 }}
+                            background: theme === 'dark' 
+                              ? 'rgba(99, 102, 241, 0.1)' 
+                              : 'rgba(99, 102, 241, 0.05)',
+                            color: theme === 'dark' ? '#9ca3af' : '#6b7280',
+                            border: theme === 'dark' 
+                              ? '1px solid rgba(99, 102, 241, 0.2)' 
+                              : '1px solid rgba(99, 102, 241, 0.1)'
+                          }}
+                          whileHover={{ 
+                            scale: 1.1, 
+                            y: -2,
+                            background: 'rgba(99, 102, 241, 0.2)',
+                            color: '#6366f1'
+                          }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <IconComponent className="w-4 h-4" />
+                        <IconComponent className="footer-social-icon" />
                 </motion.a>
               );
             })}
+                </div>
           </div>
         </motion.div>
+          </div>
+        </div>
 
         {/* Footer Bottom */}
         <motion.div
-          className="flex justify-center items-center w-full"
+          className="footer-bottom footer-animate-in footer-animate-delay-4"
           style={{ 
-            marginTop: '3rem', 
-            paddingTop: '2rem', 
-            marginLeft: '0', 
-            marginRight: '0',
-            borderTop: '1px solid var(--border-primary)'
+            borderTop: theme === 'dark' 
+              ? '1px solid #374151' 
+              : '1px solid #e5e7eb'
           }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          {/* Copyright - Centered */}
-          <div className="flex flex-col gap-1 text-center">
-            <div className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+          <div className="footer-bottom-content">
+            {/* Copyright */}
+            <div className="footer-copyright">
+              <p 
+                className="footer-copyright-text"
+                style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+              >
               © 2025 Rao Trading Concept. All rights reserved.
+              </p>
+              <p 
+                className="footer-copyright-subtext"
+                style={{ color: theme === 'dark' ? '#6b7280' : '#9ca3af' }}
+              >
+                Empowering Pakistani traders with professional forex education
+              </p>
             </div>
-            <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-              Empowering Pakistani traders with professional forex education
+
+            {/* Legal Links */}
+            <div className="footer-legal-links">
+              {[
+                { name: 'Privacy Policy', href: '/privacy' },
+                { name: 'Terms of Service', href: '/terms' }
+              ].map((link) => (
+                <motion.div key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="footer-legal-link"
+                    style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
-
-        </div>
       </div>
     </footer>
   );

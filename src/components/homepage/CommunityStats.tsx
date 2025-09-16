@@ -201,12 +201,81 @@ const CommunityStats: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Trading Results Gallery */}
+        <motion.div
+          className="trading-results-gallery"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="trading-results-header"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="trading-results-title">
+              Real Trading Results from Our Community
+            </h3>
+            <p className="trading-results-subtitle">
+              See the actual profits our members are making with our signals
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="trading-results-grid"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            viewport={{ once: true }}
+          >
+            {[
+              { src: '/images/01-img.jpg', alt: 'Trading Result 1 - XAUUSD Buy Trades' },
+              { src: '/images/02-img.jpg', alt: 'Trading Result 2 - XAUUSD Sell Trades' },
+              { src: '/images/03-img.jpg', alt: 'Trading Result 3 - Portfolio Overview' },
+              { src: '/images/04-img.jpg', alt: 'Trading Result 4 - Trading History' },
+              { src: '/images/05-img.jpg', alt: 'Trading Result 5 - Multiple Positions' }
+            ].map((image, index) => (
+              <motion.div
+                key={index}
+                className="trading-result-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <div className="trading-result-image-container">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="trading-result-image"
+                    loading="lazy"
+                  />
+                  <div className="trading-result-overlay">
+                    <div className="trading-result-badge">
+                      <span className="trading-result-profit">+$1,000+</span>
+                      <span className="trading-result-pair">XAUUSD</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
         {/* 3D Call to Action */}
         <motion.div
           className="community-cta-3d"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
           viewport={{ once: true }}
         >
           <div className="community-cta-content-3d">
