@@ -5,18 +5,17 @@ import { Star } from "lucide-react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useGLTF, Environment } from "@react-three/drei";
 import { Group } from "three";
-import Orb from '../Orb';
 
-// Mobile Bitcoin Model Component - Optimized for mobile centering
-const MobileBitcoinModel: React.FC = () => {
+// 3D Character Model Component
+const CharacterModel: React.FC = () => {
   const groupRef = useRef<Group>(null);
-  const { scene } = useGLTF("/base_basic_pbr.glb");
+  const { scene } = useGLTF("/3d_character.glb");
 
   useFrame((state) => {
     if (groupRef.current) {
-      // Positioned slightly down from center for mobile
+      // Positioned in center
       groupRef.current.position.x = 0;
-      groupRef.current.position.y = -1.3; // Move down from center
+      groupRef.current.position.y = -1;
       groupRef.current.position.z = 0;
 
       // Gentle floating animation
@@ -24,12 +23,12 @@ const MobileBitcoinModel: React.FC = () => {
         Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
 
       // Continuous rotation
-      groupRef.current.rotation.y += 0.015;
+      groupRef.current.rotation.y += 0.01;
       groupRef.current.rotation.x =
         Math.sin(state.clock.elapsedTime * 0.2) * 0.05;
 
-      // Mobile optimized scale
-      groupRef.current.scale.setScalar(2.2);
+      // Scale
+      groupRef.current.scale.setScalar(1.5);
     }
   });
 
@@ -91,7 +90,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
         style={{ background: "var(--gradient-bg)" }}
       />
 
-      {/* Orb Background - Right Half - Desktop Only */}
+      {/* 3D Character Model - Right Half - Desktop Only */}
       <div 
         className="absolute z-[1] hidden xl:block"
         style={{ 
@@ -102,40 +101,52 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
           left: '70%',
           transform: 'translateX(-50%)',
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          pointerEvents: 'auto'
+          pointerEvents: 'none'
         }}
       >
-        <Orb
-          hoverIntensity={0.5}
-          rotateOnHover={true}
-          hue={290}
-          forceHoverState={false}
-        />
-              <motion.a
-                href={DISCORD_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full font-semibold text-lg active:scale-95 flex items-center justify-center gap-2 hover:scale-105 text-white shadow-lg shadow-pink-500/30 hover:shadow-pink-500/50 transition-all duration-300"
-                style={{
-                  padding: "0.75rem 1.5rem",
-                  background: "var(--gradient-primary)",
-                  border: "1px solid var(--border-primary)",
-                  boxShadow: "0 4px 15px rgba(236, 72, 153, 0.3)",
-                  fontSize: "1.1rem",
-                  fontWeight: 600,
-                  color: "white",
-                }}
-              >
-                <img
-                  src="/discord-logo.png"
-                  alt="Discord Icon"
-                  width="24"
-                  height="24"
-                  className="hover:rotate-360 transition-transform"
-                />
-                Join Discord
-              </motion.a>
+        <Canvas
+          camera={{
+            position: [0, 0, 6],
+            fov: 60,
+            near: 0.1,
+            far: 1000,
+          }}
+          shadows
+          gl={{
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+          }}
+          style={{
+            width: "100%",
+            height: "100%",
+            background: "transparent",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+          dpr={[1, 1.5]}
+        >
+          <Environment preset="studio" />
+          <ambientLight intensity={0.3} />
+          <directionalLight
+            position={[5, 5, 5]}
+            intensity={0.8}
+            castShadow
+          />
+          <pointLight
+            position={[-3, 3, 3]}
+            intensity={0.4}
+            color="#fbbf24"
+          />
+          <pointLight
+            position={[3, -3, -3]}
+            intensity={0.3}
+            color="#8b5cf6"
+          />
 
+          {/* 3D Character Model */}
+          <CharacterModel />
+        </Canvas>
       </div>
 
       {/* Main Content */}
@@ -292,7 +303,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
           </div>
         </div>
 
-        {/* Mobile 3D Model Background - Positioned slightly from top - Hidden on Desktop */}
+        {/* Mobile 3D Character Model Background - Positioned slightly from top - Hidden on Desktop */}
         {isMobile && (
           <motion.div
             className="absolute inset-0 z-[1]"
@@ -351,8 +362,8 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
                 color="#8b5cf6"
               />
 
-              {/* Mobile Bitcoin Model */}
-              <MobileBitcoinModel />
+              {/* Mobile Character Model */}
+              <CharacterModel />
             </Canvas>
           </motion.div>
         )}

@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Globe } from 'lucide-react';
+import { Globe, Download } from 'lucide-react';
 import InteractiveCard from '../common/InteractiveCard';
 import { servicesList } from '../../utils/objects/constants';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const Services: React.FC = () => {
   const servicesRef = useRef<HTMLElement>(null);
@@ -15,6 +16,44 @@ const Services: React.FC = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   const services = servicesList;
+  const { theme } = useTheme();
+  const [downloading, setDownloading] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(0);
+
+  const handlePdfDownload = async () => {
+    setDownloading(true);
+    setDownloadProgress(0);
+    const url = encodeURI("/RTC – (Rao Trading Concept).pdf");
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const contentLength = response.headers.get('content-length');
+      const total = contentLength ? parseInt(contentLength, 10) : 0;
+      let loaded = 0;
+      const reader = response.body?.getReader();
+      const chunks: BlobPart[] = [];
+      while (reader) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value) {
+          chunks.push(value);
+          loaded += value.length;
+          if (total) setDownloadProgress(Math.round((loaded / total) * 100));
+        }
+      }
+      const blob = new Blob(chunks, { type: 'application/pdf' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'RTC – (Rao Trading Concept).pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (e) {
+      alert('Failed to download PDF');
+    }
+    setDownloading(false);
+    setDownloadProgress(0);
+  };
 
   return (
     <section id="services" ref={servicesRef} className="services-section-3d">
@@ -188,6 +227,74 @@ const Services: React.FC = () => {
             ))}
           </div>
         </motion.div>
+
+        {/* Bottom-centered Download PDF button */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+          <motion.button
+            onClick={handlePdfDownload}
+            style={{
+              padding: '0.75rem 1.25rem',
+              borderRadius: '0.75rem',
+              border:
+                theme === 'dark'
+                  ? '1px solid rgba(255, 255, 255, 0.2)'
+                  : '1px solid rgba(0, 0, 0, 0.2)',
+              backgroundColor:
+                theme === 'dark'
+                  ? 'rgba(255, 255, 255, 0.05)'
+                  : 'rgba(0, 0, 0, 0.05)',
+              cursor: downloading ? 'not-allowed' : 'pointer',
+              transition: 'all 0.3s ease',
+              position: 'relative',
+              minWidth: 'auto',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            aria-label="Download RTC PDF"
+            type="button"
+            disabled={downloading}
+          >
+            <Download
+              className="w-5 h-5"
+              style={{ color: theme === 'dark' ? '#a5b4fc' : '#6366f1' }}
+            />
+            <span
+              style={{
+                color: theme === 'dark' ? '#a5b4fc' : '#6366f1',
+                fontSize: '0.95rem',
+                fontWeight: 600
+              }}
+            >
+              Get RTC Guide
+            </span>
+            {downloading && (
+              <div
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  bottom: -6,
+                  width: '100%',
+                  height: 4,
+                  background: '#e0e7ff',
+                  borderRadius: 2,
+                  overflow: 'hidden'
+                }}
+              >
+                <div
+                  style={{
+                    width: `${downloadProgress}%`,
+                    height: '100%',
+                    background: '#6366f1',
+                    transition: 'width 0.2s'
+                  }}
+                />
+              </div>
+            )}
+          </motion.button>
+        </div>
       </div>
     </section>
   );

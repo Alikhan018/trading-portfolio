@@ -251,7 +251,7 @@ const Header: React.FC = () => {
               gap: "0.5rem",
             }}
           >
-            <motion.button
+            {/* <motion.button
               onClick={handlePdfDownload}
               style={{
                 padding: "0.5rem 1rem",
@@ -314,7 +314,7 @@ const Header: React.FC = () => {
                   />
                 </div>
               )}
-            </motion.button>
+            </motion.button> */}
             <motion.button
               onClick={toggleTheme}
               style={{
@@ -583,7 +583,7 @@ const Header: React.FC = () => {
                     </motion.a>
                   ))}
                   {/* PDF Download Button for mobile menu modal only */}
-                  {isMobile && (
+                  {/* {isMobile && (
                     <motion.button
                       onClick={handlePdfDownload}
                       style={{
@@ -651,7 +651,7 @@ const Header: React.FC = () => {
                         </div>
                       )}
                     </motion.button>
-                  )}
+                  )} */}
                 </div>
               </div>
             </motion.div>

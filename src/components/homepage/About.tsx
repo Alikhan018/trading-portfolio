@@ -45,7 +45,7 @@ const About: React.FC = () => {
         className="w-full flex flex-col items-center z-[2] max-w-[1400px] mx-auto"
         style={{
           transformStyle: "preserve-3d",
-          marginTop: window.innerWidth < 768 ? '-4rem' : '-20rem',
+          marginTop: window.innerWidth < 768 ? '-4rem' : '-10rem',
           paddingBottom: "1.5rem",
         }}
       >

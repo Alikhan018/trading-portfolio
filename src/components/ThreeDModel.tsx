@@ -16,7 +16,7 @@ const Model3D: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   // Load the shaded model (cleaner look)
-  const { scene } = useGLTFModel('/base_basic_pbr.glb');
+  const { scene } = useGLTFModel('/3d_character.glb');
   
   // Mouse movement handler
   useEffect(() => {
@@ -46,7 +46,7 @@ const Model3D: React.FC = () => {
       groupRef.current.position.z = 2 + Math.cos(state.clock.elapsedTime * 0.8) * 0.15;
       
       // Smooth 360-degree rotation around Y-axis
-      groupRef.current.rotation.x = -0.5 + mouseInfluenceY * 0.3; // Slight tilt based on Y
+      groupRef.current.rotation.x = 0.5 + mouseInfluenceY * 0.3; // Slight tilt based on Y
       groupRef.current.rotation.y += 0.04; // Continuous Y-axis rotation
       groupRef.current.rotation.z = 0;
     }

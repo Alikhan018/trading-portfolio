@@ -1,5 +1,6 @@
 import React from "react";
-import { youtubeVideos } from '../../utils/objects/constants';
+import { Youtube } from "lucide-react";
+import { youtubeVideos, YOUTUBE_LINK } from '../../utils/objects/constants';
 
 const YoutubeVideosSection: React.FC = () => {
   return (
@@ -169,6 +170,39 @@ const YoutubeVideosSection: React.FC = () => {
             </div>
           </div>
         ))}
+      </div>
+      {/* Bottom-centered View Channel button */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "2rem",
+          width: "100%",
+        }}
+      >
+        <a
+          href={YOUTUBE_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            padding: "0.75rem 1.25rem",
+            borderRadius: 12,
+            textDecoration: "none",
+            border: "1px solid rgba(255, 0, 0, 0.35)",
+            background: "rgba(255, 0, 0, 0.08)",
+            color: "#ef4444",
+            transition: "transform 0.2s ease, background 0.2s ease",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
+          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          aria-label="View YouTube Channel"
+        >
+          <Youtube className="w-5 h-5" />
+          <span style={{ fontWeight: 600 }}>View Channel</span>
+        </a>
       </div>
       {/* No grid media queries needed for flex-wrap */}
     </section>
