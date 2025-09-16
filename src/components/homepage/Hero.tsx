@@ -176,7 +176,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
               }}
             >
               <Star className="w-4 h-4" style={{ color: "var(--icon-star)" }} />
-              <span>Trusted by 1M+ users worldwide</span>
+              <span>Trusted by 10K+ users worldwide</span>
             </motion.div>
 
             {/* Main Title */}
