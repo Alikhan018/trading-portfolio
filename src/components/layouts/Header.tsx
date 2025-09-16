@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon, Download } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "../../contexts/ThemeContext";
 
 const NAV_ITEMS = [
@@ -12,56 +12,10 @@ const NAV_ITEMS = [
 ];
 
 const Header: React.FC = () => {
-  const [downloading, setDownloading] = useState(false);
-  const [downloadProgress, setDownloadProgress] = useState(0);
-
-  const handlePdfDownload = async () => {
-    setDownloading(true);
-    setDownloadProgress(0);
-    const url = encodeURI("/RTC – (Rao Trading Concept).pdf");
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Network response was not ok");
-      const contentLength = response.headers.get("content-length");
-      const total = contentLength ? parseInt(contentLength, 10) : 0;
-      let loaded = 0;
-      const reader = response.body?.getReader();
-      const chunks = [];
-      while (reader) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        if (value) {
-          chunks.push(value);
-          loaded += value.length;
-          if (total) setDownloadProgress(Math.round((loaded / total) * 100));
-        }
-      }
-      const blob = new Blob(chunks, { type: "application/pdf" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "RTC – (Rao Trading Concept).pdf";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    } catch (e) {
-      alert("Failed to download PDF");
-    }
-    setDownloading(false);
-    setDownloadProgress(0);
-  };
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -582,76 +536,6 @@ const Header: React.FC = () => {
                       {item.label}
                     </motion.a>
                   ))}
-                  {/* PDF Download Button for mobile menu modal only */}
-                  {/* {isMobile && (
-                    <motion.button
-                      onClick={handlePdfDownload}
-                      style={{
-                        padding: "0.5rem 1rem",
-                        borderRadius: "0.5rem",
-                        border:
-                          theme === "dark"
-                            ? "1px solid rgba(255, 255, 255, 0.2)"
-                            : "1px solid rgba(0, 0, 0, 0.2)",
-                        backgroundColor:
-                          theme === "dark"
-                            ? "rgba(255, 255, 255, 0.05)"
-                            : "rgba(0, 0, 0, 0.05)",
-                        cursor: downloading ? "not-allowed" : "pointer",
-                        transition: "all 0.3s ease",
-                        position: "relative",
-                        minWidth: "auto",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        marginTop: "2rem",
-                        fontSize: "1.2rem",
-                        fontWeight: 600,
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                      whileHover={{ scale: 1.05 }}
-                      aria-label="Download RTC PDF"
-                      type="button"
-                      disabled={downloading}
-                    >
-                      <Download
-                        className="w-6 h-6"
-                        style={{ color: theme === "dark" ? "#a5b4fc" : "#6366f1" }}
-                      />
-                      <span
-                        style={{
-                          color: theme === "dark" ? "#a5b4fc" : "#6366f1",
-                          fontSize: "1.1rem",
-                          fontWeight: "600",
-                        }}
-                      >
-                        Get RTC Guide
-                      </span>
-                      {downloading && (
-                        <div
-                          style={{
-                            position: "absolute",
-                            left: 0,
-                            bottom: -6,
-                            width: "100%",
-                            height: 4,
-                            background: "#e0e7ff",
-                            borderRadius: 2,
-                            overflow: "hidden",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: `${downloadProgress}%`,
-                              height: "100%",
-                              background: "#6366f1",
-                              transition: "width 0.2s",
-                            }}
-                          />
-                        </div>
-                      )}
-                    </motion.button>
-                  )} */}
                 </div>
               </div>
             </motion.div>
