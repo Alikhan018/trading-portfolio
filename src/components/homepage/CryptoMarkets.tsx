@@ -18,13 +18,11 @@ const CryptoMarkets: React.FC = () => {
   // State for live data and price history for graph
   const [livePairs, setLivePairs] = useState<typeof initialLivePairs>(initialLivePairs);
 
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     let isMounted = true;
     async function fetchGeminiMarketData() {
-      setLoading(true);
       setError("");
       try {
         // Gemini API endpoint for all crypto prices
@@ -57,7 +55,9 @@ const CryptoMarkets: React.FC = () => {
       } catch (err: any) {
         setError(err.message || 'Failed to fetch Gemini market data');
       }
-      if (isMounted) setLoading(false);
+      if (isMounted) {
+        // no-op: removed loading state
+      }
     }
     fetchGeminiMarketData();
     const interval = setInterval(fetchGeminiMarketData, 60000); // Update every 1 minute
