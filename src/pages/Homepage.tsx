@@ -4,9 +4,11 @@ import Hero from "../components/homepage/Hero";
 import About from "../components/homepage/About";
 import CommunityStats from "../components/homepage/CommunityStats";
 import Services from "../components/homepage/Services";
+import Reel from "../components/Reel";
 // import WhyChooseRTC from "../components/homepage/WhyChooseRTC";
 import CryptoMarkets from "../components/homepage/CryptoMarkets";
 import Footer from "../components/layouts/Footer";
+import YoutubeVideosSection from "../components/homepage/YoutubeVideosSection";
 
 const Homepage: React.FC = () => {
   const [introComplete] = useState(true);
@@ -37,8 +39,14 @@ const Homepage: React.FC = () => {
         {/* Services */}
         <Services />
 
+        {/* Reels Marquee Section */}
+        <Reel />
+
         {/* Why Choose RTC */}
         {/* <WhyChooseRTC /> */}
+
+        {/* YouTube Videos Section */}
+        <YoutubeVideosSection />
 
         {/* Crypto Markets Section */}
         <CryptoMarkets />

@@ -23,63 +23,48 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
   const [cryptoData, setCryptoData] = useState<CryptoData | null>(null);
 
   useEffect(() => {
-    const fetchRealCryptoData = async () => {
+  const GEMINI_API_KEY = import.meta.env.GEMINI_API_KEY;
+    const fetchGeminiCryptoData = async () => {
       try {
-        // Real crypto data from CoinGecko API
-        const response = await fetch(
-          `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd&include_24hr_change=true`
-        );
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        
-        const priceData = await response.json();
-        const currentPrice = priceData[coinId]?.usd || 0;
-        const priceChange = priceData[coinId]?.usd_24h_change || 0;
-
-        // Generate realistic chart data based on current price
-        const chartData = Array.from({ length: 24 }, (_, i) => {
-          const basePrice = currentPrice;
-          const volatility = basePrice * 0.02; // 2% volatility
-          const trendFactor = (priceChange / 100) * basePrice * (i / 24);
-          const randomFactor = (Math.random() - 0.5) * volatility;
-          const price = basePrice + trendFactor + randomFactor + Math.sin(i * 0.5) * (volatility * 0.5);
-          
-          return {
-            time: `${i.toString().padStart(2, '0')}:00`,
-            price: Math.max(price, basePrice * 0.95) // Prevent negative prices
-          };
-        });
-
-        const realData: CryptoData = {
+        // Gemini API endpoint for all crypto prices
+        const geminiUrl = `https://api.gemini.com/v1/pricefeed?api_key=${GEMINI_API_KEY}`;
+        const response = await fetch(geminiUrl);
+        if (!response.ok) throw new Error('Gemini API error');
+        const data = await response.json();
+        // Find the coin by symbol (e.g., BTCUSD, ETHUSD)
+        const symbolKey = symbol.toUpperCase() + 'USD';
+        const found = data.find((d: any) => d.pair === symbolKey);
+        const currentPrice = found ? parseFloat(found.price) : getCoinBasePrice(coinId);
+        const priceChange = found ? parseFloat(found.change || '0') : 0;
+        // Generate chart data based on current price
+        const chartData = Array.from({ length: 24 }, (_, i) => ({
+          time: `${i}:00`,
+          price: currentPrice + Math.sin(i * 0.5) * currentPrice * 0.02 + (Math.random() - 0.5) * currentPrice * 0.01
+        }));
+        const liveData: CryptoData = {
           name: coinName,
           price: currentPrice,
           change: priceChange,
-          symbol: symbol,
+          symbol: symbol.toUpperCase(),
           data: chartData
         };
-        
-        setCryptoData(realData);
-        // setLoading(false);
+        setCryptoData(liveData);
       } catch (error) {
-        console.error('Error fetching real crypto data:', error);
-        
-        // Fallback to realistic mock data if API fails
+        console.error('Error fetching Gemini crypto data:', error);
+        // Fallback data
         const fallbackPrice = getCoinBasePrice(coinId);
-        const mockData: CryptoData = {
+        const chartData = Array.from({ length: 24 }, (_, i) => ({
+          time: `${i}:00`,
+          price: fallbackPrice + Math.sin(i * 0.5) * fallbackPrice * 0.02 + (Math.random() - 0.5) * fallbackPrice * 0.01
+        }));
+        const fallbackData: CryptoData = {
           name: coinName,
-          price: fallbackPrice + (Math.random() - 0.5) * fallbackPrice * 0.05,
-          change: (Math.random() - 0.5) * 8,
-          symbol: symbol,
-          data: Array.from({ length: 24 }, (_, i) => ({
-            time: `${i.toString().padStart(2, '0')}:00`,
-            price: fallbackPrice + Math.sin(i * 0.5) * fallbackPrice * 0.02 + (Math.random() - 0.5) * fallbackPrice * 0.01
-          }))
+          price: fallbackPrice,
+          change: Math.random() * 10 - 5,
+          symbol: symbol.toUpperCase(),
+          data: chartData
         };
-        
-        setCryptoData(mockData);
-        // setLoading(false);
+        setCryptoData(fallbackData);
       }
     };
 
@@ -96,8 +81,8 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
       return basePrices[id] || 1000;
     };
 
-    fetchRealCryptoData();
-    const interval = setInterval(fetchRealCryptoData, 60000); // Update every minute for real-time feel
+  fetchGeminiCryptoData();
+  const interval = setInterval(fetchGeminiCryptoData, 60000); // Update every minute for real-time feel
 
     return () => clearInterval(interval);
   }, [coinId, coinName, symbol]);
@@ -109,22 +94,22 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
   const isPositive = cryptoData.change >= 0;
 
   return (
-    <div className="glass-effect p-6 rounded-2xl hover:scale-105 transition-all duration-300 border border-orange-500/20">
+  <div className="glass-effect rounded-2xl hover:scale-105 transition-all duration-300 border border-theme-accent/20" style={{ background: 'var(--gradient-bg)', color: 'var(--text-primary)', padding: '2rem 1.5rem', margin: '1.5rem 0' }}>
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+  <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-fire flex items-center justify-center">
-            <Activity className="w-5 h-5" style={{ color: 'var(--text-primary)' }} />
+          <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-accent)' }}>
+            <Activity className="w-5 h-5" style={{ color: 'var(--icon-community)' }} />
           </div>
           <div>
             <h3 className="font-orbitron font-bold text-lg" style={{ color: 'var(--text-primary)' }}>{cryptoData.name}</h3>
-            <p className="text-orange-300 text-sm font-rajdhani">{cryptoData.symbol}</p>
+            <p className="text-theme-accent text-sm font-rajdhani">{cryptoData.symbol}</p>
           </div>
         </div>
         <div className="text-right">
           <p className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>${cryptoData.price.toLocaleString()}</p>
-          <div className={`flex items-center space-x-1 ${isPositive ? 'text-yellow-400' : 'text-red-400'}`}>
-            {isPositive ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
+          <div className={`flex items-center space-x-1 ${isPositive ? 'text-theme-success' : 'text-theme-error'}`}>
+            {isPositive ? <TrendingUp className="w-4 h-4" style={{ color: 'var(--theme-success)' }} /> : <TrendingDown className="w-4 h-4" style={{ color: 'var(--theme-error)' }} />}
             <span className="font-semibold">{isPositive ? '+' : ''}{cryptoData.change.toFixed(2)}%</span>
           </div>
         </div>
@@ -134,23 +119,23 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
       <div className="h-48 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={cryptoData.data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 165, 0, 0.1)" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--theme-accent-light)" />
             <XAxis 
               dataKey="time" 
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#ffa500', fontSize: 12 }}
+              tick={{ fill: 'var(--text-primary)', fontSize: 12 }}
             />
             <YAxis 
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#ffa500', fontSize: 12 }}
+              tick={{ fill: 'var(--text-primary)', fontSize: 12 }}
               domain={['dataMin - 1000', 'dataMax + 1000']}
             />
             <Tooltip 
               contentStyle={{
-                backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                border: '1px solid #ff6b35',
+                backgroundColor: 'var(--theme-bg-dark)',
+                border: '1px solid var(--theme-accent)',
                 borderRadius: '8px',
                 color: 'var(--text-primary)'
               }}
@@ -159,18 +144,16 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
             <Line 
               type="monotone" 
               dataKey="price" 
-              stroke="url(#fireGradient)"
+              stroke="#E13300"
               strokeWidth={3}
               dot={false}
-              activeDot={{ r: 6, fill: '#ff4500', stroke: '#ffa500', strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: '#E13300', stroke: 'var(--theme-accent-light)', strokeWidth: 2 }}
             />
             <defs>
-              <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ff0000" />
-                <stop offset="25%" stopColor="#ff4500" />
-                <stop offset="50%" stopColor="#ffa500" />
-                <stop offset="75%" stopColor="#ffff00" />
-                <stop offset="100%" stopColor="#ff8c00" />
+              <linearGradient id="themeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="var(--theme-accent)" />
+                <stop offset="50%" stopColor="var(--theme-accent-light)" />
+                <stop offset="100%" stopColor="var(--theme-success)" />
               </linearGradient>
             </defs>
           </LineChart>
@@ -178,10 +161,10 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
       </div>
 
       {/* Live indicator */}
-      <div className="flex items-center justify-between mt-4 pt-4 border-t border-orange-500/20">
+      <div className="flex items-center justify-between mt-4 pt-4 border-t border-theme-accent/20">
         <div className="flex items-center space-x-2">
-          <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-          <span className="text-sm text-orange-300 font-rajdhani">Live Data</span>
+          <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--theme-error)' }}></div>
+          <span className="text-sm text-theme-accent font-rajdhani">Live Data</span>
         </div>
         <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Updated 1min ago</span>
       </div>

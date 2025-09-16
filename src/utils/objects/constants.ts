@@ -1,0 +1,249 @@
+export const socialLinks = [
+  {
+    name: 'Discord',
+    href: 'https://discord.gg/njAcNGpZ5g',
+    icon: 'MessageCircle',
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  },
+  {
+    name: 'YouTube',
+    href: 'https://youtube.com/playlist?list=PLv1oZVAdDlsUu8FpXRZ1MGeYaxA3V_65R&si=M9tO2HkVYL7q-3lH',
+    icon: 'Youtube',
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  },
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/raoumerofficial?igsh=enluN3loazgxanVm',
+    icon: 'Instagram',
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  }
+];
+export const youtubeVideos = [
+  {
+    title: "RTC - How to Trade Like a Pro | Rao Umer",
+    embed: "https://www.youtube.com/embed/UU_CZTlVRn8?si=EFnzJ8aaUeQQeeFB",
+    url: "https://www.youtube.com/watch?v=UU_CZTlVRn8",
+  },
+  {
+    title: "RTC - Smart Money Concepts Explained",
+    embed: "https://www.youtube.com/embed/YabA-kLv4rE?si=BUsWwQAYF8ThejGn",
+    url: "https://www.youtube.com/watch?v=YabA-kLv4rE",
+  },
+  {
+    title: "RTC - Volume Spread Analysis Masterclass",
+    embed: "https://www.youtube.com/embed/TazeBFTe2-o?si=ez1kiNJwFCBGIfln",
+    url: "https://www.youtube.com/watch?v=TazeBFTe2-o",
+  },
+  {
+    title: "RTC - Institutional Trading Secrets",
+    embed: "https://www.youtube.com/embed/DgfaeHEWArE?si=K47myyov-3HYb-vr",
+    url: "https://www.youtube.com/watch?v=DgfaeHEWArE",
+  },
+];
+export interface CommunityStats {
+  members: string;
+  winRate: string;
+  newsTradeExperts: boolean;
+  tradersMentored: string;
+}
+
+export interface Service {
+  id: string;
+  title: string;
+  description: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+export interface HeroContent {
+  headline: string;
+  subtext: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+export interface AboutContent {
+  title: string;
+  description: string;
+}
+import { Users, Award, Globe, Target } from "lucide-react";
+import { DollarSign, Star } from "lucide-react";
+import { Sparkles } from "lucide-react";
+export const servicesList = [
+  {
+    id: 1,
+    icon: Globe,
+    title: 'Forex Signals Group',
+    description: 'Get accurate and professional forex signals directly from Rao Umer\'s analysis. Our signals cover gold and major forex pairs, delivered live in Discord',
+    features: [
+      { icon: Globe, text: 'Live Discord Signals' },
+      { icon: Globe, text: 'Gold & Major Pairs' },
+      { icon: Target, text: 'Professional Analysis' }
+    ],
+    gradient: 'var(--gradient-blue)',
+    delay: 0.2
+  },
+  {
+    id: 2,
+    icon: Star,
+    title: 'RTC Mentorship Program',
+    description: 'A 40-day structured training designed for Pakistani traders to master ICT, Smart Money Concepts (SMC) and Volume Spread Analysis (VSA)',
+    features: [
+      { icon: Sparkles, text: '40-Day Training' },
+      { icon: Star, text: 'ICT + SMC + VSA' },
+      { icon: Target, text: 'For Pakistani Traders' }
+    ],
+    gradient: 'var(--gradient-green)',
+    delay: 0.4
+  }
+];
+export const initialLivePairs = [
+  {
+    pair: "BTC/USD",
+    price: "0",
+    change: "0",
+    changePercent: "0%",
+    volume: "-",
+    gradient: "linear-gradient(135deg, #f7931a, #ffcc80)",
+    icon: DollarSign,
+    symbol: "BTC",
+    history: [] as number[],
+  },
+  {
+    pair: "XAU/USD",
+    price: "0",
+    change: "0",
+    changePercent: "0%",
+    volume: "-",
+    gradient: "linear-gradient(135deg, #ffd700, #fffbe6)",
+    icon: Star,
+    symbol: "XAU",
+    history: [] as number[],
+  },
+  {
+    pair: "EUR/USD",
+    price: "0",
+    change: "0",
+    changePercent: "0%",
+    volume: "-",
+    gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)",
+    icon: DollarSign,
+    symbol: "EUR",
+    history: [] as number[],
+  },
+  {
+    pair: "US30",
+    price: "0",
+    change: "0",
+    changePercent: "0%",
+    volume: "-",
+    gradient: "linear-gradient(135deg, #10b981, #06d6a0)",
+    icon: Globe,
+    symbol: "US30",
+    history: [] as number[],
+  },
+];
+
+export const communityStats = [
+  {
+    icon: Users,
+    number: "10,000+",
+    label: "Active Members",
+    description: "Growing community of dedicated traders",
+    gradient: "var(--gradient-blue)",
+    delay: 0.2,
+    color: "var(--icon-community)",
+  },
+  {
+    icon: Target,
+    number: "80%+",
+    label: "Verified Win Rate on Forex Signals",
+    description: "Proven track record of successful trades",
+    gradient: "var(--gradient-green)",
+    color: "var(--icon-community)",
+    delay: 0.4,
+  },
+  {
+    icon: Globe,
+    number: "News Trade",
+    label: "Experts",
+    description: "Mastering High-Impact Events",
+    gradient: "var(--gradient-yellow-orange)",
+    color: "var(--icon-community)",
+    delay: 0.6,
+  },
+  {
+    icon: Award,
+    number: "Hundreds",
+    label: "Traders Mentored",
+    description: "Successful trading education and guidance",
+    gradient: "var(--gradient-pink)",
+    color: "var(--icon-community)",
+    delay: 0.8,
+  },
+];
+
+export interface ReelVideo {
+  id: string;
+  src: string;
+  thumbnail?: string;
+}
+
+export const REELS_VIDEOS: ReelVideo[] = [
+  {
+    id: 'reel-1',
+    src: '/insta/01.mp4'
+  },
+  {
+    id: 'reel-2',
+    src: '/insta/02.mp4'
+  },
+  {
+    id: 'reel-3',
+    src: '/insta/03.mp4'
+  },
+  {
+    id: 'reel-4',
+    src: '/insta/04.mp4'
+  },
+  {
+    id: 'reel-5',
+    src: '/insta/05.mp4'
+  },
+];
+
+export const DISCORD_LINK = "https://discord.gg/njAcNGpZ5g";
+export const YOUTUBE_LINK = "https://youtube.com/@rtctrading";
+export const FACEBOOK_LINK = "https://facebook.com/rtctrading";
+export const INSTAGRAM_LINK = "https://instagram.com/rtctrading";
+export const TIKTOK_LINK = "https://tiktok.com/@rtctrading";
+
+export const HERO_CONTENT: HeroContent = {
+  headline: "Master the Markets with Rao Trading Concept (RTC)",
+  subtext: "Pakistan's Leading Forex Trading Community – Join our Discord to get access to exclusive content",
+  ctaText: "Join Our Discord",
+  ctaLink: DISCORD_LINK
+};
+
+export const ABOUT_CONTENT: AboutContent = {
+  title: "About Rao Umer",
+  description: "Rao Umer, the founder of RTC (Rao Trading Concept), is a seasoned Forex trader with 6+ years of market experience. He developed RTC by combining ICT, Smart Money Concepts (SMC), and Volume Spread Analysis (VSA) into one complete trading methodology. RTC trains traders to think like institutions, not retail gamblers."
+};
+
+export const COMMUNITY_STATS: CommunityStats = {
+  members: "10,000+",
+  winRate: "80%+",
+  newsTradeExperts: true,
+  tradersMentored: "Hundreds"
+};
+
+export const NAV_ITEMS = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Community", href: "#community" },
+  { label: "Contact", href: "#contact" }
+];

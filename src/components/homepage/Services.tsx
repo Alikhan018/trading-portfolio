@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Target, Sparkles, Star, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import InteractiveCard from '../common/InteractiveCard';
+import { servicesList } from '../../utils/objects/constants';
 
 const Services: React.FC = () => {
   const servicesRef = useRef<HTMLElement>(null);
@@ -13,37 +14,11 @@ const Services: React.FC = () => {
   // Parallax transforms (simplified)
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-  const services = [
-    {
-      id: 1,
-      icon: Globe,
-      title: 'Forex Signals Group',
-      description: 'Get accurate and professional forex signals directly from Rao Umer\'s analysis. Our signals cover gold and major forex pairs, delivered live in Discord',
-      features: [
-        { icon: Globe, text: 'Live Discord Signals' },
-        { icon: Globe, text: 'Gold & Major Pairs' },
-        { icon: Target, text: 'Professional Analysis' }
-      ],
-      gradient: 'var(--gradient-blue)',
-      delay: 0.2
-    },
-    {
-      id: 2,
-      icon: Star,
-      title: 'RTC Mentorship Program',
-      description: 'A 40-day structured training designed for Pakistani traders to master ICT, Smart Money Concepts (SMC) and Volume Spread Analysis (VSA)',
-      features: [
-        { icon: Sparkles, text: '40-Day Training' },
-        { icon: Star, text: 'ICT + SMC + VSA' },
-        { icon: Target, text: 'For Pakistani Traders' }
-      ],
-      gradient: 'var(--gradient-green)',
-      delay: 0.4
-    }
-  ];
+  const services = servicesList;
 
   return (
     <section id="services" ref={servicesRef} className="services-section-3d">
+      
       {/* 3D Background Elements */}
       <motion.div 
         className="services-3d-background"

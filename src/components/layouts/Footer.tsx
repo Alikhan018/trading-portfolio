@@ -3,10 +3,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   MessageCircle, 
   Youtube, 
-  Facebook, 
-  Instagram,
-  TrendingUp
+  Instagram
 } from 'lucide-react';
+
+import { socialLinks } from '../../utils/objects/constants';
 
 const Footer: React.FC = () => {
   const footerRef = useRef<HTMLElement>(null);
@@ -18,13 +18,12 @@ const Footer: React.FC = () => {
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-
-  const socialLinks = [
-    { name: 'Discord', href: '#', icon: MessageCircle },
-    { name: 'YouTube', href: '#', icon: Youtube },
-    { name: 'Instagram', href: '#', icon: Instagram },
-    { name: 'Facebook', href: '#', icon: Facebook } 
-  ];
+  // Map icon string to actual icon component
+  const iconMap: Record<string, any> = { MessageCircle, Youtube, Instagram };
+  const footerLinks = socialLinks.map(link => ({
+    ...link,
+    icon: iconMap[link.icon] || MessageCircle
+  }));
 
   return (
     <footer id="contact" ref={footerRef} className="relative overflow-hidden">
@@ -77,14 +76,14 @@ const Footer: React.FC = () => {
 
           {/* Social Links Section */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            {socialLinks.map((social) => {
+            {footerLinks.map((social) => {
               const IconComponent = social.icon;
               return (
                 <motion.a
                   key={social.name}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={social.target || undefined}
+                  rel={social.rel || undefined}
                   className="w-15 h-15 rounded-lg flex items-center justify-center transition-all duration-300"
                   style={{
                     background: 'var(--bg-card)', 
