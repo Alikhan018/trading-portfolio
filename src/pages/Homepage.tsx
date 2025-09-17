@@ -5,7 +5,7 @@ import About from "../components/homepage/About";
 import CommunityStats from "../components/homepage/CommunityStats";
 import Services from "../components/homepage/Services";
 import Reel from "../components/homepage/Reel";
-import WhyChooseRTC from "../components/homepage/WhyChooseRTC";
+// import WhyChooseRTC from "../components/homepage/WhyChooseRTC";
 import CryptoMarkets from "../components/homepage/CryptoMarkets";
 import Footer from "../components/layouts/Footer";
 import YoutubeVideosSection from "../components/homepage/YoutubeVideosSection";
@@ -43,7 +43,7 @@ const Homepage: React.FC = () => {
         <Reel />
 
         {/* Why Choose RTC */}
-        <WhyChooseRTC />
+        {/* <WhyChooseRTC /> */}
 
         {/* YouTube Videos Section */}
         <YoutubeVideosSection />

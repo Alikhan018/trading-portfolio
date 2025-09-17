@@ -208,61 +208,24 @@
 
 .pair-card-3d {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-secondary);
-  border-radius: var(--radius-xl);
-  padding: 2rem;
-  backdrop-filter: var(--backdrop-blur);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   transform-style: preserve-3d;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  cursor: pointer;
-  overflow: hidden;
+  transition: none;
+  cursor: default;
+  overflow: visible;
+  height: 280px;
 }
 
 /* Hover effects removed - cards are now static */
 
-.pair-card-3d-glow {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  border-radius: 22px;
-  opacity: 0;
-  filter: blur(10px);
-  z-index: -1;
-  transition: opacity 0.3s ease;
-}
+.pair-card-3d-glow { display: none; }
 
 /* Hover effects removed - cards are now static */
 
-.pair-header-3d {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  transform-style: preserve-3d;
-}
-
-.pair-icon-3d {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transform-style: preserve-3d;
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-}
-
-.pair-icon-3d-svg {
-  width: 24px;
-  height: 24px;
-  color: white;
-  transform: translateZ(10px);
-}
+.pair-header-3d { display: none; }
 
 .pair-info-3d {
   flex: 1;
@@ -271,7 +234,7 @@
 
 .pair-name-3d {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 900;
   color: var(--text-primary);
   margin: 0 0 0.25rem 0;
   transform: translateZ(5px);
@@ -410,17 +373,7 @@
 }
 */
 
-.pair-card-3d-border {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  pointer-events: none;
-  transform: translateZ(1px);
-}
+.pair-card-3d-border { display: none; }
 
 /* Market Stats */
 .markets-stats-3d {
@@ -534,7 +487,7 @@
   
   .markets-pairs-grid-3d {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 4rem;
   }
   
   .pair-card-3d {

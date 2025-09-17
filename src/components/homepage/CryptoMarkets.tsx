@@ -196,13 +196,6 @@ const CryptoMarkets: React.FC = () => {
 
                 {/* Pair Header */}
                 <div className="pair-header-3d">
-                  <div
-                    className="pair-icon-3d"
-                    style={{ background: pair.gradient }}
-                  >
-                    <pair.icon className="pair-icon-3d-svg" />
-                  </div>
-
                   <div className="pair-info-3d">
                     <h3 className="pair-name-3d">{pair.pair}</h3>
                     <p className="pair-volume-3d">Vol: {pair.volume}</p>

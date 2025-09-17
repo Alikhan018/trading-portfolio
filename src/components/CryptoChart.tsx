@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { TrendingUp, TrendingDown, Activity } from 'lucide-react';
+import { TrendingUp, TrendingDown } from 'lucide-react';
 
 interface CryptoData {
   name: string;
@@ -17,9 +17,10 @@ interface CryptoChartProps {
   coinId: string;
   coinName: string;
   symbol: string;
+  minimal?: boolean;
 }
 
-const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) => {
+const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol, minimal = false }) => {
   const [cryptoData, setCryptoData] = useState<CryptoData | null>(null);
 
   useEffect(() => {
@@ -94,80 +95,77 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol }) =
   const isPositive = cryptoData.change >= 0;
 
   return (
-  <div className="glass-effect rounded-2xl hover:scale-105 transition-all duration-300 border border-theme-accent/20" style={{ background: 'var(--gradient-bg)', color: 'var(--text-primary)', padding: '2rem 1.5rem', margin: '1.5rem 0' }}>
-      {/* Header */}
-  <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--gradient-accent)' }}>
-            <Activity className="w-5 h-5" style={{ color: 'var(--icon-community)' }} />
+    <div
+      className={minimal ? '' : 'glass-effect rounded-2xl hover:scale-105 transition-all duration-300 border border-theme-accent/20'}
+      style={minimal ? { width: '100%', height: '100%' } : { background: 'var(--gradient-bg)', color: 'var(--text-primary)', padding: '2rem 1.5rem', margin: '1.5rem 0' }}
+    >
+      {minimal ? null : (
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div>
+              <h3 className="font-orbitron font-extrabold text-lg" style={{ color: 'var(--text-primary)', fontWeight: '900', fontSize: '1.25rem', marginBottom: '1.25rem' }}>{cryptoData.name}</h3>
+              <p className="text-theme-accent text-sm font-rajdhani font-bold uppercase">{cryptoData.symbol}</p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-orbitron font-bold text-lg" style={{ color: 'var(--text-primary)' }}>{cryptoData.name}</h3>
-            <p className="text-theme-accent text-sm font-rajdhani">{cryptoData.symbol}</p>
+          <div className="text-right">
+            <p className="text-2xl font-bold font-orbitron" style={{ color: 'var(--text-primary)' }}>${cryptoData.price.toLocaleString()}</p>
+            <div className={`flex items-center space-x-1 ${isPositive ? 'text-theme-success' : 'text-theme-error'}`}>
+              {isPositive ? <TrendingUp className="w-4 h-4" style={{ color: 'var(--theme-success)' }} /> : <TrendingDown className="w-4 h-4" style={{ color: 'var(--theme-error)' }} />}
+              <span className="font-semibold font-orbitron">{isPositive ? '+' : ''}{cryptoData.change.toFixed(2)}%</span>
+            </div>
           </div>
         </div>
-        <div className="text-right">
-          <p className="text-2xl font-bold" style={{ color: 'var(--text-primary)' }}>${cryptoData.price.toLocaleString()}</p>
-          <div className={`flex items-center space-x-1 ${isPositive ? 'text-theme-success' : 'text-theme-error'}`}>
-            {isPositive ? <TrendingUp className="w-4 h-4" style={{ color: 'var(--theme-success)' }} /> : <TrendingDown className="w-4 h-4" style={{ color: 'var(--theme-error)' }} />}
-            <span className="font-semibold">{isPositive ? '+' : ''}{cryptoData.change.toFixed(2)}%</span>
-          </div>
-        </div>
-      </div>
+      )}
 
-      {/* Chart */}
-      <div className="h-48 w-full">
+      <div className={minimal ? 'w-full h-full' : 'h-48 w-full'}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={cryptoData.data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="var(--theme-accent-light)" />
+            {minimal ? null : <CartesianGrid strokeDasharray="3 3" stroke="var(--theme-accent-light)" strokeWidth={1} />}
             <XAxis 
               dataKey="time" 
               axisLine={false}
               tickLine={false}
-              tick={{ fill: 'var(--text-primary)', fontSize: 12 }}
+              tick={minimal ? false : { fill: 'var(--text-primary)', fontSize: 12 }}
             />
             <YAxis 
               axisLine={false}
               tickLine={false}
-              tick={{ fill: 'var(--text-primary)', fontSize: 12 }}
+              tick={minimal ? false : { fill: 'var(--text-primary)', fontSize: 12, fontFamily: 'var(--font-orbitron)' }}
               domain={['dataMin - 1000', 'dataMax + 1000']}
             />
-            <Tooltip 
-              contentStyle={{
-                backgroundColor: 'var(--theme-bg-dark)',
-                border: '1px solid var(--theme-accent)',
-                borderRadius: '8px',
-                color: 'var(--text-primary)'
-              }}
-              formatter={(value: number) => [`$${value.toLocaleString()}`, 'Price']}
-            />
+            {minimal ? null : (
+              <Tooltip 
+                contentStyle={{
+                  backgroundColor: 'var(--theme-bg-dark)',
+                  border: '1px solid var(--theme-accent)',
+                  borderRadius: '8px',
+                  color: 'var(--text-primary)',
+                  fontFamily: 'var(--font-orbitron)'
+                }}
+                formatter={(value: number) => [`$${value.toLocaleString()}`, 'Price']}
+              />
+            )}
             <Line 
               type="monotone" 
               dataKey="price" 
               stroke="#E13300"
               strokeWidth={3}
               dot={false}
-              activeDot={{ r: 6, fill: '#E13300', stroke: 'var(--theme-accent-light)', strokeWidth: 2 }}
+              activeDot={minimal ? false as any : { r: 6, fill: '#E13300', stroke: 'var(--theme-accent-light)', strokeWidth: 2, strokeLinecap: 'round' }}
             />
-            <defs>
-              <linearGradient id="themeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="var(--theme-accent)" />
-                <stop offset="50%" stopColor="var(--theme-accent-light)" />
-                <stop offset="100%" stopColor="var(--theme-success)" />
-              </linearGradient>
-            </defs>
           </LineChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Live indicator */}
-      <div className="flex items-center justify-between mt-4 pt-4 border-t border-theme-accent/20">
-        <div className="flex items-center space-x-2">
-          <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--theme-error)' }}></div>
-          <span className="text-sm text-theme-accent font-rajdhani">Live Data</span>
+      {minimal ? null : (
+        <div className="flex items-center justify-between mt-4 pt-4 border-t border-theme-accent/20">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--theme-error)' }}></div>
+            <span className="text-sm text-theme-accent font-rajdhani">Live Data</span>
+          </div>
+          <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Updated 1min ago</span>
         </div>
-        <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>Updated 1min ago</span>
-      </div>
+      )}
     </div>
   );
 };
