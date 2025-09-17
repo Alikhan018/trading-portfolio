@@ -30,8 +30,6 @@ const Homepage: React.FC = () => {
         {/* Hero Section */}
         <Hero showContent={introComplete} />
 
-        {/* About Section */}
-        <About />
 
         {/* Community Stats */}
         <CommunityStats />
@@ -50,6 +48,9 @@ const Homepage: React.FC = () => {
 
         {/* Crypto Markets Section */}
         <CryptoMarkets />
+
+        {/* About Section */}
+        <About />
       </main>
 
       {/* Footer */}
