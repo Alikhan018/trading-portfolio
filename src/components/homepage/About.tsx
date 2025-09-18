@@ -62,7 +62,7 @@ const About: React.FC = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-indigo-500/30 rounded-full backdrop-blur-[10px] mb-4 relative cursor-pointer transition-all duration-300"
+            className="inline-flex items-center gap-3 px-6 py-6 bg-white/5 border border-indigo-500/30 rounded-full backdrop-blur-[10px] mb-4 relative cursor-pointer transition-all duration-300"
             style={{ transformStyle: "preserve-3d", padding: "0.5rem 1rem" }}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
