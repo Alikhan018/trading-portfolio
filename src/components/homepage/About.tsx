@@ -42,10 +42,10 @@ const About: React.FC = () => {
 
       {/* Section Header - Centered at Top */}
       <div
-        className="w-full flex flex-col items-center z-[2] max-w-[1400px] mx-auto"
+        className="w-full flex flex-col items-center z-[2] max-w-[1400px] mx-auto mt-[-10rem] md:mt-[-4rem]"
         style={{
           transformStyle: "preserve-3d",
-          marginTop: window.innerWidth < 768 ? '-4rem' : '-10rem',
+          // marginTop: window.innerWidth < 768 ? '-4rem' : '-10rem',
           paddingBottom: "1.5rem",
         }}
       >
@@ -114,13 +114,13 @@ const About: React.FC = () => {
         </motion.div>
 
         {/* Right Side - About Content */}
-        <div className="flex flex-col items-center xl:items-start justify-center flex-1 w-full max-w-2xl px-0 xl:px-0 gap-4 text-center xl:text-left">
+        <div className="text-[2rem] md:text-[3rem] flex flex-col items-center xl:items-start justify-center flex-1 w-full max-w-2xl px-0 xl:px-0 gap-4 text-center xl:text-left">
           {/* About Description */}
           <motion.div
             className="font-extrabold mb-2"
             style={{
               transformStyle: "preserve-3d",
-              fontSize: window.innerWidth < 768 ? '3rem' : '2rem',
+              // fontSize: window.innerWidth < 768 ? '3rem' : '2rem',
             }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
