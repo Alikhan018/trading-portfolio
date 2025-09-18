@@ -34,7 +34,7 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol, min
         const data = await response.json();
         // Find the coin by symbol (e.g., BTCUSD, ETHUSD)
         const symbolKey = symbol.toUpperCase() + 'USD';
-        const found = data.find((d: any) => d.pair === symbolKey);
+        const found = data.find((d: { pair: string; price: string; change?: string }) => d.pair === symbolKey);
         const currentPrice = found ? parseFloat(found.price) : getCoinBasePrice(coinId);
         const priceChange = found ? parseFloat(found.change || '0') : 0;
         // Generate chart data based on current price
@@ -151,7 +151,7 @@ const CryptoChart: React.FC<CryptoChartProps> = ({ coinId, coinName, symbol, min
               stroke="#E13300"
               strokeWidth={3}
               dot={false}
-              activeDot={minimal ? false as any : { r: 6, fill: '#E13300', stroke: 'var(--theme-accent-light)', strokeWidth: 2, strokeLinecap: 'round' }}
+              activeDot={minimal ? false : { r: 6, fill: '#E13300', stroke: 'var(--theme-accent-light)', strokeWidth: 2, strokeLinecap: 'round' }}
             />
           </LineChart>
         </ResponsiveContainer>

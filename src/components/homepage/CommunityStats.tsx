@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import InteractiveCard from "../common/InteractiveCard";
-import { communityStats } from '../../utils/objects/constants';
+// import InteractiveCard from "../common/InteractiveCard";
+// import { communityStats } from '../../utils/objects/constants';
 
 const CommunityStats: React.FC = () => {
   const communityRef = useRef<HTMLElement>(null);
@@ -13,7 +13,7 @@ const CommunityStats: React.FC = () => {
   // Parallax transforms (simplified)
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-  const stats = communityStats;
+  // const stats = communityStats;
 
   return (
     <section
@@ -113,11 +113,11 @@ const CommunityStats: React.FC = () => {
               transition={{ duration: 1, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              Stats
+              Feedback
             </motion.span>
           </motion.h2>
 
-          <motion.p
+          {/* <motion.p
             className="community-description-3d"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -126,11 +126,12 @@ const CommunityStats: React.FC = () => {
           >
             Join our thriving community of successful traders and learn from the
             best
-          </motion.p>
+          </motion.p> */}
         </motion.div>
 
-        {/* 3D Stats Grid */}
-        <motion.div
+
+        {/* 3D Stats Grid - COMMENTED OUT */}
+        {/* <motion.div
           className="community-stats-3d"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +150,6 @@ const CommunityStats: React.FC = () => {
                   style={{ display: "none" }}
                 />
 
-                {/* Icon Container */}
                 <div className="stat-icon-3d-container">
                   <div className="stat-icon-3d">
                     <stat.icon
@@ -159,7 +159,6 @@ const CommunityStats: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="stat-content-3d">
                   <motion.div
                     className="stat-value-3d"
@@ -179,7 +178,6 @@ const CommunityStats: React.FC = () => {
                   <p className="stat-description-3d">{stat.description}</p>
                 </div>
 
-                {/* Progress Bar */}
                 <motion.div
                   className="stat-progress-3d-container"
                   initial={{ opacity: 0 }}
@@ -199,7 +197,7 @@ const CommunityStats: React.FC = () => {
               </InteractiveCard>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Trading Results Gallery */}
         <motion.div
@@ -216,9 +214,9 @@ const CommunityStats: React.FC = () => {
             transition={{ duration: 0.6, delay: 1.2 }}
             viewport={{ once: true }}
           >
-            <h3 className="trading-results-title">
+            {/* <h3 className="trading-results-title">
               Real Trading Results from Our Community
-            </h3>
+            </h3> */}
             <p className="trading-results-subtitle">
               See the actual profits our members are making with our signals
             </p>
@@ -245,8 +243,8 @@ const CommunityStats: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.6 + index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
@@ -258,12 +256,12 @@ const CommunityStats: React.FC = () => {
                     className="trading-result-image"
                     loading="lazy"
                   />
-                  <div className="trading-result-overlay">
-                    <div className="trading-result-badge">
+                  {/* <div className="trading-result-overlay"> */}
+                  {/* <div className="trading-result-badge">
                       <span className="trading-result-profit">+$1,000+</span>
                       <span className="trading-result-pair">XAUUSD</span>
-                    </div>
-                  </div>
+                    </div> */}
+                  {/* </div> */}
                 </div>
               </motion.div>
             ))}

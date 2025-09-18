@@ -2,44 +2,124 @@ import React, { useState, useEffect, useRef } from "react";
 import { DISCORD_LINK } from '../../utils/objects/constants';
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Star } from "lucide-react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, Environment } from "@react-three/drei";
-import { Group } from "three";
 
-// 3D Character Model Component
-const CharacterModel: React.FC = () => {
-  const groupRef = useRef<Group>(null);
-  const { scene } = useGLTF("/3d_character.glb");
-
-  useFrame((state) => {
-    if (groupRef.current) {
-      // Positioned in center
-      groupRef.current.position.x = 0;
-      groupRef.current.position.y = -1;
-      groupRef.current.position.z = 0;
-
-      // Gentle floating animation
-      groupRef.current.position.y +=
-        Math.sin(state.clock.elapsedTime * 0.8) * 0.1;
-
-      // Continuous rotation
-      groupRef.current.rotation.y += 0.01;
-      groupRef.current.rotation.x =
-        Math.sin(state.clock.elapsedTime * 0.2) * 0.05;
-
-      // Scale
-      groupRef.current.scale.setScalar(1.5);
-    }
-  });
-
-  if (!scene) return null;
-
+// Animated Logo Component
+const AnimatedLogo: React.FC = () => {
   return (
-    <group ref={groupRef}>
-      <primitive object={scene.clone()} />
-    </group>
+    <motion.div
+      className="relative"
+      initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        rotateY: 0,
+        transition: {
+          duration: 1.2,
+          ease: "easeOut",
+        },
+      }}
+      whileHover={{
+        scale: 1.05,
+        transition: { duration: 0.4 },
+      }}
+    >
+      {/* Main Logo */}
+      <motion.img
+        src="/logo-hero.png"
+        alt="RTC Logo"
+        className="w-full h-auto max-w-[350px] md:max-w-[450px] xl:max-w-[550px] relative z-10"
+        style={{
+          filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))",
+        }}
+        animate={{
+          y: [0, -10, 0],
+          rotateZ: [0, 1.5, 0],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Soft Glow */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-blue-500/20 rounded-full blur-2xl"
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Subtle Extra Glow */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-cyan-400/15 via-purple-500/15 to-pink-500/15 rounded-full blur-3xl"
+        animate={{
+          scale: [1.1, 1.25, 1.1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Floating Orbs (less, slower, softer) */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2.5 h-2.5 rounded-full"
+          style={{
+            background: `linear-gradient(45deg, ${['#8b5cf6', '#ec4899', '#3b82f6'][i % 3]}, #ffffff)`,
+            left: `${20 + (i * 12)}%`,
+            top: `${30 + (i * 8)}%`,
+            boxShadow: `0 0 12px ${['#8b5cf6', '#ec4899', '#3b82f6'][i % 3]}`,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0, 0.8, 0],
+            scale: [0.6, 1, 0.6],
+          }}
+          transition={{
+            duration: 5 + i,
+            repeat: Infinity,
+            delay: i * 0.5,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Gentle Energy Rings */}
+      {Array.from({ length: 2 }).map((_, i) => (
+        <motion.div
+          key={`ring-${i}`}
+          className="absolute inset-0 border rounded-full"
+          style={{
+            borderColor: `rgba(${i === 0 ? '139, 92, 246' : '236, 72, 153'}, 0.25)`,
+            borderWidth: `${2 + i}px`,
+          }}
+          animate={{
+            scale: [1, 1.25 + i * 0.15, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10 + i * 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </motion.div>
+
   );
 };
+
 
 interface HeroProps {
   showContent?: boolean;
@@ -90,63 +170,19 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
         style={{ background: "var(--gradient-bg)" }}
       />
 
-      {/* 3D Character Model - Right Half - Desktop Only */}
-      <div 
-        className="absolute z-[1] hidden xl:block"
-        style={{ 
-          width: '100%', 
-          height: '100%', 
+      {/* Animated Logo - Right Half - Desktop Only */}
+      <div
+        className="absolute z-[1] hidden xl:flex items-center justify-center"
+        style={{
+          width: '50%',
+          height: '100%',
           position: 'absolute',
           top: 0,
-          left: '70%',
-          transform: 'translateX(-50%)',
-          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          right: 0,
           pointerEvents: 'none'
         }}
       >
-        <Canvas
-          camera={{
-            position: [0, 0, 6],
-            fov: 60,
-            near: 0.1,
-            far: 1000,
-          }}
-          shadows
-          gl={{
-            antialias: true,
-            alpha: true,
-            powerPreference: "high-performance",
-          }}
-                style={{
-            width: "100%",
-            height: "100%",
-            background: "transparent",
-            zIndex: 1,
-            pointerEvents: "none",
-          }}
-          dpr={[1, 1.5]}
-        >
-          <Environment preset="studio" />
-          <ambientLight intensity={0.3} />
-          <directionalLight
-            position={[5, 5, 5]}
-            intensity={0.8}
-            castShadow
-          />
-          <pointLight
-            position={[-3, 3, 3]}
-            intensity={0.4}
-            color="#fbbf24"
-          />
-          <pointLight
-            position={[3, -3, -3]}
-            intensity={0.3}
-            color="#8b5cf6"
-          />
-
-          {/* 3D Character Model */}
-          <CharacterModel />
-        </Canvas>
+        <AnimatedLogo />
       </div>
 
       {/* Main Content */}
@@ -303,70 +339,28 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
           </div>
         </div>
 
-        {/* Mobile 3D Character Model Background - Positioned slightly from top - Hidden on Desktop */}
+        {/* Mobile Animated Logo Background - Positioned slightly from top - Hidden on Desktop */}
         {isMobile && (
           <motion.div
-            className="absolute inset-0 z-[1]"
+            className="absolute inset-0 z-[1] flex items-center justify-center"
             initial={{ opacity: 0 }}
-            animate={contentVisible ? { opacity: 0.3 } : { opacity: 0 }}
+            animate={contentVisible ? { opacity: 0.9 } : { opacity: 0 }}
             transition={{ duration: 1.0, delay: 0.4 }}
             style={{
               pointerEvents: "none",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingTop: "10vh", // Move the model down from the top
+              paddingBottom: "63vh", // Move the logo down from the top
             }}
           >
-            <Canvas
-              camera={{
-                position: [0, 0, 6],
-                fov: 60,
-                near: 0.1,
-                far: 1000,
-              }}
-              shadows
-              gl={{
-                antialias: true,
-                alpha: true,
-                powerPreference: "high-performance",
-              }}
-              style={{
-                width: "100%",
-                height: "100%",
-                background: "transparent",
-                zIndex: 1,
-                pointerEvents: "none",
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-              }}
-              dpr={[1, 1.5]}
-            >
-              <Environment preset="studio" />
-              <ambientLight intensity={0.3} />
-              <directionalLight
-                position={[5, 5, 5]}
-                intensity={0.8}
-                castShadow
-              />
-              <pointLight
-                position={[-3, 3, 3]}
-                intensity={0.4}
-                color="#fbbf24"
-              />
-              <pointLight
-                position={[3, -3, -3]}
-                intensity={0.3}
-                color="#8b5cf6"
-              />
-
-              {/* Mobile Character Model */}
-              <CharacterModel />
-            </Canvas>
+            <div className="scale-75">
+              <AnimatedLogo />
+            </div>
           </motion.div>
         )}
+
+
+
+
+
       </motion.div>
     </section>
   );

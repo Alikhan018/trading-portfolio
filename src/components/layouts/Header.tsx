@@ -6,9 +6,11 @@ import { useTheme } from "../../contexts/ThemeContext";
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
   { label: "Markets", href: "#markets" },
-  { label: "About", href: "#about" },
-  { label: "Community", href: "#community" },
+  { label: "WhyUs?", href: "#why-rtc" },
   { label: "Services", href: "#services" },
+  { label: "Community", href: "#community" },
+  { label: "Learn", href: "#learn" },
+  { label: "About", href: "#about" },
 ];
 
 const Header: React.FC = () => {
@@ -287,9 +289,8 @@ const Header: React.FC = () => {
               }}
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.05 }}
-              aria-label={`Switch to ${
-                theme === "dark" ? "light" : "dark"
-              } theme`}
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"
+                } theme`}
               type="button"
             >
               {theme === "dark" ? (
@@ -407,9 +408,8 @@ const Header: React.FC = () => {
               }}
               whileTap={{ scale: 0.9 }}
               whileHover={{ scale: 1.05 }}
-              aria-label={`Switch to ${
-                theme === "dark" ? "light" : "dark"
-              } theme`}
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"
+                } theme`}
               type="button"
             >
               {theme === "dark" ? (

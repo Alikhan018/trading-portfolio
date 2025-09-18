@@ -69,19 +69,20 @@ export interface AboutContent {
   title: string;
   description: string;
 }
-import { Users, Award, Globe, Target } from "lucide-react";
+import { Users, Award, Globe, Target, Ticket, ChartArea, CandlestickChart } from "lucide-react";
 import { DollarSign, Star } from "lucide-react";
 import { Sparkles } from "lucide-react";
 export const servicesList = [
   {
     id: 1,
-    icon: Globe,
+    icon: CandlestickChart,
     title: 'Forex Signals Group',
-    description: 'Get accurate and professional forex signals directly from Rao Umer\'s analysis. Our signals cover gold and major forex pairs, delivered live in Discord',
+    description: 'Get accurate and professional forex signals directly from Rao Umer\'s analysis. Our signals cover gold and major forex pairs.',
     features: [
-      { icon: Globe, text: 'Live Discord Signals' },
-      { icon: Globe, text: 'Gold & Major Pairs' },
-      { icon: Target, text: 'Professional Analysis' }
+      { icon: Globe, text: 'Discord VIP signals channel access' },
+      { icon: Ticket, text: 'Real time market analysis' },
+      { icon: Target, text: 'On demand Analysis' },
+      { icon: ChartArea, text: 'VIP Chat access' }
     ],
     gradient: 'var(--gradient-blue)',
     delay: 0.2
@@ -90,14 +91,15 @@ export const servicesList = [
     id: 2,
     icon: Star,
     title: 'RTC Mentorship Program',
-    description: 'A 40-day structured training designed for Pakistani traders to master ICT, Smart Money Concepts (SMC) and Volume Spread Analysis (VSA)',
+    description: 'From basics to advanced concepts, learn trading with expert guidance and practical methods in RTC mentorship program.',
     features: [
-      { icon: Sparkles, text: '40-Day Training' },
-      { icon: Star, text: 'ICT + SMC + VSA' },
-      { icon: Target, text: 'For Pakistani Traders' }
+      { icon: Sparkles, text: 'Direct access to mentor through exclusive chat' },
+      { icon: Star, text: 'Learn ICT, SMC, VSA, Wyckoff, Elliott Waves & more' },
+      { icon: Target, text: 'Urdu/Hindi Language' }
     ],
     gradient: 'var(--gradient-green)',
-    delay: 0.4
+    delay: 0.4,
+    btn: true
   }
 ];
 export const initialLivePairs = [
@@ -242,8 +244,8 @@ export const COMMUNITY_STATS: CommunityStats = {
 
 export const NAV_ITEMS = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
   { label: "Services", href: "#services" },
   { label: "Community", href: "#community" },
-  { label: "Contact", href: "#contact" }
+  { label: "About", href: "#about" },
 ];

@@ -5,6 +5,7 @@ import { youtubeVideos, YOUTUBE_LINK } from '../../utils/objects/constants';
 const YoutubeVideosSection: React.FC = () => {
   return (
     <section
+      id="learn"
       className="youtube-videos-section"
       style={{
         padding: "3rem 1rem",
@@ -43,7 +44,7 @@ const YoutubeVideosSection: React.FC = () => {
             marginBottom: 10,
           }}
         >
-          RTC VIDEOS
+          Free Premium Content
         </span>
         <h2
           className="text-3xl font-bold text-center"
@@ -56,7 +57,7 @@ const YoutubeVideosSection: React.FC = () => {
             textShadow: "0 0 10px rgba(99,102,241,0.3)",
           }}
         >
-          Featured
+          Free
           <span
             style={{
               background: "linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%)",
@@ -66,7 +67,7 @@ const YoutubeVideosSection: React.FC = () => {
               color: "transparent",
             }}
           >
-            &nbsp; YouTube Videos
+            &nbsp; Courses on our Youtube
           </span>
         </h2>
       </div>
