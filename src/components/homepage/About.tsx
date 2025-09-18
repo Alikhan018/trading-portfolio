@@ -17,19 +17,19 @@ const About: React.FC = () => {
     <section
       id="about"
       ref={aboutRef}
-      className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden px-4 md:px-8"
+      className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden pt-10 pb-10 px-4 md:px-8 md:pt-14"
       style={{
         background: "var(--gradient-bg)",
-        paddingTop: '2.5rem',
-        paddingBottom: '2.5rem',
-        paddingLeft: '1rem',
-        paddingRight: '1rem',
-        ...(window.innerWidth < 768 ? {
-          paddingTop: '3.5rem',
-          paddingBottom: '2.5rem',
-          paddingLeft: '1.2rem',
-          paddingRight: '1.2rem',
-        } : {})
+        // paddingTop: '2.5rem',
+        // paddingBottom: '2.5rem',
+        // paddingLeft: '1rem',
+        // paddingRight: '1rem',
+        // ...(window.innerWidth < 768 ? {
+        //   paddingTop: '3.5rem',
+        //   paddingBottom: '2.5rem',
+        //   paddingLeft: '1.2rem',
+        //   paddingRight: '1.2rem',
+        // } : {})
       }}
     >
       {/* 3D Background Elements */}
