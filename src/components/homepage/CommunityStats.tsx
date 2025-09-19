@@ -234,10 +234,12 @@ const CommunityStats: React.FC = () => {
           >
             {[
               { src: '/images/01-img.jpg', alt: 'Trading Result 1 - XAUUSD Buy Trades' },
-              { src: '/images/02-img.jpg', alt: 'Trading Result 2 - XAUUSD Sell Trades' },
+              // { src: '/images/02-img.jpg', alt: 'Trading Result 2 - XAUUSD Sell Trades' },
               { src: '/images/03-img.jpg', alt: 'Trading Result 3 - Portfolio Overview' },
               { src: '/images/04-img.jpg', alt: 'Trading Result 4 - Trading History' },
-              { src: '/images/05-img.jpg', alt: 'Trading Result 5 - Multiple Positions' }
+              { src: '/images/05-img.jpg', alt: 'Trading Result 5 - Multiple Positions' },
+              { src: '/images/img-05.jpg', alt: 'Trading Result 5 - Multiple Positions' },
+              { src: '/images/img-04.jpg', alt: 'Trading Result 5 - Multiple Positions' }
             ].map((image, index) => (
               <motion.div
                 key={index}

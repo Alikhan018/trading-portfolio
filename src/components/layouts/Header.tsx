@@ -47,13 +47,13 @@ const Header: React.FC = () => {
       style={{
         background: isScrolled
           ? theme === "dark"
-            ? "rgba(15, 15, 23, 0.95)"
+            ? "rgba(23, 15, 15, 0.95)"
             : "rgba(248, 250, 252, 0.95)"
           : "transparent",
         backdropFilter: isScrolled ? "blur(20px)" : "none",
         borderBottom: isScrolled
           ? theme === "dark"
-            ? "1px solid rgba(99, 102, 241, 0.3)"
+            ? "1px solid rgba(241, 99, 99, 0.3)"
             : "1px solid rgba(30, 64, 175, 0.3)"
           : "none",
         padding: isScrolled ? "1rem 0" : "1.5rem 0",
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
             }}
           >
             <img
-              src="/header_logo.png"
+              src="/logo-hero-white.png"
               alt="Logo"
               width={70}
               style={{ WebkitFilter: "drop-shadow(0 2px 2px #d7c6f5)" }}
@@ -99,16 +99,16 @@ const Header: React.FC = () => {
                 borderRadius: "20px",
                 background:
                   theme === "dark"
-                    ? "rgba(16, 185, 129, 0.1)"
+                    ? "rgba(185, 16, 16, 0.1)"
                     : "rgba(5, 150, 105, 0.1)",
                 border:
                   theme === "dark"
-                    ? "1px solid rgba(16, 185, 129, 0.3)"
+                    ? "1px solid rgba(185, 16, 16, 0.3)"
                     : "1px solid rgba(5, 150, 105, 0.3)",
                 backdropFilter: "blur(10px)",
                 boxShadow:
                   theme === "dark"
-                    ? "0 4px 12px rgba(16, 185, 129, 0.2)"
+                    ? "0 4px 12px rgba(185, 16, 16, 0.2)"
                     : "0 4px 12px rgba(5, 150, 105, 0.2)",
                 marginTop: "0.1rem",
               }}
@@ -123,12 +123,12 @@ const Header: React.FC = () => {
                   borderRadius: "50%",
                   background:
                     theme === "dark"
-                      ? "linear-gradient(135deg, #10b981, #34d399)"
+                      ? "linear-gradient(135deg, #b91010ff, #d33434ff)"
                       : "linear-gradient(135deg, #059669, #10b981)",
                   boxShadow:
                     theme === "dark"
-                      ? "0 0 8px rgba(16, 185, 129, 0.6)"
-                      : "0 0 8px rgba(5, 150, 105, 0.6)",
+                      ? "0 0 8px rgba(185, 16, 16, 0.6)"
+                      : "0 0 8px rgba(150, 5, 5, 0.6)",
                 }}
                 animate={{
                   scale: [1, 1.3, 1],
@@ -146,7 +146,7 @@ const Header: React.FC = () => {
                 style={{
                   fontSize: "0.75rem",
                   fontWeight: "600",
-                  color: theme === "dark" ? "#10b981" : "#059669",
+                  color: theme === "dark" ? "#b91010ff" : "#059669",
                   letterSpacing: "0.05em",
                   textShadow:
                     theme === "dark"
@@ -182,7 +182,7 @@ const Header: React.FC = () => {
                   textDecoration: "none",
                 }}
                 whileHover={{
-                  color: theme === "dark" ? "#ffffff" : "#000000",
+                  color: theme === "dark" ? "#fe2525ff" : "#000000",
                   scale: 1.05,
                 }}
                 onClick={(e) => {
@@ -322,16 +322,16 @@ const Header: React.FC = () => {
                 borderRadius: "16px",
                 background:
                   theme === "dark"
-                    ? "rgba(16, 185, 129, 0.1)"
+                    ? "rgba(185, 16, 16, 0.1)"
                     : "rgba(5, 150, 105, 0.1)",
                 border:
                   theme === "dark"
-                    ? "1px solid rgba(16, 185, 129, 0.3)"
+                    ? "1px solid rgba(185, 16, 16, 0.3)"
                     : "1px solid rgba(5, 150, 105, 0.3)",
                 backdropFilter: "blur(10px)",
                 boxShadow:
                   theme === "dark"
-                    ? "0 3px 8px rgba(16, 185, 129, 0.2)"
+                    ? "0 3px 8px rgba(185, 16, 16, 0.2)"
                     : "0 3px 8px rgba(5, 150, 105, 0.2)",
                 marginTop: "0.1rem",
               }}
@@ -346,11 +346,11 @@ const Header: React.FC = () => {
                   borderRadius: "50%",
                   background:
                     theme === "dark"
-                      ? "linear-gradient(135deg, #10b981, #34d399)"
+                      ? "linear-gradient(135deg, #b91010ff, #d33434ff)"
                       : "linear-gradient(135deg, #059669, #10b981)",
                   boxShadow:
                     theme === "dark"
-                      ? "0 0 6px rgba(16, 185, 129, 0.6)"
+                      ? "0 0 6px rgba(185, 16, 16, 0.6)"
                       : "0 0 6px rgba(5, 150, 105, 0.6)",
                 }}
                 animate={{
@@ -369,7 +369,7 @@ const Header: React.FC = () => {
                 style={{
                   fontSize: "0.65rem",
                   fontWeight: "600",
-                  color: theme === "dark" ? "#10b981" : "#059669",
+                  color: theme === "dark" ? "#b91010ff" : "#059669",
                   letterSpacing: "0.05em",
                   textShadow:
                     theme === "dark"
@@ -466,7 +466,7 @@ const Header: React.FC = () => {
               style={{
                 background:
                   theme === "dark"
-                    ? "linear-gradient(135deg, #1f2937 0%, #000000 50%, #374151 100%)"
+                    ? "linear-gradient(135deg, #371f1fff 0%, #000000 50%, #513737ff 100%)"
                     : "linear-gradient(135deg, #f3f4f6 0%, #ffffff 50%, #e5e7eb 100%)",
               }}
               onClick={(e) => e.stopPropagation()}
@@ -527,7 +527,7 @@ const Header: React.FC = () => {
                         style={{
                           fontSize: "1rem",
                           fontWeight: "600",
-                          color: theme === "dark" ? "#8b5cf6" : "#6366f1",
+                          color: theme === "dark" ? "#f65c5cff" : "#f16363ff",
                         }}
                       >
                         0{index + 1}.

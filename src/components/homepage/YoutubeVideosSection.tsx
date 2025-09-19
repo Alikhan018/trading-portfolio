@@ -90,11 +90,11 @@ const YoutubeVideosSection: React.FC = () => {
             style={{
               borderRadius: 14,
               overflow: "hidden",
-              boxShadow: "0 2px 12px 0 rgba(80,80,180,0.10)",
+              boxShadow: "0 2px 12px 0 rgba(180, 80, 80, 0.1)",
               cursor: "pointer",
               transition: "transform 0.2s",
               background: "rgba(255,255,255,0.05)",
-              border: "1px solid #6366f1",
+              border: "1px solid #f16363ff",
               margin: 0,
               padding: 0,
               maxWidth: 800,
@@ -123,7 +123,7 @@ const YoutubeVideosSection: React.FC = () => {
               }}
             >
               <img
-                src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                src={`./yt-thumbnail-RTC.jpg`}
                 alt={video.title}
                 style={{
                   position: "absolute",
