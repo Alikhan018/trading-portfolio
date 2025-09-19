@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Activity } from "lucide-react";
 import InteractiveCard from "../common/InteractiveCard";
 import { initialLivePairs } from '../../utils/objects/constants';
-// Removed CoinMarketCap import - using direct API calls instead
 
 // Optimized Static Chart Component - Only re-renders when data actually changes
 interface StaticChartProps {
@@ -380,6 +379,7 @@ const CryptoMarkets: React.FC = () => {
   const [livePairs, setLivePairs] = useState<typeof initialLivePairs>(initialLivePairs);
   const [previousPrices, setPreviousPrices] = useState<{ [key: string]: number }>({});
   const [connectionStatus, setConnectionStatus] = useState<{ [key: string]: boolean }>({});
+  console.log(connectionStatus)
   const [apiErrors, setApiErrors] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
@@ -750,7 +750,7 @@ const CryptoMarkets: React.FC = () => {
         </motion.div>
 
         {/* Global Connection Status - Better positioned */}
-        <motion.div
+        {/* <motion.div
           className="global-connection-status"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -798,7 +798,7 @@ const CryptoMarkets: React.FC = () => {
           }}>
             {Object.values(connectionStatus).filter(status => status).length}/{livePairs.length} LIVE
           </span>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

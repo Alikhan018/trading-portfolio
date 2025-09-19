@@ -62,7 +62,7 @@ const About: React.FC = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 px-6 py-6 md:px-8 md:pt-14 bg-white/5 border border-indigo-500/30 rounded-full backdrop-blur-[10px] mb-4 relative cursor-pointer transition-all duration-300"
+            className="inline-flex items-center gap-3 px-6 py-6 md:px-8 md:pt-14 bg-white/5 border border-red-900 rounded-full backdrop-blur-[10px] mb-4 relative cursor-pointer transition-all duration-300"
             style={{ transformStyle: "preserve-3d", padding: "0.5rem 1rem" }}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -70,9 +70,9 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             whileHover={{ scale: 1.1, rotateY: 5 }}
           >
-            <div className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full opacity-30 blur-2xl -z-10" />
+            <div className="absolute -top-0.5 -left-0.5 -right-0.5 -bottom-0.5 bg-gradient-to-br from-red-500 to-purple-500 rounded-full opacity-30 blur-2xl -z-10" />
             <Sparkles
-              className="w-4 h-4 text-indigo-500"
+              className="w-4 h-4 text-red-500"
               style={{ transform: "translateZ(5px)" }}
             />
             <span
@@ -86,7 +86,7 @@ const About: React.FC = () => {
               ABOUT US
             </span>
             <div
-              className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"
+              className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"
               style={{ transform: "translateZ(3px)" }}
             />
           </motion.div>
@@ -146,13 +146,11 @@ const About: React.FC = () => {
               About
             </motion.div>
             <motion.div
-              className="block"
+              className=""
               style={{
-                background: "var(--gradient-blue)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                background: "",
                 backgroundClip: "text",
-                color: "transparent",
+                color: "#dc2626",
                 transform: "translateZ(8px)",
               }}
               initial={{ opacity: 0, x: -30 }}

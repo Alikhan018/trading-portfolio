@@ -240,7 +240,7 @@ const Hero: React.FC<HeroProps> = ({ showContent = true }) => {
                   display: "inline-block",
                 }}
               >
-                &nbsp;with RTC
+                with RTC
               </span>
             </motion.div>
 

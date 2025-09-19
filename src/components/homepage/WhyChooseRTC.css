@@ -142,8 +142,8 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: var(--gradient-bg);
+  border: 1px solid var(--border-accent);
   border-radius: 50px;
   backdrop-filter: blur(10px);
   margin-bottom: 2rem;
@@ -159,7 +159,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   border-radius: 50px;
   opacity: 0.3;
   filter: blur(8px);
@@ -177,7 +177,7 @@
 .why-choose-badge-3d-indicator {
   width: 8px;
   height: 8px;
-  background: #10b981;
+  background: var(--gradient-primary);
   border-radius: 50%;
   animation: pulse-3d 2s infinite;
   transform: translateZ(3px);
@@ -216,7 +216,7 @@
 
 .why-choose-title-line-2 {
   display: block;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

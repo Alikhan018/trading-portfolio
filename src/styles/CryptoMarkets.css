@@ -1,4 +1,4 @@
-/* CryptoMarkets 3D Styles */
+/* CryptoMarkets 3D Styles - RED & BLACK THEME */
 .markets-section-3d {
   position: relative;
   min-height: 100vh;
@@ -121,7 +121,7 @@
   right: 50%;
 }
 
-/* Grid Pattern */
+/* Grid Pattern - Updated to Red Theme */
 .markets-grid-pattern {
   position: absolute;
   top: 0;
@@ -129,8 +129,8 @@
   right: 0;
   bottom: 0;
   background-image:
-    radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+    radial-gradient(circle at 25% 25%, rgba(220, 38, 38, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(185, 28, 28, 0.1) 1px, transparent 1px);
   background-size: 50px 50px, 50px 50px;
   background-position: 0 0, 25px 25px;
   opacity: 0.3;
@@ -140,13 +140,13 @@
   position: absolute;
   width: 4px;
   height: 4px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   border-radius: 50%;
   transform: translateZ(10px);
 }
 
 .markets-grid-dot:nth-child(odd) {
-  background: linear-gradient(135deg, #10b981, #06d6a0);
+  background: linear-gradient(135deg, #991b1b, #7f1d1d);
 }
 
 /* Container */
@@ -171,7 +171,7 @@
   gap: 0.75rem;
   padding: 0.75rem 1.5rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(220, 38, 38, 0.3);
   border-radius: 50px;
   backdrop-filter: blur(10px);
   margin-bottom: 2rem;
@@ -187,7 +187,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   border-radius: 50px;
   opacity: 0.3;
   filter: blur(8px);
@@ -197,14 +197,14 @@
 .badge-3d-icon {
   width: 20px;
   height: 20px;
-  color: #6366f1;
+  color: #dc2626;
   transform: translateZ(5px);
 }
 
 .badge-3d-text {
   font-size: 0.875rem;
   font-weight: 600;
-  color: #a1a1aa;
+  color: #cccccc;
   letter-spacing: 0.05em;
   transform: translateZ(3px);
 }
@@ -212,7 +212,7 @@
 .badge-3d-indicator {
   width: 8px;
   height: 8px;
-  background: #10b981;
+  background: #dc2626;
   border-radius: 50%;
   animation: pulse-3d 2s infinite;
   transform: translateZ(3px);
@@ -241,7 +241,7 @@
 
 .markets-title-line-1 {
   display: block;
-  background: linear-gradient(135deg, #ffffff, #a1a1aa);
+  background: linear-gradient(135deg, #ffffff, #cccccc);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -251,7 +251,7 @@
 
 .markets-title-line-2 {
   display: block;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -260,7 +260,7 @@
 
 .markets-description-3d {
   font-size: 1.25rem;
-  color: #a1a1aa;
+  color: #cccccc;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -346,11 +346,11 @@
 }
 
 .pair-change-3d.positive {
-  color: #10b981;
+  color: #dc2626;
 }
 
 .pair-change-3d.negative {
-  color: #ef4444;
+  color: #7f1d1d;
 }
 
 .pair-change-value-3d {
@@ -404,17 +404,17 @@
 @keyframes pulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
   }
 
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
   }
 
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
   }
 }
 
@@ -426,7 +426,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
   transform: translateY(-50%) translateZ(5px);
 }
 
@@ -445,7 +445,7 @@
 .chart-dot-3d {
   width: 8px;
   height: 8px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   border-radius: 50%;
   position: relative;
 }
@@ -496,17 +496,17 @@
 }
 
 .price-change.positive {
-  background: rgba(0, 255, 136, 0.15);
-  border: 1px solid rgba(0, 255, 136, 0.3);
-  color: #00ff88;
-  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  color: #dc2626;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
 }
 
 .price-change.negative {
-  background: rgba(255, 71, 87, 0.15);
-  border: 1px solid rgba(255, 71, 87, 0.3);
-  color: #ff4757;
-  box-shadow: 0 4px 20px rgba(255, 71, 87, 0.2);
+  background: rgba(127, 29, 29, 0.15);
+  border: 1px solid rgba(127, 29, 29, 0.3);
+  color: #7f1d1d;
+  box-shadow: 0 4px 20px rgba(127, 29, 29, 0.2);
 }
 
 .change-indicator {
@@ -665,27 +665,13 @@
   font-family: 'JetBrains Mono', 'Consolas', monospace;
 }
 
-/* Flash Animation Classes */
+/* Flash Animation Classes - Updated for Red Theme */
 .price-flash-up {
-  animation: flashGreen 0.5s ease-out;
-}
-
-.price-flash-down {
   animation: flashRed 0.5s ease-out;
 }
 
-@keyframes flashGreen {
-  0% {
-    background-color: transparent;
-  }
-
-  50% {
-    background-color: rgba(0, 255, 136, 0.2);
-  }
-
-  100% {
-    background-color: transparent;
-  }
+.price-flash-down {
+  animation: flashDarkRed 0.5s ease-out;
 }
 
 @keyframes flashRed {
@@ -694,7 +680,21 @@
   }
 
   50% {
-    background-color: rgba(255, 71, 87, 0.2);
+    background-color: rgba(220, 38, 38, 0.2);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes flashDarkRed {
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: rgba(127, 29, 29, 0.2);
   }
 
   100% {
@@ -707,16 +707,16 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: rgba(255, 71, 87, 0.1);
-  border: 1px solid rgba(255, 71, 87, 0.3);
-  color: #ff4757;
+  background: rgba(127, 29, 29, 0.1);
+  border: 1px solid rgba(127, 29, 29, 0.3);
+  color: #7f1d1d;
   padding: 1rem 1.5rem;
   border-radius: 12px;
   backdrop-filter: blur(10px);
   z-index: 1000;
   font-size: 0.9rem;
   font-weight: 600;
-  box-shadow: 0 8px 32px rgba(255, 71, 87, 0.2);
+  box-shadow: 0 8px 32px rgba(127, 29, 29, 0.2);
   animation: slideInRight 0.3s ease-out;
 }
 
@@ -765,7 +765,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   border-radius: 18px;
   opacity: 0;
   filter: blur(10px);
@@ -787,7 +787,7 @@
   margin: 0 auto 1.5rem;
   position: relative;
   transform-style: preserve-3d;
-  box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 15px 40px rgba(220, 38, 38, 0.3);
 }
 
 .stat-icon-3d-svg {
@@ -811,7 +811,7 @@
 
 .stat-label-3d {
   font-size: 1rem;
-  color: #a1a1aa;
+  color: #cccccc;
   font-weight: 500;
   transform: translateZ(5px);
 }

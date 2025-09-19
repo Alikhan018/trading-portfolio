@@ -17,7 +17,7 @@ const YoutubeVideosSection: React.FC = () => {
         position: "relative",
         boxSizing: "border-box",
         background:
-          "linear-gradient(135deg, rgba(99,102,241,0.18) 0%, rgba(32, 26, 46, 0.16) 40%, rgba(29, 29, 29, 0.1) 100%)",
+          "linear-gradient(135deg, #1a1a1a, #000000, #0f0f0f)",
         borderRadius: 0,
         maxWidth: "100vw",
       }}
@@ -37,7 +37,7 @@ const YoutubeVideosSection: React.FC = () => {
             fontWeight: 700,
             fontSize: "1.1rem",
             letterSpacing: "0.08em",
-            color: "#6366f1",
+            color: "#dc2626",
             background: "rgba(99,102,241,0.08)",
             borderRadius: 12,
             padding: "0.3rem 1.2rem",
@@ -54,13 +54,13 @@ const YoutubeVideosSection: React.FC = () => {
             margin: 0,
             fontWeight: "bold",
             // Responsive font sizes
-            textShadow: "0 0 10px rgba(99,102,241,0.3)",
+            textShadow: "0 0 10px #dc2626",
           }}
         >
           Free
           <span
             style={{
-              background: "linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%)",
+              background: "linear-gradient(90deg, #dc2626 0%, #dc2626 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -97,7 +97,7 @@ const YoutubeVideosSection: React.FC = () => {
               border: "1px solid #6366f1",
               margin: 0,
               padding: 0,
-              maxWidth: 275,
+              maxWidth: 800,
               width: "100%",
               minHeight: 160,
               display: "flex",
@@ -122,7 +122,32 @@ const YoutubeVideosSection: React.FC = () => {
                 maxHeight: 120,
               }}
             >
-              <iframe
+              <img
+                src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                alt={video.title}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  background: "rgba(0,0,0,0.6)",
+                  borderRadius: "50%",
+                  padding: "0.75rem",
+                }}
+              >
+                <Youtube style={{ width: 32, height: 32, color: "#ef4444" }} />
+              </div>
+              {/* <iframe
                 src={video.embed}
                 title={video.title}
                 frameBorder="0"
@@ -140,7 +165,10 @@ const YoutubeVideosSection: React.FC = () => {
                   maxHeight: 120,
                 }}
                 referrerPolicy="strict-origin-when-cross-origin"
-              />
+              /> */}
+              {/* <Youtube
+                style={{ width: 48, height: 48, color: "#ef4444" }}
+              /> */}
             </div>
             <div
               className="youtube-card-title-container"

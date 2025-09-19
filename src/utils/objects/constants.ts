@@ -23,25 +23,26 @@ export const socialLinks = [
 ];
 export const youtubeVideos = [
   {
-    title: "RTC - How to Trade Like a Pro | Rao Umer",
+    id: "UU_CZTlVRn8",
+    title: "Supply & Demand Zones Explained – Master the Core of Smart Money Trading",
     embed: "https://www.youtube.com/embed/UU_CZTlVRn8?si=EFnzJ8aaUeQQeeFB",
     url: "https://www.youtube.com/watch?v=UU_CZTlVRn8",
   },
-  {
-    title: "RTC - Smart Money Concepts Explained",
-    embed: "https://www.youtube.com/embed/YabA-kLv4rE?si=BUsWwQAYF8ThejGn",
-    url: "https://www.youtube.com/watch?v=YabA-kLv4rE",
-  },
-  {
-    title: "RTC - Volume Spread Analysis Masterclass",
-    embed: "https://www.youtube.com/embed/TazeBFTe2-o?si=ez1kiNJwFCBGIfln",
-    url: "https://www.youtube.com/watch?v=TazeBFTe2-o",
-  },
-  {
-    title: "RTC - Institutional Trading Secrets",
-    embed: "https://www.youtube.com/embed/DgfaeHEWArE?si=K47myyov-3HYb-vr",
-    url: "https://www.youtube.com/watch?v=DgfaeHEWArE",
-  },
+  // {
+  //   title: "RTC - Smart Money Concepts Explained",
+  //   embed: "https://www.youtube.com/embed/YabA-kLv4rE?si=BUsWwQAYF8ThejGn",
+  //   url: "https://www.youtube.com/watch?v=YabA-kLv4rE",
+  // },
+  // {
+  //   title: "RTC - Volume Spread Analysis Masterclass",
+  //   embed: "https://www.youtube.com/embed/TazeBFTe2-o?si=ez1kiNJwFCBGIfln",
+  //   url: "https://www.youtube.com/watch?v=TazeBFTe2-o",
+  // },
+  // {
+  //   title: "RTC - Institutional Trading Secrets",
+  //   embed: "https://www.youtube.com/embed/DgfaeHEWArE?si=K47myyov-3HYb-vr",
+  //   url: "https://www.youtube.com/watch?v=DgfaeHEWArE",
+  // },
 ];
 export interface CommunityStats {
   members: string;
@@ -193,27 +194,37 @@ export interface ReelVideo {
   src: string;
   thumbnail?: string;
 }
+import Vid4 from "../../../public/video-4.jpg";
+import Vid3 from "../../../public/video-3.jpg";
+import Vid5 from "../../../public/video-5.jpg";
+import Vid2 from "../../../public/video-2.jpg";
+import Vid1 from "../../../public/video-1.jpg";
 
 export const REELS_VIDEOS: ReelVideo[] = [
   {
     id: 'reel-1',
-    src: '/insta/01.mp4'
+    thumbnail: Vid1,
+    src: 'https://www.instagram.com/reel/DOktGO_jdkN/',
   },
   {
     id: 'reel-2',
-    src: '/insta/02.mp4'
+    thumbnail: Vid2,
+    src: 'https://www.instagram.com/reel/DOfg8LEEsuj/'
   },
   {
     id: 'reel-3',
-    src: '/insta/03.mp4'
+    thumbnail: Vid3,
+    src: 'https://www.instagram.com/reel/DOY_j3uEi5l/'
   },
   {
     id: 'reel-4',
-    src: '/insta/04.mp4'
+    thumbnail: Vid4,
+    src: 'https://www.instagram.com/reel/DOLsR4vDY7G/'
   },
   {
     id: 'reel-5',
-    src: '/insta/05.mp4'
+    thumbnail: Vid5,
+    src: 'https://www.instagram.com/reel/DMKDeiyikuA/'
   },
 ];
 

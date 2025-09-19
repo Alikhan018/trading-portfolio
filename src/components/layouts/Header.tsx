@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useTheme } from "../../contexts/ThemeContext";
 
 const NAV_ITEMS = [
@@ -16,8 +16,7 @@ const NAV_ITEMS = [
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -271,7 +270,7 @@ const Header: React.FC = () => {
                 </div>
               )}
             </motion.button> */}
-            <motion.button
+            {/* <motion.button
               onClick={toggleTheme}
               style={{
                 padding: "0.5rem",
@@ -298,7 +297,7 @@ const Header: React.FC = () => {
               ) : (
                 <Moon className="w-5 h-5 text-blue-600" />
               )}
-            </motion.button>
+            </motion.button> */}
           </div>
         </div>
 
@@ -390,7 +389,7 @@ const Header: React.FC = () => {
             {/* PDF Download Button (hide on mobile, show in menu modal) */}
             {/* Only show in mobile menu modal below */}
             {/* Theme Toggle */}
-            <motion.button
+            {/* <motion.button
               onClick={toggleTheme}
               style={{
                 padding: "0.5rem",
@@ -417,7 +416,7 @@ const Header: React.FC = () => {
               ) : (
                 <Moon className="w-5 h-5 text-blue-600" />
               )}
-            </motion.button>
+            </motion.button> */}
 
             {/* Mobile Menu Toggle */}
             <motion.button

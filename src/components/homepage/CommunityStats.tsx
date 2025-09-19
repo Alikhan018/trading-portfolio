@@ -1,5 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
+import "@/index.css"
 // import InteractiveCard from "../common/InteractiveCard";
 // import { communityStats } from '../../utils/objects/constants';
 
@@ -289,11 +292,13 @@ const CommunityStats: React.FC = () => {
                 href="https://discord.gg/njAcNGpZ5g"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="community-cta-button-3d"
+                className=""
                 style={{ textDecoration: 'none', color: 'inherit', padding: '0.75rem 1.5rem', fontSize: '1rem' }}
               >
-                <span className="cta-btn-text">Join Community</span>
-                <span className="cta-btn-icon" style={{ display: 'inline-block', marginLeft: '0.5rem', fontSize: '1.1rem' }}>→</span>
+                <FontAwesomeIcon icon={faDiscord} />
+                <span className="cta-btn-text">
+                  Join Community</span>
+                {/* <span className="cta-btn-icon" style={{ display: 'inline-block', marginLeft: '0.5rem', fontSize: '1.1rem' }}>→</span> */}
                 <div className="cta-btn-3d-glow" />
               </a>
             </motion.button>
