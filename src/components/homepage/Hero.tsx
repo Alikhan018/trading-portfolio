@@ -25,7 +25,7 @@ const AnimatedLogo: React.FC = () => {
     >
       {/* Main Logo */}
       <motion.img
-        src="/logo-hero.png"
+        src="/logo-hero-white.png"
         alt="RTC Logo"
         className="w-full h-auto max-w-[350px] md:max-w-[450px] xl:max-w-[550px] relative z-10"
         style={{
