@@ -2,11 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
-  MessageCircle,
-  Youtube,
-  Instagram,
   Mail,
-  Phone,
   MapPin,
   ArrowRight,
   Shield,
@@ -18,6 +14,7 @@ import {
 import { socialLinks } from '../../utils/objects/constants';
 import { useTheme } from '../../contexts/ThemeContext';
 import '../../styles/Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer: React.FC = () => {
   const footerRef = useRef<HTMLElement>(null);
@@ -29,12 +26,9 @@ const Footer: React.FC = () => {
 
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
-  // Map icon string to actual icon component
-  const iconMap: Record<string, any> = { MessageCircle, Youtube, Instagram };
   const footerLinks = socialLinks.map(link => ({
     ...link,
-    icon: iconMap[link.icon] || MessageCircle
+    icon: link.icon
   }));
 
   return (
@@ -44,7 +38,7 @@ const Footer: React.FC = () => {
       className="footer-traditional"
       style={{
         background: theme === 'dark'
-          ? 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)'
+          ? 'linear-gradient(135deg,  #3300005c 0%, #38010197 50%, #56000008 100%)'
           : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
         borderTop: theme === 'dark'
           ? '1px solid rgba(99, 102, 241, 0.2)'
@@ -234,10 +228,10 @@ const Footer: React.FC = () => {
                     className="footer-contact-text"
                     style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
                   >
-                    info@raotradingconcept.com
+                    contact@raoumer.com
                   </span>
                 </div>
-                <div className="footer-contact-item">
+                {/* <div className="footer-contact-item">
                   <Phone className="footer-contact-icon" />
                   <span
                     className="footer-contact-text"
@@ -245,14 +239,14 @@ const Footer: React.FC = () => {
                   >
                     +92 300 1234567
                   </span>
-                </div>
+                </div> */}
                 <div className="footer-contact-item">
                   <MapPin className="footer-contact-icon" />
                   <span
                     className="footer-contact-text"
                     style={{ color: theme === 'dark' ? '#9ca3af' : '#6b7280' }}
                   >
-                    Lahore, Pakistan
+                    Pakistan
                   </span>
                 </div>
               </div>
@@ -262,7 +256,6 @@ const Footer: React.FC = () => {
                 <h5 style={{ color: theme === 'dark' ? '#ffffff' : '#1f2937' }}>Follow Us</h5>
                 <div className="footer-social-links">
                   {footerLinks.map((social) => {
-                    const IconComponent = social.icon;
                     return (
                       <motion.a
                         key={social.name}
@@ -276,18 +269,18 @@ const Footer: React.FC = () => {
                             : 'rgba(99, 102, 241, 0.05)',
                           color: theme === 'dark' ? '#9ca3af' : '#6b7280',
                           border: theme === 'dark'
-                            ? '1px solid rgba(99, 102, 241, 0.2)'
+                            ? '1px solid #dc262625'
                             : '1px solid rgba(99, 102, 241, 0.1)'
                         }}
                         whileHover={{
                           scale: 1.1,
                           y: -2,
-                          background: 'rgba(99, 102, 241, 0.2)',
-                          color: '#6366f1'
+                          background: '#d22f2f0c',
+                          color: '#dc2626'
                         }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        <IconComponent className="footer-social-icon" />
+                        <FontAwesomeIcon icon={social.icon} />
                       </motion.a>
                     );
                   })}

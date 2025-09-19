@@ -2,21 +2,21 @@ export const socialLinks = [
   {
     name: 'Discord',
     href: 'https://discord.gg/njAcNGpZ5g',
-    icon: 'MessageCircle',
+    icon: faDiscord,
     target: '_blank',
     rel: 'noopener noreferrer'
   },
   {
     name: 'YouTube',
     href: 'https://youtube.com/playlist?list=PLv1oZVAdDlsUu8FpXRZ1MGeYaxA3V_65R&si=M9tO2HkVYL7q-3lH',
-    icon: 'Youtube',
+    icon: faYoutube,
     target: '_blank',
     rel: 'noopener noreferrer'
   },
   {
     name: 'Instagram',
     href: 'https://www.instagram.com/raoumerofficial?igsh=enluN3loazgxanVm',
-    icon: 'Instagram',
+    icon: faInstagram,
     target: '_blank',
     rel: 'noopener noreferrer'
   }
@@ -199,6 +199,7 @@ import Vid3 from "../../../public/video-3.jpg";
 import Vid5 from "../../../public/video-5.jpg";
 import Vid2 from "../../../public/video-2.jpg";
 import Vid1 from "../../../public/video-1.jpg";
+import { faDiscord, faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export const REELS_VIDEOS: ReelVideo[] = [
   {

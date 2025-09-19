@@ -226,11 +226,11 @@ const Services: React.FC = () => {
                           borderRadius: '0.75rem',
                           border:
                             theme === 'dark'
-                              ? '1px solid rgba(255, 255, 255, 0.2)'
+                              ? '1px solid rgba(251, 13, 13, 0.35)'
                               : '1px solid rgba(0, 0, 0, 0.2)',
                           backgroundColor:
                             theme === 'dark'
-                              ? 'rgba(255, 255, 255, 0.05)'
+                              ? 'rgba(209, 27, 27, 0.05)'
                               : 'rgba(0, 0, 0, 0.05)',
                           cursor: downloading ? 'not-allowed' : 'pointer',
                           transition: 'all 0.3s ease',
@@ -248,11 +248,11 @@ const Services: React.FC = () => {
                       >
                         <Download
                           className="w-5 h-5"
-                          style={{ color: theme === 'dark' ? '#a5b4fc' : '#6366f1' }}
+                          style={{ color: theme === 'dark' ? '#dc2626' : '#6366f1' }}
                         />
                         <span
                           style={{
-                            color: theme === 'dark' ? '#a5b4fc' : '#6366f1',
+                            color: theme === 'dark' ? '#dc2626' : '#6366f1',
                             fontSize: '0.95rem',
                             fontWeight: 600
                           }}
